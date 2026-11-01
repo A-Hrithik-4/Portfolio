@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 560" width="1024" height="560">
+  <defs>
+    <linearGradient id="hammerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00171a"/>
+      <stop offset="100%" stop-color="#003135"/>
+    </linearGradient>
+    <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0FA4AF"/>
+      <stop offset="100%" stop-color="#AFDDE5"/>
+    </linearGradient>
+    <filter id="hGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="560" fill="url(#hammerBg)"/>
+
+  <!-- CRT Scanlines / Grid subtle effect -->
+  <g stroke="#02383d" stroke-width="0.7" opacity="0.3">
+    <line x1="0" y1="40" x2="1024" y2="40"/>
+    <line x1="0" y1="120" x2="1024" y2="120"/>
+    <line x1="0" y1="200" x2="1024" y2="200"/>
+    <line x1="0" y1="280" x2="1024" y2="280"/>
+    <line x1="0" y1="360" x2="1024" y2="360"/>
+    <line x1="0" y1="440" x2="1024" y2="440"/>
+    <line x1="0" y1="520" x2="1024" y2="520"/>
+  </g>
+
+  <!-- Top Window Header -->
+  <rect x="36" y="24" width="952" height="52" rx="10" fill="#00282b" stroke="#024950" stroke-width="1.2"/>
+  <circle cx="64" cy="50" r="5" fill="#ef4444"/>
+  <circle cx="82" cy="50" r="5" fill="#f59e0b"/>
+  <circle cx="100" cy="50" r="5" fill="#10b981"/>
+
+  <text x="126" y="55" fill="#0FA4AF" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" letter-spacing="1">HAMMER :: CYBER ESCAPE ROOM v2.0</text>
+  <text x="440" y="54" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="12">Pravrutti 2.0 National Tech Fest · Live Event</text>
+
+  <!-- Status indicators -->
+  <rect x="740" y="38" width="115" height="24" rx="4" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1"/>
+  <circle cx="752" cy="50" r="4" fill="#10b981"/>
+  <text x="764" y="54" fill="#6ee7b7" font-family="'JetBrains Mono', monospace" font-size="11">180+ TEAMS</text>
+
+  <rect x="866" y="38" width="110" height="24" rx="4" fill="rgba(56, 189, 248, 0.15)" stroke="#0FA4AF" stroke-width="1"/>
+  <text x="878" y="54" fill="#0FA4AF" font-family="'JetBrains Mono', monospace" font-size="11">FLASK / RENDER</text>
+
+  <!-- Main Terminal Window (Left) -->
+  <g transform="translate(36, 92)">
+    <rect width="580" height="428" rx="10" fill="#011c1f" stroke="#02383d" stroke-width="1.2"/>
+
+    <!-- Terminal Header Bar -->
+    <rect width="580" height="34" rx="10" fill="#0b1329" stroke="#02383d" stroke-width="1"/>
+    <text x="18" y="22" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">root@hammer-sec-node: ~/challenge-vault</text>
+
+    <!-- Terminal Body -->
+    <g transform="translate(20, 56)">
+      <!-- ASCII Art / Prompt -->
+      <text x="0" y="0" fill="#34d399" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">[+] SYSTEM INITIALIZED // PRAVRUTTI 2.0 IPL CYBER WARZONE</text>
+      <text x="0" y="24" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="12">[*] Stage: Level 06 of 08 · Steganography &amp; Hash Collision</text>
+      <text x="0" y="48" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="12">Target Payload: <tspan fill="#0FA4AF">0x7F_IPL_TOKEN_DECRYPT</tspan></text>
+
+      <rect x="0" y="65" width="540" height="110" rx="6" fill="#00282b" stroke="#024950" stroke-width="1"/>
+      <text x="16" y="90" fill="#f8fafc" font-family="'JetBrains Mono', monospace" font-size="11">// Encrypted challenge vector</text>
+      <text x="16" y="112" fill="#a5f3fc" font-family="'JetBrains Mono', monospace" font-size="11">cipher = "53696820437962657220507261767275747469"</text>
+      <text x="16" y="132" fill="#a5f3fc" font-family="'JetBrains Mono', monospace" font-size="11">auth_key = sha256(reverse_bits(session_token)) ^ seed</text>
+      <text x="16" y="154" fill="#34d399" font-family="'JetBrains Mono', monospace" font-size="11">[INPUT] Enter Decrypted Flag: HAMMER{IPL_QUALIFIER_TOP8}</text>
+
+      <text x="0" y="200" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="12">✓ STATUS 200 OK: Flag Accepted! Qualification Verified.</text>
+      <text x="0" y="224" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="12">> Session: 42m 18s elapsed · Team Score: 600 pts</text>
+
+      <!-- Progress bar -->
+      <text x="0" y="260" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">CHALLENGE PROGRESSION: 6 / 8 SOLVED</text>
+      <rect x="0" y="272" width="540" height="10" rx="5" fill="#02383d"/>
+      <rect x="0" y="272" width="405" height="10" rx="5" fill="url(#neonCyan)"/>
+
+      <!-- Badges -->
+      <g transform="translate(0, 305)">
+        <rect width="80" height="24" rx="4" fill="#02383d"/>
+        <text x="12" y="16" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="10">Crypto</text>
+
+        <rect x="90" width="85" height="24" rx="4" fill="#02383d"/>
+        <text x="100" y="16" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="10">Binary</text>
+
+        <rect x="185" width="95" height="24" rx="4" fill="#02383d"/>
+        <text x="195" y="16" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="10">Code Trace</text>
+
+        <rect x="290" width="105" height="24" rx="4" fill="#02383d"/>
+        <text x="300" y="16" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="10">Web Inspect</text>
+
+        <rect x="405" width="85" height="24" rx="4" fill="#02383d"/>
+        <text x="415" y="16" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="10">Hashing</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Live Leaderboard & Stats (Right) -->
+  <g transform="translate(632, 92)">
+    <rect width="356" height="428" rx="10" fill="#091024" stroke="#02383d" stroke-width="1.2"/>
+
+    <!-- Leaderboard Header -->
+    <rect width="356" height="34" rx="10" fill="#0b1329" stroke="#02383d" stroke-width="1"/>
+    <text x="16" y="22" fill="#0FA4AF" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">⚡ LIVE LEADERBOARD (TOP 8)</text>
+
+    <!-- Leaderboard Rows -->
+    <g transform="translate(16, 52)">
+      <!-- Row 1 -->
+      <rect width="324" height="42" rx="6" fill="#02383d" stroke="#3b82f6" stroke-width="1"/>
+      <text x="12" y="26" fill="#fbbf24" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="13">#1</text>
+      <text x="44" y="26" fill="#f8fafc" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="13">CyberKnights</text>
+      <text x="220" y="26" fill="#34d399" font-family="'JetBrains Mono', monospace" font-size="11">38m 12s · 8/8</text>
+
+      <!-- Row 2 -->
+      <rect y="48" width="324" height="42" rx="6" fill="#00282b" stroke="#024950" stroke-width="1"/>
+      <text x="12" y="74" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="13">#2</text>
+      <text x="44" y="74" fill="#f8fafc" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="13">ByteForce</text>
+      <text x="220" y="74" fill="#0FA4AF" font-family="'JetBrains Mono', monospace" font-size="11">41m 05s · 8/8</text>
+
+      <!-- Row 3 -->
+      <rect y="96" width="324" height="42" rx="6" fill="#00282b" stroke="#024950" stroke-width="1"/>
+      <text x="12" y="122" fill="#b45309" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="13">#3</text>
+      <text x="44" y="122" fill="#f8fafc" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="13">NullPointers</text>
+      <text x="220" y="122" fill="#0FA4AF" font-family="'JetBrains Mono', monospace" font-size="11">42m 18s · 6/8</text>
+
+      <!-- Row 4 -->
+      <rect y="144" width="324" height="42" rx="6" fill="#00282b" stroke="#02383d" stroke-width="1"/>
+      <text x="12" y="170" fill="#64748b" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="13">#4</text>
+      <text x="44" y="170" fill="#cbd5e1" font-family="'Space Grotesk', sans-serif" font-size="13">RootBrigade</text>
+      <text x="220" y="170" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">45m 50s · 5/8</text>
+    </g>
+
+    <!-- Admin & Deployment Status -->
+    <g transform="translate(16, 260)">
+      <rect width="324" height="98" rx="8" fill="#011c1f" stroke="#02383d" stroke-width="1"/>
+      <text x="14" y="24" fill="#94a3b8" font-family="'Space Grotesk', sans-serif" font-size="11" text-transform="uppercase" letter-spacing="1">Platform Architecture</text>
+      <text x="14" y="48" fill="#f8fafc" font-family="'JetBrains Mono', monospace" font-size="12">• Backend: Python / Flask / SQLite</text>
+      <text x="14" y="68" fill="#f8fafc" font-family="'JetBrains Mono', monospace" font-size="12">• Host: Gunicorn WSGI on Render</text>
+      <text x="14" y="88" fill="#34d399" font-family="'JetBrains Mono', monospace" font-size="11">✓ Server-side atomic scoring validation</text>
+    </g>
+  </g>
+</svg>

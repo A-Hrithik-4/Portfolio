@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 560" width="1024" height="560">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#001c1f"/>
+      <stop offset="100%" stop-color="#003135"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0FA4AF"/>
+      <stop offset="100%" stop-color="#AFDDE5"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#02383d" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00282b" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="560" fill="url(#bgGrad)"/>
+
+  <!-- Subtle Grid Lines -->
+  <g stroke="#034e56" stroke-width="0.8" opacity="0.35">
+    <line x1="40" y1="90" x2="984" y2="90"/>
+    <line x1="40" y1="170" x2="984" y2="170"/>
+    <line x1="40" y1="250" x2="984" y2="250"/>
+    <line x1="40" y1="330" x2="984" y2="330"/>
+    <line x1="40" y1="410" x2="984" y2="410"/>
+    <line x1="40" y1="490" x2="984" y2="490"/>
+    <line x1="160" y1="60" x2="160" y2="520"/>
+    <line x1="320" y1="60" x2="320" y2="520"/>
+    <line x1="480" y1="60" x2="480" y2="520"/>
+    <line x1="640" y1="60" x2="640" y2="520"/>
+    <line x1="800" y1="60" x2="800" y2="520"/>
+  </g>
+
+  <!-- Top Navigation Header -->
+  <rect x="40" y="24" width="944" height="54" rx="10" fill="#02383d" stroke="#034e56" stroke-width="1.2"/>
+  <circle cx="68" cy="51" r="5" fill="#ef4444"/>
+  <circle cx="86" cy="51" r="5" fill="#f59e0b"/>
+  <circle cx="104" cy="51" r="5" fill="#10b981"/>
+
+  <text x="130" y="56" fill="#f8fafc" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="700" font-size="16" letter-spacing="0.5">GHOST :: SIH 2026</text>
+  <text x="280" y="55" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="12">GNSS-Free Hybrid Onboard Sensor Tracker · ISRO Dept. of Space</text>
+
+  <!-- Status Badges -->
+  <rect x="740" y="38" width="112" height="26" rx="6" fill="rgba(239, 68, 68, 0.18)" stroke="#ef4444" stroke-width="1"/>
+  <circle cx="754" cy="51" r="4" fill="#ef4444"/>
+  <text x="766" y="55" fill="#fca5a5" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">GNSS OUTAGE (60s)</text>
+
+  <rect x="864" y="38" width="104" height="26" rx="6" fill="rgba(52, 211, 153, 0.18)" stroke="#34d399" stroke-width="1"/>
+  <circle cx="878" cy="51" r="4" fill="#34d399"/>
+  <text x="890" y="55" fill="#6ee7b7" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">EKF ACTIVE</text>
+
+  <!-- Left Telemetry Panel -->
+  <g transform="translate(40, 96)">
+    <!-- KPI 1 -->
+    <rect width="270" height="95" rx="10" fill="url(#cardGrad)" stroke="#034e56" stroke-width="1.2"/>
+    <text x="20" y="32" fill="#94a3b8" font-family="'Space Grotesk', sans-serif" font-size="12" text-transform="uppercase" letter-spacing="1">Position Drift Rate</text>
+    <text x="20" y="68" fill="#0FA4AF" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32">2.40%</text>
+    <text x="130" y="65" fill="#34d399" font-family="'JetBrains Mono', monospace" font-size="12">✓ SIH Benchmark ≤10%</text>
+
+    <!-- KPI 2 -->
+    <rect y="110" width="270" height="95" rx="10" fill="url(#cardGrad)" stroke="#034e56" stroke-width="1.2"/>
+    <text x="20" y="142" fill="#94a3b8" font-family="'Space Grotesk', sans-serif" font-size="12" text-transform="uppercase" letter-spacing="1">1D-CNN Speed Estimator</text>
+    <text x="20" y="178" fill="#f8fafc" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28">48.6 <tspan font-size="16" fill="#94a3b8">km/h</tspan></text>
+    <text x="145" y="175" fill="#a78bfa" font-family="'JetBrains Mono', monospace" font-size="11">Isotonic Calibrated</text>
+
+    <!-- KPI 3 -->
+    <rect y="220" width="270" height="95" rx="10" fill="url(#cardGrad)" stroke="#034e56" stroke-width="1.2"/>
+    <text x="20" y="252" fill="#94a3b8" font-family="'Space Grotesk', sans-serif" font-size="12" text-transform="uppercase" letter-spacing="1">Sensor Fusion Engine</text>
+    <text x="20" y="286" fill="#f8fafc" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="16">5-State EKF + IMU</text>
+    <text x="20" y="303" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="11">OpenStreetMap Heading Match</text>
+
+    <!-- KPI 4 (Mini Tech Badge) -->
+    <rect y="330" width="270" height="85" rx="10" fill="url(#cardGrad)" stroke="#034e56" stroke-width="1.2"/>
+    <text x="20" y="358" fill="#94a3b8" font-family="'Space Grotesk', sans-serif" font-size="11" text-transform="uppercase">Core Stack</text>
+    <text x="20" y="388" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="12">PyTorch · SciPy · Three.js</text>
+  </g>
+
+  <!-- Main Map & 3D Radar Trajectory View -->
+  <g transform="translate(330, 96)">
+    <rect width="654" height="415" rx="10" fill="#012428" stroke="#034e56" stroke-width="1.2"/>
+
+    <!-- Map Coordinate Crosshairs -->
+    <circle cx="327" cy="207" r="160" fill="none" stroke="#02383d" stroke-width="1" stroke-dasharray="4 4"/>
+    <circle cx="327" cy="207" r="100" fill="none" stroke="#02383d" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="327" y1="20" x2="327" y2="395" stroke="#02383d" stroke-width="1"/>
+    <line x1="20" y1="207" x2="634" y2="207" stroke="#02383d" stroke-width="1"/>
+
+    <!-- Map Road Network -->
+    <path d="M 50,330 Q 180,310 260,220 T 420,130 T 600,80" fill="none" stroke="#034e56" stroke-width="16" stroke-linecap="round"/>
+    <path d="M 50,330 Q 180,310 260,220 T 420,130 T 600,80" fill="none" stroke="#02383d" stroke-width="12" stroke-linecap="round"/>
+
+    <!-- Branch Road -->
+    <path d="M 260,220 Q 320,310 460,350 T 610,340" fill="none" stroke="#02383d" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Ground Truth GPS Path (until outage) -->
+    <path d="M 50,330 Q 180,310 260,220" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="6 4"/>
+    <text x="90" y="295" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="11">GNSS Ground Truth</text>
+
+    <!-- GNSS Cutoff Marker -->
+    <circle cx="260" cy="220" r="7" fill="#ef4444" filter="url(#glow)"/>
+    <rect x="235" y="180" width="130" height="24" rx="4" fill="#02383d" stroke="#ef4444" stroke-width="1"/>
+    <text x="242" y="196" fill="#fca5a5" font-family="'JetBrains Mono', monospace" font-size="10">⚡ GNSS DROPOUT (t=0s)</text>
+
+    <!-- Raw IMU Dead Reckoning Drift Path (uncalibrated) -->
+    <path d="M 260,220 Q 330,170 410,70 T 520,30" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="5 5" opacity="0.75"/>
+    <circle cx="520" cy="30" r="4" fill="#ef4444"/>
+    <text x="440" y="50" fill="#ef4444" font-family="'JetBrains Mono', monospace" font-size="11">Raw IMU Drift (+28.4%)</text>
+
+    <!-- GHOST Hybrid AI Estimated Path (Locked to road with EKF) -->
+    <path d="M 260,220 Q 340,150 420,130 T 600,80" fill="none" stroke="#0FA4AF" stroke-width="4" filter="url(#glow)"/>
+
+    <!-- Tracked Vehicle Marker -->
+    <g transform="translate(580, 75)">
+      <circle cx="10" cy="10" r="16" fill="rgba(15, 164, 175, 0.25)" filter="url(#glow)"/>
+      <circle cx="10" cy="10" r="7" fill="#0FA4AF"/>
+      <polygon points="10,2 16,14 10,11 4,14" fill="#ffffff" transform="rotate(72 10 10)"/>
+    </g>
+
+    <!-- Legend Overlay Box -->
+    <rect x="24" y="24" width="210" height="90" rx="8" fill="#00282b" stroke="#034e56" stroke-width="1"/>
+    <line x1="36" y1="45" x2="66" y2="45" stroke="#0FA4AF" stroke-width="3"/>
+    <text x="76" y="49" fill="#f8fafc" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">GHOST AI Fusion (2.4%)</text>
+
+    <line x1="36" y1="68" x2="66" y2="68" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="76" y="72" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">Uncalibrated Dead-Reckoning</text>
+
+    <line x1="36" y1="91" x2="66" y2="91" stroke="#64748b" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="76" y="95" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">True Road Trajectory</text>
+
+    <!-- Bottom Status Strip -->
+    <rect x="0" y="375" width="654" height="40" rx="0" fill="#00282b" opacity="0.95"/>
+    <text x="24" y="399" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="11">Telemetry: Yaw = -14.2° · Acc_X = +0.42 m/s² · Confidence = 98.6% · 3D Simulation Engine: Three.js/R3F</text>
+  </g>
+</svg>

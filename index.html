@@ -4,24 +4,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hrithik A — Software Developer</title>
+  <title>Hrithik A — Software Development Intern</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
     :root {
-      --bg: #141E33;
-      --panel: #243150;
-      --panel-2: #2B3A5E;
-      --border: #3A4C73;
-      --text: #F8FAFC;
-      --muted: #A3B2CC;
-      --accent: #4F94FF;
-      --accent-soft: rgba(79, 148, 255, .16);
-      --accent-glow: rgba(79, 148, 255, .35);
-      --green: #34D399;
-      --radius: 12px;
+      /* Palette from reference image (Shopify Editions Winter '24 — FOUNDATIONS) */
+      --c-sapphire: #3D52A0;       /* Royal Sapphire Tech Indigo */
+      --c-periwinkle: #7091E6;     /* Vibrant Periwinkle Sky Blue */
+      --c-heather: #8697C4;        /* Muted Blue Slate / Heather Periwinkle */
+      --c-mist: #ADBBDA;           /* Pastel Ice Mist Blue / Lavender Tint */
+      --c-lilac-base: #EDE8F5;     /* Pale Lavender White / Lilac Frost Base */
+
+      /* Light Modern Theme Semantic Tokens */
+      --bg-body: #EDE8F5;
+      --bg-surface: #F5F2F9;
+
+      /* Typography */
+      --text-heading: #1B2446;     /* Deep royal navy charcoal */
+      --text-body: #374263;        /* Slate indigo charcoal */
+      --text-muted: #647299;       /* Muted heather slate */
+      --muted: #647299;
+
+      /* Accents */
+      --accent: #3D52A0;           /* Sapphire Indigo */
+      --accent-hover: #2F4182;
+      --accent-soft: rgba(61, 82, 160, 0.10);
+      --accent-glow: rgba(112, 145, 230, 0.35);
+      --accent-vibrant: #7091E6;   /* Electric Periwinkle */
+      --mist-accent: #ADBBDA;
+      --mist-soft: rgba(173, 187, 218, 0.30);
+      --green: #10B981;
+
+      /* Apple Light Premium Glassmorphism Design Tokens */
+      --glass-panel: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(237, 232, 245, 0.65) 100%);
+      --glass-panel-subtle: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(237, 232, 245, 0.45) 100%);
+      --glass-panel-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(237, 232, 245, 0.82) 100%);
+      --glass-border: rgba(255, 255, 255, 0.92);
+      --glass-border-subtle: rgba(173, 187, 218, 0.45);
+      --glass-border-hover: rgba(112, 145, 230, 0.55);
+      --glass-blur: blur(30px) saturate(190%) contrast(102%);
+      --glass-shadow: 0 16px 42px -10px rgba(61, 82, 160, 0.12), 0 2px 8px -2px rgba(61, 82, 160, 0.06);
+      --glass-shadow-hover: 0 26px 58px -12px rgba(112, 145, 230, 0.28), 0 6px 20px -2px rgba(61, 82, 160, 0.10);
+      --glass-highlight: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.98), inset 0 -1px 1px 0 rgba(134, 151, 196, 0.16);
+      --glass-highlight-hover: inset 0 1px 2px 0 rgba(255, 255, 255, 1), inset 0 -1px 1px 0 rgba(61, 82, 160, 0.20);
+
+      --radius: 20px;
+      --radius-sm: 12px;
       --maxw: 1140px;
     }
 
@@ -36,29 +67,137 @@
     }
 
     body {
-      background:
-        radial-gradient(circle at 12% 8%, rgba(79, 148, 255, .10), transparent 45%),
-        radial-gradient(circle at 88% 28%, rgba(79, 148, 255, .07), transparent 40%),
-        radial-gradient(circle at 50% 85%, rgba(79, 148, 255, .06), transparent 50%),
-        var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-body);
+      background-image:
+        radial-gradient(circle at 14% 10%, rgba(112, 145, 230, 0.22), transparent 45%),
+        radial-gradient(circle at 86% 16%, rgba(173, 187, 218, 0.42), transparent 48%),
+        radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.65), transparent 55%),
+        radial-gradient(circle at 85% 72%, rgba(61, 82, 160, 0.16), transparent 42%),
+        radial-gradient(circle at 15% 85%, rgba(173, 187, 218, 0.35), transparent 46%),
+        linear-gradient(180deg, #F6F4FA 0%, #EDE8F5 45%, #E3DDF0 100%);
+      background-attachment: fixed;
+      color: var(--text-body);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
     }
 
     ::selection {
-      background: var(--accent-soft);
-      color: var(--text);
+      background: rgba(112, 145, 230, 0.28);
+      color: #1B2446;
+    }
+
+    /* Apple-style Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(134, 151, 196, 0.38);
+      border-radius: 9999px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(112, 145, 230, 0.70);
+      border-radius: 9999px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+
+    /* Apple Ambient Vibrancy Fluid Blobs */
+    .apple-glass-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .glass-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.36;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .glass-orb-1 {
+      width: 580px;
+      height: 580px;
+      top: -120px;
+      left: 8%;
+      background: radial-gradient(circle, rgba(112, 145, 230, 0.34) 0%, rgba(112, 145, 230, 0.10) 65%, transparent 100%);
+      animation: floatOrb1 20s ease-in-out infinite alternate;
+    }
+
+    .glass-orb-2 {
+      width: 620px;
+      height: 620px;
+      top: 36%;
+      right: 4%;
+      background: radial-gradient(circle, rgba(173, 187, 218, 0.50) 0%, rgba(173, 187, 218, 0.16) 65%, transparent 100%);
+      animation: floatOrb2 24s ease-in-out infinite alternate;
+    }
+
+    .glass-orb-3 {
+      width: 500px;
+      height: 500px;
+      bottom: 4%;
+      left: 14%;
+      background: radial-gradient(circle, rgba(61, 82, 160, 0.22) 0%, rgba(61, 82, 160, 0.06) 60%, transparent 100%);
+      animation: floatOrb3 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatOrb1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(70px, 50px) scale(1.12); }
+    }
+    @keyframes floatOrb2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-60px, -45px) scale(1.08); }
+    }
+    @keyframes floatOrb3 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, -35px) scale(1.14); }
+    }
+
+    /* Apple Specular Edge Hairline Sheen */
+    .pcard::before,
+    .exp-card::before,
+    .edu-card::before,
+    .cert-card::before,
+    .info-card::before,
+    .strengths-card::before,
+    .about-profile-card::before,
+    .contact-box::before,
+    .car-frame::before,
+    .modal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 25%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.95) 75%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
+      border-radius: inherit;
     }
 
     h1,
     h2,
     h3,
     h4 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
       font-weight: 600;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.015em;
+      color: var(--text-heading);
     }
 
     .mono {
@@ -84,13 +223,14 @@
     .eyebrow {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
-      color: var(--accent);
-      letter-spacing: .1em;
+      color: var(--c-sapphire);
+      letter-spacing: .12em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 14px;
+      font-weight: 600;
     }
 
     .eyebrow .glyph {
@@ -104,9 +244,9 @@
       position: absolute;
       width: 11px;
       height: 8px;
-      border: 1.4px solid var(--accent);
+      border: 1.4px solid var(--c-sapphire);
       border-radius: 2px;
-      background: var(--accent-soft);
+      background: rgba(112, 145, 230, 0.20);
     }
 
     .eyebrow .glyph span:first-child {
@@ -119,104 +259,150 @@
       left: 4px;
     }
 
+    /* ---------- Floating Apple Glass Header Dock ---------- */
     header {
       position: fixed;
-      top: 0;
+      top: 14px;
       left: 0;
       right: 0;
-      z-index: 50;
-      background: rgba(20, 30, 51, .85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 24px;
+      pointer-events: none;
       animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     nav {
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 16px 28px;
+      padding: 10px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: relative;
       gap: 16px;
+      pointer-events: auto;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(237, 232, 245, 0.72) 100%);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 9999px;
+      box-shadow: 0 14px 38px -8px rgba(61, 82, 160, 0.14), var(--glass-highlight);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .logo {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 17px;
-      font-weight: 600;
+      font-size: 17.5px;
+      font-weight: 700;
+      color: var(--text-heading);
       flex-shrink: 0;
+      letter-spacing: -0.02em;
     }
 
     .logo span {
-      color: var(--accent);
+      color: var(--c-periwinkle);
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 8px;
       font-size: 13px;
-      color: var(--muted);
+      color: var(--text-body);
       flex-wrap: wrap;
       justify-content: center;
+      font-weight: 500;
     }
 
     .nav-links a {
-      transition: color .2s;
+      transition: all .25s ease;
       white-space: nowrap;
-      padding: 4px 0;
-      border-bottom: 2px solid transparent;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      opacity: 0.82;
+      border: 1px solid transparent;
+      color: var(--text-body);
     }
 
     .nav-links a:hover,
-    .nav-links a:focus-visible,
-    .nav-links a.active {
-      color: var(--text);
+    .nav-links a:focus-visible {
+      opacity: 1;
+      color: var(--text-heading);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 2px 8px rgba(61, 82, 160, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
     }
 
     .nav-links a.active {
-      border-bottom-color: var(--accent);
-      color: var(--accent);
+      opacity: 1;
+      font-weight: 600;
+      color: var(--c-sapphire);
+      background: #FFFFFF;
+      box-shadow: 0 2px 10px rgba(61, 82, 160, 0.12), inset 0 1px 1px rgba(255, 255, 255, 1);
+      border-color: rgba(173, 187, 218, 0.55);
     }
 
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 12px;
     }
 
     .icon-btn {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--muted);
-      transition: .2s;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      color: var(--text-body);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1), 0 2px 8px rgba(61, 82, 160, 0.08);
+      transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .icon-btn:hover,
     .icon-btn:focus-visible {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--c-periwinkle);
+      color: var(--c-sapphire);
+      background: #FFFFFF;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 18px rgba(112, 145, 230, 0.28), inset 0 1px 1.5px rgba(255, 255, 255, 1);
     }
 
     .nav-toggle {
       display: none;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
       width: 38px;
       height: 38px;
-      color: var(--text);
+      color: var(--text-heading);
       font-size: 18px;
       cursor: pointer;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1);
+      transition: all 0.2s ease;
+    }
+
+    .nav-toggle:hover {
+      background: #FFFFFF;
+      border-color: var(--c-periwinkle);
+      color: var(--c-sapphire);
     }
 
     @media(max-width:1024px) {
+      header {
+        top: 0;
+        padding: 0;
+      }
+
+      nav {
+        border-radius: 0 0 20px 20px;
+        padding: 14px 22px;
+        border-top: none;
+      }
+
       .nav-links {
         display: none;
       }
@@ -226,47 +412,55 @@
         align-items: center;
         justify-content: center;
       }
-    }
 
-    .nav-links.mobile-open {
-      display: flex;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      background: var(--panel);
-      border-bottom: 1px solid var(--border);
-      padding: 18px 28px;
-      gap: 14px;
-      z-index: 60;
-    }
+      .nav-links.mobile-open {
+        display: flex;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 12px;
+        right: 12px;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 20px 24px;
+        gap: 12px;
+        z-index: 60;
+        box-shadow: 0 24px 60px rgba(61, 82, 160, 0.20), var(--glass-highlight);
+      }
 
-    .nav-links.mobile-open a {
-      border-bottom: none;
-      padding: 6px 0;
+      .nav-links.mobile-open a {
+        padding: 10px 16px;
+        border-radius: 12px;
+      }
     }
 
     section {
-      padding-top: 96px;
+      padding-top: 108px;
+      position: relative;
+      z-index: 1;
     }
 
     .section-pad {
-      padding: 90px 0;
+      padding: 96px 0;
     }
 
     @media(max-width:760px) {
       .section-pad {
-        padding: 64px 0;
+        padding: 68px 0;
       }
     }
 
     /* ---------- Hero ---------- */
     .hero {
-      min-height: 94vh;
+      min-height: 92vh;
       display: flex;
       align-items: center;
-      padding-top: 90px;
+      padding-top: 100px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-grid {
@@ -287,40 +481,54 @@
       animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
+    /* Apple-style Terracotta Highlight Kicker */
     .hero-left .kicker {
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
-      color: var(--accent);
-      background: var(--accent-soft);
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 20px;
+      color: var(--c-sapphire);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(173, 187, 218, 0.22) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 18px;
+      border-radius: 9999px;
       margin-bottom: 22px;
-      border: 1px solid rgba(59, 130, 246, .25);
+      border: 1px solid rgba(173, 187, 218, 0.55);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1), 0 4px 16px rgba(112, 145, 230, 0.12);
+      font-weight: 600;
     }
 
     .hero h1 {
-      font-size: clamp(36px, 5vw, 56px);
+      font-size: clamp(38px, 5.2vw, 58px);
       line-height: 1.1;
       margin-bottom: 16px;
+      color: var(--text-heading);
+      letter-spacing: -0.025em;
     }
 
     .hero h1 .accent {
-      color: var(--accent);
+      background: linear-gradient(135deg, #3D52A0 0%, #7091E6 55%, #8697C4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #3D52A0;
     }
 
     .hero .role {
       font-size: clamp(16px, 2vw, 18px);
-      color: var(--text);
-      font-weight: 500;
+      color: var(--c-sapphire);
+      font-weight: 600;
       margin-bottom: 8px;
     }
 
     .hero .role-sub {
-      font-size: 14.5px;
-      color: var(--muted);
+      font-size: 15px;
+      color: var(--text-body);
+      opacity: 0.90;
       margin-bottom: 28px;
       max-width: 480px;
+      line-height: 1.65;
     }
 
     .hero-actions {
@@ -330,52 +538,61 @@
       margin-bottom: 40px;
     }
 
+    /* Apple-style Glass Buttons */
     .btn {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       font-weight: 600;
       font-size: 14px;
-      padding: 13px 24px;
-      border-radius: 9px;
+      padding: 13px 26px;
+      border-radius: 9999px;
       cursor: pointer;
       border: 1px solid transparent;
-      transition: .2s;
+      transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
       display: inline-flex;
       align-items: center;
       gap: 8px;
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 0 24px -4px var(--accent-glow);
+      background: linear-gradient(135deg, #3D52A0 0%, #526EC2 100%);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.40);
+      box-shadow: 0 10px 24px -4px rgba(61, 82, 160, 0.38), inset 0 1px 1.5px rgba(255, 255, 255, 0.45);
     }
 
     .btn-primary:hover {
-      background: #6FA6FF;
-      transform: translateY(-1px);
-      box-shadow: 0 0 32px -2px var(--accent-glow);
+      background: linear-gradient(135deg, #4A63BE 0%, #7091E6 100%);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 16px 32px -4px rgba(61, 82, 160, 0.48), 0 0 25px rgba(112, 145, 230, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.65);
     }
 
     .btn-ghost {
-      background: transparent;
-      border-color: var(--border);
-      color: var(--text);
+      background: rgba(255, 255, 255, 0.74);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      color: var(--text-heading);
+      box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 1), 0 4px 14px rgba(61, 82, 160, 0.08);
     }
 
     .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--c-periwinkle);
+      color: var(--c-sapphire);
+      background: #FFFFFF;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(112, 145, 230, 0.22), inset 0 1px 2px rgba(255, 255, 255, 1);
     }
 
     .btn:focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--c-periwinkle);
       outline-offset: 2px;
     }
 
+    /* Apple-style Frosted Stats Micro-Cards */
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
     @media(max-width:600px) {
@@ -384,11 +601,42 @@
       }
     }
 
+    .hero-stats > div {
+      background: var(--glass-panel);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: 0 10px 26px -6px rgba(61, 82, 160, 0.12), var(--glass-highlight);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-stats > div::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.95) 70%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-stats > div:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: rgba(112, 145, 230, 0.50);
+      background: var(--glass-panel-hover);
+      box-shadow: 0 16px 36px -8px rgba(61, 82, 160, 0.18), 0 0 20px -2px rgba(112, 145, 230, 0.20), var(--glass-highlight-hover);
+    }
+
     .hstat-num {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 21px;
-      color: var(--text);
-      font-weight: 600;
+      font-size: 23px;
+      color: var(--text-heading);
+      font-weight: 700;
     }
 
     .hstat-num.live {
@@ -396,28 +644,30 @@
     }
 
     .hstat-label {
-      font-size: 11.5px;
-      color: var(--muted);
+      font-size: 12px;
+      color: var(--text-muted);
       margin-top: 3px;
+      font-weight: 500;
     }
 
-    /* ---------- Hero visual: Device Frame Carousel ---------- */
+    /* ---------- Hero visual: Apple Device Carousel ---------- */
     .carousel {
       position: relative;
       width: 100%;
-      /* Keeps the overall container box fluid and well-proportioned */
-      aspect-ratio: 16 / 9.5;
+      aspect-ratio: 16 / 9.8;
       animation: scaleInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
     }
 
     .car-frame {
       position: absolute;
       inset: 0;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(237, 232, 245, 0.82) 100%);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 24px 60px -15px rgba(0, 0, 0, .55), 0 0 50px -10px var(--accent-glow);
+      box-shadow: 0 24px 60px -12px rgba(61, 82, 160, 0.18), var(--glass-highlight);
       display: flex;
       flex-direction: column;
     }
@@ -441,9 +691,11 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      background: var(--panel-2);
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(173, 187, 218, 0.40);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       flex-shrink: 0;
     }
 
@@ -451,7 +703,6 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--border);
     }
 
     .car-topbar span:nth-child(1) {
@@ -466,18 +717,10 @@
       background: #27C93F;
     }
 
-    .car-topbar .url {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10.5px;
-      color: var(--muted);
-      margin-left: 8px;
-    }
-
     .car-body {
       flex: 1;
       position: relative;
-      background: var(--panel-2);
-      /* Matches browser window background if there's minor padding */
+      background: #F3EFF8;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -487,7 +730,6 @@
     .car-img {
       width: 100%;
       height: 100%;
-      /* Changed to contain so the layout scales fully without losing top/bottom or sides */
       object-fit: contain;
       object-position: center;
     }
@@ -496,22 +738,23 @@
       display: flex;
       gap: 7px;
       justify-content: center;
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
     .car-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--border);
+      background: rgba(134, 151, 196, 0.40);
       cursor: pointer;
-      transition: .2s;
+      transition: all .25s ease;
     }
 
     .car-dot.active {
-      background: var(--accent);
-      width: 20px;
-      border-radius: 4px;
+      background: var(--c-sapphire);
+      width: 22px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(112, 145, 230, 0.50);
     }
 
     @media(max-width:920px) {
@@ -526,135 +769,22 @@
     }
 
     .sec-head h2 {
-      font-size: clamp(27px, 3.2vw, 35px);
+      font-size: clamp(28px, 3.4vw, 38px);
+      letter-spacing: -0.02em;
     }
 
     .sec-head p {
-      color: var(--muted);
+      color: var(--text-body);
+      opacity: 0.90;
       margin-top: 10px;
       font-size: 15px;
     }
 
-    /* ---------- Current Focus ---------- */
-    .focus-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 60px -20px var(--accent-glow);
-    }
-
-    .focus-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--accent);
-      box-shadow: 0 0 16px var(--accent);
-    }
-
-    @media(max-width:760px) {
-      .focus-card {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .focus-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--green);
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .focus-tag::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-    }
-
-    .focus-card h3 {
-      font-size: 24px;
-      margin-bottom: 6px;
-    }
-
-    .focus-sub {
-      color: var(--accent);
-      font-size: 14px;
-      margin-bottom: 14px;
-    }
-
-    .focus-card p {
-      color: var(--muted);
-      font-size: 14.5px;
-      margin-bottom: 18px;
-    }
-
-    .focus-goal {
-      font-size: 13.5px;
-      color: var(--text);
-      background: var(--accent-soft);
-      border-radius: 8px;
-      padding: 12px 14px;
-      margin-bottom: 18px;
-    }
-
-    .focus-goal strong {
-      color: var(--accent);
-    }
-
-    .focus-visual {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .hand-track-demo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 140px;
-      position: relative;
-    }
-
-    .hand-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      position: absolute;
-      box-shadow: 0 0 18px 4px var(--accent-glow);
-    }
-
-    .canvas-trail {
-      position: absolute;
-      border: 1.5px dashed var(--border);
-      border-radius: 50%;
-    }
-
-    /* ---------- Featured Projects ---------- */
+    /* ---------- Featured Projects (visionOS Style Glass Cards) ---------- */
     .project-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 28px;
     }
 
     @media(max-width:760px) {
@@ -664,43 +794,48 @@
     }
 
     .pcard {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      background: var(--glass-panel);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 22px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: .25s;
+      box-shadow: var(--glass-shadow), var(--glass-highlight);
+      transition: all .35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
     }
 
     .pcard:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px -10px var(--accent-glow);
+      border-color: var(--glass-border-hover);
+      background: var(--glass-panel-hover);
+      transform: translateY(-6px) scale(1.008);
+      box-shadow: var(--glass-shadow-hover), var(--glass-highlight-hover);
     }
 
-    /* Project screenshots styled neatly into box wrappers */
     .pcard-shot {
-      background: var(--bg);
+      background: linear-gradient(180deg, rgba(237, 232, 245, 0.75) 0%, rgba(173, 187, 218, 0.35) 100%);
       aspect-ratio: 16/10;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(173, 187, 218, 0.40);
       overflow: hidden;
-      padding: 12px 12px 0 12px;
+      padding: 14px 14px 0 14px;
     }
 
     .pcard-browser-wrap {
       width: 100%;
       height: 100%;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 8px 8px 0 0;
+      background: #FFFFFF;
+      border: 1px solid rgba(173, 187, 218, 0.50);
+      border-radius: 12px 12px 0 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 8px 24px rgba(61, 82, 160, 0.08);
     }
 
     .pcard-shot img {
@@ -712,11 +847,11 @@
     }
 
     .pcard:hover .pcard-shot img {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
     }
 
     .pcard-body {
-      padding: 24px;
+      padding: 26px;
       display: flex;
       flex-direction: column;
       flex: 1;
@@ -732,6 +867,7 @@
       align-items: center;
       gap: 6px;
       margin-bottom: 10px;
+      font-weight: 600;
     }
 
     .pcard-status::before {
@@ -740,58 +876,72 @@
       height: 6px;
       border-radius: 50%;
       background: var(--green);
+      box-shadow: 0 0 8px var(--green);
     }
 
     .pcard h3 {
-      font-size: 19px;
+      font-size: 20px;
       margin-bottom: 8px;
+      color: var(--text-heading);
     }
 
     .pcard p.desc {
-      color: var(--muted);
+      color: var(--text-body);
+      opacity: 0.90;
       font-size: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      line-height: 1.6;
     }
 
     .pcard-metrics {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .metric {
-      font-size: 12.5px;
-      color: var(--text);
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      padding: 5px 10px;
-      border-radius: 6px;
+      font-size: 12px;
+      color: var(--text-body);
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(173, 187, 218, 0.50);
+      padding: 5px 12px;
+      border-radius: 9999px;
       display: flex;
       align-items: center;
       gap: 6px;
+      font-weight: 500;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1);
     }
 
     .metric::before {
       content: '✓';
-      color: var(--accent);
+      color: var(--c-sapphire);
       font-size: 11px;
+      font-weight: 700;
     }
 
     .pcard-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .ptag {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      color: var(--accent);
-      background: var(--accent-soft);
-      padding: 4px 9px;
-      border-radius: 5px;
+      color: var(--c-sapphire);
+      background: rgba(112, 145, 230, 0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(112, 145, 230, 0.28);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-weight: 600;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.90);
     }
 
     .pcard-links {
@@ -802,7 +952,7 @@
     }
 
     .pcard-links .btn {
-      padding: 9px 16px;
+      padding: 9px 18px;
       font-size: 13px;
     }
 
@@ -839,27 +989,44 @@
     }
 
     .tech-tile {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      background: var(--glass-panel);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
       padding: 18px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      transition: .2s;
+      box-shadow: 0 6px 18px -4px rgba(61, 82, 160, 0.10), var(--glass-highlight);
+      transition: all .28s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tech-tile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.95) 70%, transparent 100%);
+      pointer-events: none;
     }
 
     .tech-tile:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px -8px var(--accent-glow);
+      border-color: var(--c-periwinkle);
+      background: var(--glass-panel-hover);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 14px 30px -4px rgba(61, 82, 160, 0.18), 0 0 20px -2px rgba(112, 145, 230, 0.25), var(--glass-highlight-hover);
     }
 
     .tech-badge {
-      width: 38px;
-      height: 38px;
-      border-radius: 9px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -867,76 +1034,91 @@
       font-weight: 700;
       font-size: 14px;
       color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .tech-tile span.label {
-      font-size: 11.5px;
-      color: var(--muted);
+      font-size: 12px;
+      color: var(--text-body);
       text-align: center;
-    }
-
-    .strengths-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .strength-pill {
-      font-size: 13.5px;
-      color: var(--text);
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      padding: 8px 16px;
-      border-radius: 20px;
+      font-weight: 600;
     }
 
     .strengths-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
+      background: var(--glass-panel);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
       border-radius: var(--radius);
-      padding: 26px;
-      box-shadow: 0 0 50px -18px var(--accent-glow);
+      padding: 28px;
+      box-shadow: var(--glass-shadow), var(--glass-highlight);
+      position: relative;
+      overflow: hidden;
     }
 
     .strengths-card h4 {
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: .08em;
-      color: var(--muted);
-      margin-bottom: 18px;
+      color: var(--c-sapphire);
+      margin-bottom: 20px;
       font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .strengths-card .strengths-row {
+      display: flex;
       flex-direction: column;
+      gap: 10px;
       align-items: stretch;
     }
 
-    .strengths-card .strength-pill {
+    .strength-pill {
+      font-size: 13.5px;
+      color: var(--text-heading);
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(173, 187, 218, 0.48);
+      padding: 11px 18px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       gap: 10px;
-      border-radius: 8px;
+      font-weight: 500;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1), 0 2px 6px rgba(61, 82, 160, 0.06);
     }
 
-    .strengths-card .strength-pill::before {
+    .strength-pill::before {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent-glow);
+      background: var(--c-sapphire);
+      box-shadow: 0 0 8px var(--c-periwinkle);
       flex-shrink: 0;
     }
 
     /* ---------- Experience ---------- */
     .exp-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
+      background: var(--glass-panel);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
       border-radius: var(--radius);
-      padding: 28px;
-      margin-bottom: 18px;
+      padding: 30px;
+      margin-bottom: 20px;
+      box-shadow: var(--glass-shadow), var(--glass-highlight);
+      transition: all .28s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exp-card:hover {
+      border-color: rgba(112, 145, 230, 0.55);
+      background: var(--glass-panel-hover);
+      transform: translateY(-3px);
+      box-shadow: var(--glass-shadow-hover), var(--glass-highlight-hover);
     }
 
     .exp-top {
@@ -949,18 +1131,45 @@
     }
 
     .exp-top h4 {
-      font-size: 18px;
+      font-size: 19px;
+      color: var(--text-heading);
     }
 
     .exp-time {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-      color: var(--accent);
+      font-size: 13px;
+      color: var(--c-sapphire);
+      font-weight: 600;
+    }
+
+    .exp-cred-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--c-sapphire);
+      background: rgba(112, 145, 230, 0.10);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      border: 1px solid rgba(112, 145, 230, 0.30);
+      transition: all .2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    }
+
+    .exp-cred-link:hover {
+      background: var(--c-sapphire);
+      color: #FFFFFF;
+      border-color: var(--c-sapphire);
+      box-shadow: 0 4px 14px rgba(61, 82, 160, 0.35);
     }
 
     .exp-org {
-      color: var(--muted);
-      font-size: 14px;
+      color: var(--text-muted);
+      font-size: 14.5px;
+      font-weight: 500;
       margin-bottom: 14px;
     }
 
@@ -968,12 +1177,14 @@
       padding-left: 18px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
     .exp-card li {
-      font-size: 14px;
-      color: var(--text);
+      font-size: 14.5px;
+      color: var(--text-body);
+      opacity: 0.95;
+      line-height: 1.6;
     }
 
     /* ---------- Achievements timeline ---------- */
@@ -988,13 +1199,13 @@
       left: 6px;
       top: 6px;
       bottom: 6px;
-      width: 1px;
-      background: var(--border);
+      width: 1.5px;
+      background: rgba(173, 187, 218, 0.55);
     }
 
     .ach-item {
       position: relative;
-      padding-bottom: 32px;
+      padding-bottom: 34px;
     }
 
     .ach-item:last-child {
@@ -1009,78 +1220,98 @@
       width: 13px;
       height: 13px;
       border-radius: 50%;
-      background: var(--bg);
-      border: 2px solid var(--accent);
-      box-shadow: 0 0 10px var(--accent-glow);
+      background: #FFFFFF;
+      border: 2.5px solid var(--c-sapphire);
+      box-shadow: 0 0 10px rgba(112, 145, 230, 0.40);
     }
 
     .ach-year {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-      color: var(--accent);
+      font-size: 13px;
+      color: var(--c-sapphire);
       margin-bottom: 6px;
+      font-weight: 600;
     }
 
     .ach-item h4 {
-      font-size: 16.5px;
+      font-size: 17px;
       display: flex;
       align-items: center;
       gap: 8px;
+      color: var(--text-heading);
     }
 
     .ach-item p {
-      font-size: 13.5px;
-      color: var(--muted);
+      font-size: 14px;
+      color: var(--text-muted);
       margin-top: 3px;
     }
 
     /* ---------- Education ---------- */
     .edu-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
+      background: var(--glass-panel);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
       border-radius: var(--radius);
-      padding: 24px 28px;
+      padding: 26px 30px;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 20px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       flex-wrap: wrap;
+      box-shadow: var(--glass-shadow), var(--glass-highlight);
+      transition: all .28s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .edu-card:hover {
+      border-color: rgba(112, 145, 230, 0.55);
+      background: var(--glass-panel-hover);
+      transform: translateY(-3px);
+      box-shadow: var(--glass-shadow-hover), var(--glass-highlight-hover);
     }
 
     .edu-card h4 {
-      font-size: 16.5px;
+      font-size: 17.5px;
       margin-bottom: 4px;
+      color: var(--text-heading);
     }
 
     .edu-card .edu-org {
-      color: var(--muted);
-      font-size: 14px;
+      color: var(--text-muted);
+      font-size: 14.5px;
     }
 
     .edu-card .edu-time {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-      color: var(--accent);
+      font-size: 13px;
+      color: var(--c-sapphire);
+      font-weight: 600;
       white-space: nowrap;
     }
 
     .edu-badge {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      padding: 4px 10px;
-      border-radius: 6px;
+      background: rgba(112, 145, 230, 0.10);
+      color: var(--c-sapphire);
+      border: 1px solid rgba(112, 145, 230, 0.28);
+      padding: 4px 12px;
+      border-radius: 9999px;
       margin-top: 8px;
       display: inline-block;
+      font-weight: 500;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
     }
 
     /* ---------- Certifications ---------- */
     .cert-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 24px;
     }
 
     @media(max-width:760px) {
@@ -1090,59 +1321,81 @@
     }
 
     .cert-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
+      background: var(--glass-panel);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 26px;
+      box-shadow: var(--glass-shadow), var(--glass-highlight);
+      transition: all .28s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cert-card:hover {
+      border-color: rgba(112, 145, 230, 0.55);
+      background: var(--glass-panel-hover);
+      transform: translateY(-3px);
+      box-shadow: var(--glass-shadow-hover), var(--glass-highlight-hover);
     }
 
     .cert-card .cert-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .cert-card h4 {
-      font-size: 15.5px;
+      font-size: 16.5px;
+      color: var(--text-heading);
     }
 
     .cert-card .cert-pct {
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
-      color: var(--accent);
+      color: var(--c-sapphire);
+      font-weight: 600;
     }
 
     .cert-card .cert-by {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 14px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 500;
     }
 
     .progress-track {
-      height: 6px;
-      background: var(--border);
-      border-radius: 4px;
+      height: 7px;
+      background: rgba(173, 187, 218, 0.35);
+      border-radius: 9999px;
       overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(61, 82, 160, 0.12);
     }
 
     .progress-fill {
       height: 100%;
-      background: var(--accent);
-      border-radius: 4px;
+      background: linear-gradient(90deg, #7091E6 0%, #3D52A0 100%);
+      border-radius: 9999px;
+      box-shadow: 0 0 10px rgba(112, 145, 230, 0.40);
     }
 
-    /* ---------- About ---------- */
+    /* ---------- About Profile ---------- */
     .about-profile-card {
-      background: linear-gradient(160deg, var(--panel-2), var(--panel));
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 32px;
+      background: var(--glass-panel);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 32px 36px;
       display: flex;
       align-items: center;
       gap: 24px;
       margin-bottom: 36px;
-      box-shadow: 0 0 50px -18px var(--accent-glow);
+      box-shadow: var(--glass-shadow), var(--glass-highlight);
+      position: relative;
+      overflow: hidden;
     }
 
     @media(max-width:640px) {
@@ -1154,13 +1407,13 @@
     }
 
     .about-photo {
-      width: 88px;
-      height: 88px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
-      border: 3px solid var(--accent);
-      box-shadow: 0 0 30px -2px var(--accent-glow);
+      border: 3px solid var(--c-sapphire);
+      box-shadow: 0 0 25px rgba(112, 145, 230, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.90);
     }
 
     .about-profile-text {
@@ -1169,13 +1422,14 @@
     }
 
     .about-profile-text h4 {
-      font-size: 20px;
+      font-size: 21px;
       margin-bottom: 4px;
+      color: var(--text-heading);
     }
 
     .about-profile-text .snap-role {
-      color: var(--muted);
-      font-size: 14px;
+      color: var(--text-muted);
+      font-size: 14.5px;
       margin-bottom: 10px;
     }
 
@@ -1218,40 +1472,50 @@
     }
 
     .about-item .ico {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: var(--accent-soft);
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(173, 187, 218, 0.22) 100%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(173, 187, 218, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--accent);
+      color: var(--c-sapphire);
       font-size: 15px;
+      box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 1), 0 2px 8px rgba(61, 82, 160, 0.08);
     }
 
     .about-item p {
-      color: var(--text);
+      color: var(--text-heading);
       font-size: 15px;
+      font-weight: 600;
     }
 
     .about-item span {
-      color: var(--muted);
+      color: var(--text-muted);
       font-size: 13.5px;
     }
 
     .info-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
+      background: var(--glass-panel);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 26px;
+      box-shadow: var(--glass-shadow), var(--glass-highlight);
+      position: relative;
+      overflow: hidden;
     }
 
     .info-row {
       display: flex;
       justify-content: space-between;
       padding: 11px 0;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(173, 187, 218, 0.38);
       font-size: 13.5px;
       gap: 16px;
     }
@@ -1261,46 +1525,27 @@
     }
 
     .info-row .k {
-      color: var(--muted);
+      color: var(--text-muted);
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       flex-shrink: 0;
+      font-weight: 500;
     }
 
     .info-row .v {
-      color: var(--text);
+      color: var(--text-heading);
       text-align: right;
+      font-weight: 500;
     }
 
     .info-row a.v {
-      color: var(--accent);
+      color: var(--c-sapphire);
       transition: color .2s;
     }
 
     .info-row a.v:hover {
-      color: var(--text);
+      color: var(--c-periwinkle);
       text-decoration: underline;
-    }
-
-    .resume-block {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .resume-block p {
-      font-size: 13.5px;
-      color: var(--muted);
-    }
-
-    .resume-block .btn {
-      padding: 10px 18px;
-      font-size: 13px;
     }
 
     .snap-status {
@@ -1310,9 +1555,12 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 11.5px;
       color: var(--green);
-      background: rgba(52, 211, 153, .1);
-      padding: 6px 12px;
-      border-radius: 20px;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 5px 14px;
+      border-radius: 9999px;
+      border: 1px solid rgba(16, 185, 129, 0.30);
+      font-weight: 600;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
     }
 
     .snap-dot {
@@ -1325,34 +1573,35 @@
 
     /* ---------- Contact ---------- */
     .contact-box {
-      background: linear-gradient(135deg, var(--panel), var(--panel-2));
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 52px 48px;
+      background: var(--glass-panel);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      padding: 56px 48px;
       text-align: center;
-      box-shadow: 0 0 80px -20px var(--accent-glow);
+      box-shadow: 0 28px 75px -15px rgba(61, 82, 160, 0.18), var(--glass-highlight);
+      position: relative;
+      overflow: hidden;
     }
 
     .contact-box h2 {
-      font-size: clamp(25px, 3.4vw, 34px);
+      font-size: clamp(26px, 3.5vw, 36px);
       margin-bottom: 14px;
-    }
-
-    .contact-box p.lede {
-      color: var(--muted);
-      font-size: 15px;
-      max-width: 520px;
-      margin: 0 auto 14px;
+      color: var(--text-heading);
     }
 
     .contact-box .pitch {
-      font-size: 14px;
-      color: var(--text);
-      max-width: 560px;
-      margin: 0 auto 30px;
-      background: var(--accent-soft);
-      padding: 14px 18px;
-      border-radius: 10px;
+      font-size: 15px;
+      color: var(--text-heading);
+      max-width: 580px;
+      margin: 0 auto 32px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(173, 187, 218, 0.20) 100%);
+      border: 1px solid rgba(173, 187, 218, 0.45);
+      padding: 14px 22px;
+      border-radius: 14px;
+      line-height: 1.6;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1);
     }
 
     .contact-links {
@@ -1360,7 +1609,7 @@
       justify-content: center;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 32px;
+      margin-bottom: 34px;
     }
 
     .contact-detail {
@@ -1368,33 +1617,40 @@
       justify-content: center;
       gap: 32px;
       flex-wrap: wrap;
-      font-size: 13.5px;
-      color: var(--muted);
+      font-size: 14px;
+      color: var(--text-muted);
     }
 
     .contact-detail a {
-      color: var(--accent);
+      color: var(--c-sapphire);
+      font-weight: 600;
       transition: color .2s;
     }
 
     .contact-detail a:hover {
-      color: var(--text);
+      color: var(--c-periwinkle);
       text-decoration: underline;
     }
 
     footer {
-      border-top: 1px solid var(--border);
-      padding: 36px 0;
+      border-top: 1px solid rgba(173, 187, 218, 0.40);
+      background: rgba(245, 242, 249, 0.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 38px 0;
       text-align: center;
-      color: var(--muted);
+      color: var(--text-muted);
       font-size: 13px;
+      position: relative;
+      z-index: 1;
     }
 
     footer .f-main {
       font-family: 'Space Grotesk', sans-serif;
-      color: var(--text);
-      font-size: 14.5px;
+      color: var(--text-heading);
+      font-size: 15px;
       margin-bottom: 6px;
+      font-weight: 600;
     }
 
     footer .f-sub {
@@ -1413,7 +1669,7 @@
       transform: translateY(0);
     }
 
-    /* ---------- Dynamic Page Entrance Animations ---------- */
+    /* ---------- Animations ---------- */
     @keyframes slideDown {
       from {
         transform: translateY(-100%);
@@ -1448,12 +1704,13 @@
       }
     }
 
-    /* ---------- Modal ---------- */
+    /* ---------- Apple visionOS Style Modal ---------- */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(2, 6, 16, .78);
-      backdrop-filter: blur(4px);
+      background: rgba(27, 36, 70, 0.45);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       z-index: 200;
       display: none;
       align-items: center;
@@ -1466,78 +1723,95 @@
     }
 
     .modal {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      max-width: 600px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(48px) saturate(180%) contrast(102%);
+      -webkit-backdrop-filter: blur(48px) saturate(180%) contrast(102%);
+      border: 1px solid rgba(255, 255, 255, 0.98);
+      border-radius: 26px;
+      max-width: 640px;
       width: 100%;
       max-height: 85vh;
       overflow-y: auto;
-      padding: 36px;
+      padding: 40px;
       position: relative;
+      box-shadow: 0 36px 95px -10px rgba(61, 82, 160, 0.22), 0 0 50px rgba(112, 145, 230, 0.15), var(--glass-highlight);
     }
 
     .modal-close {
       position: absolute;
       top: 20px;
       right: 20px;
-      width: 32px;
-      height: 32px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: none;
-      color: var(--muted);
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(173, 187, 218, 0.50);
+      border-radius: 50%;
+      background: rgba(237, 232, 245, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: var(--text-heading);
       cursor: pointer;
       font-size: 16px;
+      transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
     }
 
     .modal-close:hover {
-      color: var(--accent);
-      border-color: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--c-sapphire);
+      background: var(--c-sapphire);
+      transform: scale(1.08);
+      box-shadow: 0 0 16px rgba(112, 145, 230, 0.50);
     }
 
     .modal h3 {
-      font-size: 23px;
+      font-size: 24px;
       margin-bottom: 6px;
+      color: var(--text-heading);
     }
 
     .modal .modal-tagline {
-      color: var(--accent);
-      font-size: 13px;
+      color: var(--c-sapphire);
+      font-size: 13.5px;
       font-family: 'JetBrains Mono', monospace;
       margin-bottom: 22px;
+      font-weight: 600;
     }
 
     .modal-block {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .modal-block h5 {
       font-size: 11.5px;
       text-transform: uppercase;
       letter-spacing: .08em;
-      color: var(--muted);
+      color: var(--text-muted);
       margin-bottom: 8px;
       font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
     }
 
     .modal-block p,
     .modal-block li {
       font-size: 14.5px;
-      color: var(--text);
+      color: var(--text-body);
+      line-height: 1.6;
     }
 
     .modal-block ul {
       padding-left: 18px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
 
     .modal-links {
       display: flex;
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 26px;
       flex-wrap: wrap;
     }
 
@@ -1556,11 +1830,17 @@
 
 <body>
 
+  <!-- Apple Ambient Vibrancy Mesh -->
+  <div class="apple-glass-bg" aria-hidden="true">
+    <div class="glass-orb glass-orb-1"></div>
+    <div class="glass-orb glass-orb-2"></div>
+    <div class="glass-orb glass-orb-3"></div>
+  </div>
+
   <header>
     <nav>
       <a href="#home" class="logo">hrithik<span>.</span>dev</a>
       <div class="nav-links" id="navLinks">
-        <a href="#focus">Focus</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
@@ -1594,22 +1874,17 @@
         <div class="hero-left">
           <span class="kicker">● Open to internships</span>
           <h1>Building Software That <span class="accent">Solves Real Problems</span></h1>
-          <p class="role">Information Science Engineering Student at MSRUAS</p>
-          <p class="role-sub">Focused on Full Stack Development, Computer Vision, and practical software products people
-            actually use.</p>
+          <p class="role">Software Development Intern · ISE at MSRUAS</p>
+          <p class="role-sub">Information Science Engineering student at M. S. Ramaiah University of Applied Sciences with hands-on experience in full stack web development, machine learning, and data analytics.</p>
           <div class="hero-actions">
             <a href="#projects" class="btn btn-primary">View Projects →</a>
-            <a href="https://drive.google.com/file/d/1jbsWdEnO-58HVzJhPGp3PeV-WHVFNJE-/view?usp=drivesdk"
+            <a href="https://drive.google.com/file/d/1Rh-QiAZV7m-D7Y3EY_hPSSfcev6XSBdE/view?usp=drivesdk"
               target="_blank" rel="noopener" class="btn btn-ghost">View Resume</a>
           </div>
           <div class="hero-stats">
             <div>
-              <div class="hstat-num">5+</div>
+              <div class="hstat-num">6+</div>
               <div class="hstat-label">Projects built</div>
-            </div>
-            <div>
-              <div class="hstat-num">1</div>
-              <div class="hstat-label">Hackathon win</div>
             </div>
             <div>
               <div class="hstat-num">4+ yrs</div>
@@ -1629,45 +1904,12 @@
     </div>
   </section>
 
-  <section id="focus" class="section-pad">
-    <div class="wrap">
-      <div class="sec-head fade-in">
-        <div class="eyebrow"><span class="glyph"><span></span><span></span></span>Current Focus</div>
-        <h2>What I'm working on right now</h2>
-      </div>
-      <div class="focus-card fade-in">
-        <div>
-          <span class="focus-tag">In Development</span>
-          <h3>AeroPaint</h3>
-          <div class="focus-sub">Gesture-Based Drawing Application</div>
-          <p>Building a computer vision app that lets users draw on a virtual canvas using real-time hand tracking
-            through webcam input — gesture recognition for touchless drawing and canvas controls, no extra hardware.</p>
-          <div class="focus-goal"><strong>Goal:</strong> touchless drawing using computer vision and hand tracking, with
-            smooth coordinate mapping for a responsive feel.</div>
-          <div class="pcard-tags">
-            <span class="ptag">Python</span><span class="ptag">OpenCV</span><span class="ptag">MediaPipe</span><span
-              class="ptag">NumPy</span>
-          </div>
-        </div>
-        <div class="focus-visual">
-          <div class="hand-track-demo" id="handDemo">
-            <div class="canvas-trail" style="width:100px;height:100px;"></div>
-            <div class="canvas-trail" style="width:60px;height:60px;"></div>
-            <div class="hand-dot" id="handDot"></div>
-          </div>
-          <div class="mono" style="font-size:11px;color:var(--muted);text-align:center;">tracking: index_finger_tip ·
-            x,y mapped to canvas</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="projects" class="section-pad">
     <div class="wrap">
       <div class="sec-head fade-in">
         <div class="eyebrow"><span class="glyph"><span></span><span></span></span>Featured Work</div>
         <h2>What I've built</h2>
-        <p>Five projects, real repos. Click any card for the full case study.</p>
+        <p>Featured projects across AI/ML, sensor fusion, cybersecurity, and full-stack web applications. Click any card for the full case study.</p>
       </div>
       <div class="project-grid fade-in" id="projectGrid"></div>
     </div>
@@ -1704,24 +1946,59 @@
       <div class="fade-in">
         <div class="exp-card">
           <div class="exp-top">
-            <h4>Teaching Assistant / Academic Mentor</h4><span class="exp-time">2022 — 2026</span>
+            <h4>AI/ML Intern</h4>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <a href="https://drive.google.com/file/d/1SK-Vf0QUBiWWwFSpxegjr1LOYQHqXVmB/view?usp=drivesdk" target="_blank" rel="noopener" class="exp-cred-link">View Credential ↗</a>
+              <span class="exp-time">2026</span>
+            </div>
           </div>
-          <div class="exp-org">Edvantage Academy</div>
+          <div class="exp-org">Bharat Electronics Limited (BEL)</div>
           <ul>
-            <li>Assisted ICSE (6th–10th) and SSLC students in Physics, Chemistry and Mathematics</li>
-            <li>Taught Chemistry for 1st PUC and 2nd PUC students</li>
-            <li>Mentored 100+ students, helping improve conceptual understanding and academic performance</li>
+            <li>Contributed to the development of TRACE (Track Record Analysis and Classification Engine), building end-to-end Python-based data processing, statistical analysis, and machine learning pipelines to analyze operational track-parameter logs (detailed further in the Projects section).</li>
           </ul>
         </div>
         <div class="exp-card">
           <div class="exp-top">
-            <h4>AI Data Analyst Intern (Python)</h4><span class="exp-time">2025</span>
+            <h4>GenAI Academy APAC Cohort</h4>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <a href="https://drive.google.com/file/d/1y5cKRS4yp1PDVL8ZJnfTCOKyXwm5-58T/view?usp=drivesdk" target="_blank" rel="noopener" class="exp-cred-link">View Credential ↗</a>
+              <span class="exp-time">2026</span>
+            </div>
+          </div>
+          <div class="exp-org">Google for Developers</div>
+          <ul>
+            <li>Completed hands-on training in Generative AI, AI agents, Gemini, Vertex AI, Google Cloud Platform (GCP), and Agent Development Kit (ADK).</li>
+            <li>Explored AI application deployment using Cloud Run and integrated AI agents with Google Sheets for data analysis and automated business insights.</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-top">
+            <h4>AI Data Analyst Intern (Python)</h4>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <a href="https://drive.google.com/file/d/1Syfuq2kLsZJ_qNonTeVmLwftxUxbfWld/view?usp=drivesdk" target="_blank" rel="noopener" class="exp-cred-link">View Credential ↗</a>
+              <span class="exp-time">2025</span>
+            </div>
           </div>
           <div class="exp-org">Karo Startup</div>
           <ul>
-            <li>Automated the analysis of startup ecosystems using AI-driven Python scripts</li>
-            <li>Processed and interpreted large datasets to generate actionable business insights</li>
-            <li>Reduced manual analysis time by building reusable automation pipelines</li>
+            <li>Automated the analysis of startup ecosystems using AI-driven Python scripts.</li>
+            <li>Processed and interpreted large datasets to generate actionable business insights.</li>
+            <li>Reduced manual analysis time by building reusable automation pipelines.</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-top">
+            <h4>Teaching Assistant / Academic Mentor</h4>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <a href="https://drive.google.com/file/d/1yOvhj10vhNzT_cmGGG7gGTf5d28X4ryc/view?usp=drivesdk" target="_blank" rel="noopener" class="exp-cred-link">View Credential ↗</a>
+              <span class="exp-time">2022 — 2026</span>
+            </div>
+          </div>
+          <div class="exp-org">Edvantage Academy</div>
+          <ul>
+            <li>Assisted ICSE (6th–10th) and SSLC students in Physics, Chemistry and Mathematics.</li>
+            <li>Taught Chemistry for 1st PUC and 2nd PUC students.</li>
+            <li>Helped students improve conceptual understanding and academic performance.</li>
           </ul>
         </div>
       </div>
@@ -1731,29 +2008,34 @@
   <section id="achievements" class="section-pad">
     <div class="wrap">
       <div class="sec-head fade-in">
-        <div class="eyebrow"><span class="glyph"><span></span><span></span></span>Achievements</div>
-        <h2>Competitions & recognition</h2>
+        <div class="eyebrow"><span class="glyph"><span></span><span></span></span>Achievements &amp; Activities</div>
+        <h2>Competitions &amp; leadership</h2>
       </div>
       <div class="ach-timeline fade-in">
         <div class="ach-item">
-          <div class="ach-year">2025</div>
-          <h4>🏆 Sky Hack Winner</h4>
-          <p>1st Place — Pravruthi National Tech Fest</p>
+          <div class="ach-year">2026</div>
+          <h4>🏆 Winner (1st Place) — SkyHack</h4>
+          <p>Pravrutti National Tech Fest</p>
         </div>
         <div class="ach-item">
-          <div class="ach-year">2025</div>
-          <h4>🚀 Smart India Hackathon Selection</h4>
-          <p>Selected for SIH 2025 at the college level</p>
+          <div class="ach-year">2026</div>
+          <h4>📌 SPOC — Smart India Hackathon (SIH) 2026</h4>
+          <p>MSRUAS: Coordinated the end-to-end internal hackathon process.</p>
         </div>
         <div class="ach-item">
-          <div class="ach-year">2025</div>
-          <h4>💻 Broadridge Hackathon</h4>
-          <p>Participant — industry-sponsored challenge</p>
+          <div class="ach-year">2026</div>
+          <h4>⚡ Event Lead — HAMMER, Pravrutti 2.0</h4>
+          <p>Led event execution and custom cybersecurity escape room platform for 180+ participants.</p>
         </div>
         <div class="ach-item">
-          <div class="ach-year">2024</div>
-          <h4>🎓 IIT Tech Fest</h4>
-          <p>Participant — inter-collegiate competition</p>
+          <div class="ach-year">2025 &amp; 2026</div>
+          <h4>🚀 Selected at College Level — Smart India Hackathon (SIH)</h4>
+          <p>Shortlisted for SIH 2025 &amp; 2026 national hackathon evaluation rounds.</p>
+        </div>
+        <div class="ach-item">
+          <div class="ach-year">2024 — Present</div>
+          <h4>🤝 Member — Cynergy Coding Club</h4>
+          <p>MSRUAS: Contributed to organizing technical events, workshops, and coding challenges.</p>
         </div>
       </div>
     </div>
@@ -1796,25 +2078,49 @@
     <div class="wrap">
       <div class="sec-head fade-in">
         <div class="eyebrow"><span class="glyph"><span></span><span></span></span>Certifications</div>
-        <h2>Currently learning</h2>
+        <h2>Credentials &amp; specialized learning</h2>
       </div>
       <div class="cert-grid fade-in">
         <div class="cert-card">
           <div class="cert-top">
-            <h4>Java Masterclass 2025</h4><span class="cert-pct">18%</span>
+            <h4>GenAI Academy APAC Cohort</h4><span class="cert-pct" style="color:var(--green)">Certified</span>
           </div>
-          <div class="cert-by">Tim Buchalka</div>
-          <div class="progress-track">
-            <div class="progress-fill" style="width:18%"></div>
+          <div class="cert-by">Google for Developers · 2026</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Generative AI, AI Agents, Gemini, Vertex AI, GCP, ADK &amp; Cloud Run</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <a href="https://drive.google.com/file/d/1y5cKRS4yp1PDVL8ZJnfTCOKyXwm5-58T/view?usp=drivesdk" target="_blank" rel="noopener" class="exp-cred-link">View Credential ↗</a>
+            <span class="edu-badge" style="margin-top:0">Google APAC</span>
           </div>
         </div>
         <div class="cert-card">
           <div class="cert-top">
-            <h4>Complete Full Stack Web Dev Bootcamp</h4><span class="cert-pct">5%</span>
+            <h4>BEL AI/ML Industrial Training</h4><span class="cert-pct" style="color:var(--green)">Certified</span>
           </div>
-          <div class="cert-by">Angela Yu</div>
+          <div class="cert-by">Bharat Electronics Limited · 2026</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Operational Track Log Analytics, Python ML Pipelines &amp; Isolation Forest Anomaly Detection</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <a href="https://drive.google.com/file/d/1SK-Vf0QUBiWWwFSpxegjr1LOYQHqXVmB/view?usp=drivesdk" target="_blank" rel="noopener" class="exp-cred-link">View Credential ↗</a>
+            <span class="edu-badge" style="margin-top:0">BEL Defense</span>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-top">
+            <h4>Java Masterclass 2025</h4><span class="cert-pct">OOP &amp; Core</span>
+          </div>
+          <div class="cert-by">Tim Buchalka · Udemy</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Object-Oriented Programming, Data Structures, Collections &amp; Concurrency</p>
           <div class="progress-track">
-            <div class="progress-fill" style="width:5%"></div>
+            <div class="progress-fill" style="width:65%"></div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-top">
+            <h4>Complete Full Stack Web Dev Bootcamp</h4><span class="cert-pct">Full Stack</span>
+          </div>
+          <div class="cert-by">Angela Yu · Udemy</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Full-stack development, Node.js, Express, REST APIs, Databases &amp; UI Architecture</p>
+          <div class="progress-track">
+            <div class="progress-fill" style="width:75%"></div>
           </div>
         </div>
       </div>
@@ -1832,10 +2138,10 @@
           <img class="about-photo" src="assets/profile.jpg" alt="Hrithik A" width="88" height="88" loading="lazy">
           <div class="about-profile-text">
             <h4>Hrithik A</h4>
-            <p class="snap-role">Software Developer · Bangalore, India</p>
+            <p class="snap-role">Software Development Intern · Bangalore, India</p>
             <div class="snap-status"><span class="snap-dot"></span>Open to internships</div>
           </div>
-          <a href="https://drive.google.com/file/d/1jbsWdEnO-58HVzJhPGp3PeV-WHVFNJE-/view?usp=drivesdk" target="_blank"
+          <a href="https://drive.google.com/file/d/1Rh-QiAZV7m-D7Y3EY_hPSSfcev6XSBdE/view?usp=drivesdk" target="_blank"
             rel="noopener" class="btn btn-primary">View Resume →</a>
         </div>
         <div class="about-grid">
@@ -1843,46 +2149,45 @@
             <div class="about-item">
               <div class="ico">🎓</div>
               <div>
-                <p>2nd year ISE student at MSRUAS</p><span>B.Tech, Information Science Engineering</span>
+                <p>2nd year ISE student at MSRUAS</p><span>B.Tech, Information Science Engineering (2024 — Present)</span>
               </div>
             </div>
             <div class="about-item">
-              <div class="ico">☕</div>
+              <div class="ico">🤖</div>
               <div>
-                <p>Working through Tim Buchalka's Java Masterclass</p><span>Building real projects alongside it, not
-                  just following along</span>
+                <p>AI/ML &amp; Data Engineering experience</p><span>Contributed to TRACE at BEL, Google GenAI Academy APAC Cohort, and Karo Startup</span>
               </div>
             </div>
             <div class="about-item">
               <div class="ico">🏆</div>
               <div>
-                <p>Hackathon participant — and winner</p><span>Sky Hack, SIH 2025, Broadridge, IIT Tech Fest</span>
+                <p>Hackathon Winner &amp; Campus SPOC</p><span>1st Place at SkyHack (Pravrutti National Tech Fest), SIH 2025 &amp; 2026 selection, and college SPOC for SIH 2026</span>
+              </div>
+            </div>
+            <div class="about-item">
+              <div class="ico">⚡</div>
+              <div>
+                <p>Event Lead &amp; Platform Architect</p><span>Built and led HAMMER cyber escape room platform for 180+ participants at Pravrutti 2.0</span>
               </div>
             </div>
             <div class="about-item">
               <div class="ico">📚</div>
               <div>
-                <p>Teaching since 2022</p><span>100+ students mentored in Physics, Chemistry & Maths at Edvantage
-                  Academy</span>
-              </div>
-            </div>
-            <div class="about-item">
-              <div class="ico">👁️</div>
-              <div>
-                <p>Interested in software development and computer vision</p><span>AeroPaint is where that interest
-                  lives right now</span>
+                <p>Teaching &amp; Academic Mentor since 2022</p><span>Mentored ICSE, SSLC, and PUC students in Physics, Chemistry &amp; Mathematics at Edvantage Academy</span>
               </div>
             </div>
           </div>
           <div class="info-card">
             <div class="info-row"><span class="k">EDUCATION</span><span class="v">B.Tech, ISE — MSRUAS</span></div>
-            <div class="info-row"><span class="k">YEAR</span><span class="v">2nd Year</span></div>
+            <div class="info-row"><span class="k">TIMELINE</span><span class="v">2024 — Present</span></div>
             <div class="info-row"><span class="k">LOCATION</span><span class="v">Bangalore, India</span></div>
             <div class="info-row"><span class="k">STATUS</span><span class="v">Open to internships</span></div>
-            <div class="info-row"><span class="k">FOCUS</span><span class="v">Web Dev · Computer Vision</span></div>
+            <div class="info-row"><span class="k">FOCUS</span><span class="v">AI/ML · Web Dev · Data Analysis</span></div>
             <div class="info-row"><span class="k">EMAIL</span><a class="v"
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=hrithik18a@gmail.com" target="_blank"
                 rel="noopener">hrithik18a@gmail.com</a></div>
+            <div class="info-row"><span class="k">PHONE</span><span class="v">+91 96865 05558</span></div>
+            <div class="info-row"><span class="k">ADDRESS</span><span class="v">124/1 Venkat Illam, St.Johns Church Rd</span></div>
           </div>
         </div>
       </div>
@@ -1906,7 +2211,7 @@
           <div>Email <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hrithik18a@gmail.com" target="_blank"
               rel="noopener">hrithik18a@gmail.com</a></div>
           <div>Phone <span>+91 96865 05558</span></div>
-          <div>Location <span>Bangalore, India</span></div>
+          <div>Location <span>Bangalore - 560005, India</span></div>
         </div>
       </div>
     </div>
@@ -1948,6 +2253,68 @@
     /* ---------------- Project Data (synced with resume) ---------------- */
     const projects = [
       {
+        name: "GHOST [GNSS-Free Hybrid Onboard Sensor Tracker]",
+        tagline: "AI-based navigation system during 60s GNSS outages (SIH 2026)",
+        desc: "A hybrid AI-based navigation system for vehicle tracking during GNSS outages without GPS, combining 1D-CNN speed estimation and 5-state Extended Kalman Filter.",
+        tech: ["Python", "PyTorch", "Scikit-learn", "NumPy", "SciPy", "Extended Kalman Filter", "React", "Three.js", "React Three Fiber"],
+        status: "live",
+        featured: true,
+        image: "assets/ghost.svg",
+        metrics: ["2.40% Position Drift", "60s Outage Recovery", "1D-CNN + 5-State EKF", "3D Interactive Simulation"],
+        repo: "https://github.com/A-Hrithik-4/GHOST",
+        problem: "GNSS/GPS signals frequently fail in tunnels, urban canyons, and jammed environments. Conventional navigation systems rapidly accumulate positional drift error.",
+        features: [
+          "Developed a hybrid AI-based navigation system for vehicle tracking during 60-second GNSS outages without GPS",
+          "Built a PyTorch 1D-CNN speed estimator calibrated using Scikit-learn's Isotonic Regression to improve dead-reckoning accuracy",
+          "Integrated a 5-state Extended Kalman Filter (EKF), IMU-based motion estimation, and OpenStreetMap road-heading constraints",
+          "Engineered sensor preprocessing and feature extraction pipelines using Python, NumPy, and SciPy for sensor fusion",
+          "Achieved 2.40% position drift during simulated 60-second GNSS outages, meeting the SIH requirement of ≤10%",
+          "Built an interactive 3D simulation dashboard using React, Three.js, and React Three Fiber to compare navigation performance with and without GHOST"
+        ],
+        challenges: "Eliminating speed estimation bias without overfitting to specific driving patterns — resolved through isotonic regression calibration and fusing road constraints into the EKF."
+      },
+      {
+        name: "HAMMER — IPL Cyber Intelligence Escape Room",
+        tagline: "Competitive cybersecurity escape room platform with live leaderboards (Pravrutti 2.0)",
+        desc: "A full-stack cybersecurity challenge platform with live scoring, automated qualification, and a custom cyber-terminal interface for 180+ participants.",
+        tech: ["Python", "Flask", "SQLite", "HTML", "CSS", "JavaScript", "Jinja2", "Gunicorn", "Git", "GitHub", "Render"],
+        status: "live",
+        featured: true,
+        image: "assets/hammer.svg",
+        metrics: ["180+ Event Participants", "8 Progressive Levels", "Live Leaderboard", "Top-8 Qualification"],
+        repo: "https://github.com/A-Hrithik-4/ipl_escape_room",
+        problem: "Engaging over 180 competitors in a fast-paced national tech fest requires an automated, tamper-proof platform with real-time feedback and dynamic difficulty.",
+        features: [
+          "Designed eight progressive cybersecurity challenges covering cryptography, binary conversion, Python code tracing, HTML/CSS inspection, hashing, and logical reasoning",
+          "Engineered multi-stage puzzles combining technical clues, hidden information, code analysis, and deduction",
+          "Developed a Python, Flask, and SQLite platform with team registration, session management, persistent progress tracking, and server-side answer validation",
+          "Built a live leaderboard with completion-time rankings, automatic top-eight qualification, and an admin dashboard for event management",
+          "Deployed using Gunicorn and Render, featuring a custom cyber-terminal interface built with HTML, CSS, JavaScript, and Jinja2"
+        ],
+        challenges: "Preventing inspect-element answer leakage and race conditions during simultaneous team submissions — tackled with atomic server-side validation and salt-hashed session states."
+      },
+      {
+        name: "TRACE [Track Record Analysis & Classification Engine]",
+        tagline: "Operational track log anomaly classification engine (BEL Internship)",
+        desc: "End-to-end Python data processing, statistical analysis, and machine learning pipeline to parse and analyze operational track-parameter logs.",
+        tech: ["Python", "Pandas", "NumPy", "Scikit-learn", "Isolation Forest", "Streamlit", "Plotly", "Matplotlib", "ReportLab"],
+        status: "live",
+        featured: true,
+        image: "assets/trace.svg",
+        metrics: ["Isolation Forest ML", "Multi-Page Dashboard", "Time-Series Analytics", "Automated PDF Reports"],
+        repo: "https://github.com/A-Hrithik-4/internship-project",
+        problem: "Defense operational track parameter logs are dense, high-dimensional, and noisy. Manual inspection to detect operational anomalies is unsustainable.",
+        features: [
+          "TRACE is a Python-based track log analysis and classification system built for operational log parsing",
+          "Built Pandas and NumPy pipelines for log parsing, data cleaning, timestamp handling, statistical analysis, and feature engineering",
+          "Implemented Scikit-learn's Isolation Forest with feature scaling for unsupervised anomaly detection",
+          "Developed a multi-page Streamlit dashboard using Plotly and Matplotlib for track visualization and anomaly analysis",
+          "Created scatter plots, time-series charts, correlation heatmaps, and boxplots for track parameter analysis",
+          "Automated PDF audit report generation using ReportLab to summarize findings and anomalies"
+        ],
+        challenges: "Unsupervised detection across heterogeneous track parameters without ground truth labels — addressed by tuning isolation forest contamination rates and robust feature scaling."
+      },
+      {
         name: "PULSE+",
         tagline: "AI-enhanced hospital management system",
         desc: "A full-stack hospital management web app streamlining patient, doctor, and admin workflows through one centralized platform.",
@@ -1956,9 +2323,14 @@
         featured: false,
         image: "assets/pulse.png",
         metrics: ["Role-based dashboards", "Secure authentication", "Appointment workflow", "AI assistant integration"],
-        repo: "https://github.com/A-Hrithik-4/-Pulse-",
+        repo: "https://github.com/A-Hrithik-4/Hospital-Management-System",
         problem: "Hospitals juggle multiple roles — doctors, admins, patients — each needing a different view of the same data. PULSE+ unifies that into role-based dashboards with secure authentication instead of separate disconnected tools.",
-        features: ["Role-based dashboards with secure authentication and user administration", "Appointment workflow supporting booking, approval, rescheduling, and status tracking", "Interactive AI assistant for navigation and contextual help", "Centralized platform for patient, doctor, and admin workflows"],
+        features: [
+          "Developed a full-stack hospital management web application to streamline patient, doctor, and administrative workflows through a centralized platform",
+          "Implemented role-based dashboards with secure authentication, appointment management, and user administration features",
+          "Built an appointment workflow system supporting booking, approval, rescheduling, and status tracking",
+          "Integrated an interactive AI assistant to improve navigation, provide contextual assistance, and enhance user experience"
+        ],
         challenges: "Designing the database schema so role permissions stayed clean without duplicating logic across dashboards was the trickiest part — solved with a shared middleware layer for access control."
       },
       {
@@ -1972,7 +2344,11 @@
         metrics: ["Table reservations", "Slot selection", "Online payments", "Responsive UI"],
         repo: "https://github.com/A-Hrithik-4/Elite-Dine",
         problem: "Small restaurants need booking and ordering in one place rather than stitching together third-party apps that take a cut of every order.",
-        features: ["Table reservation and slot selection", "Food ordering workflow", "Online payment integration", "Responsive, user-friendly interface for seamless navigation"],
+        features: [
+          "Developed a web application for restaurant management and customer bookings",
+          "Added features for table reservation, food ordering, slot selection, and online payments",
+          "Created a responsive and user-friendly interface for seamless navigation"
+        ],
         challenges: "Keeping the reservation and ordering flows from feeling like two separate apps bolted together — unified them under one consistent design system."
       },
       {
@@ -1986,7 +2362,11 @@
         metrics: ["Student enrollment", "Scheduling", "MongoDB-backed storage"],
         repo: "https://github.com/A-Hrithik-4/SDF-AURA",
         problem: "Small tuition centers often run on spreadsheets and WhatsApp. SDF Aura gives them one portal for enrollment, scheduling, and records.",
-        features: ["Student enrollment workflow", "Class scheduling", "Data storage backed by MongoDB", "Responsive UI with clean CSS across devices"],
+        features: [
+          "Built a full-stack web application to manage operations for small-to-medium tuition centers",
+          "Implemented student enrollment, scheduling, and data storage features backed by MongoDB",
+          "Designed a responsive UI with clean CSS, ensuring a seamless user experience across devices"
+        ],
         challenges: "Balancing simplicity for non-technical tutors with enough flexibility for varied class schedules required several rounds of UI simplification."
       },
       {
@@ -2000,9 +2380,14 @@
         metrics: ["EMI calculator", "Expense tracker", "Instant loan simulations"],
         repo: "https://github.com/A-Hrithik-4/pocket-pilot",
         problem: "Most EMI calculators only return a single number. People taking loans need to compare repayment strategies and see how their expenses fit around it — that's the gap Pocket Pilot fills.",
-        features: ["EMI calculator with adjustable tenure & interest", "Repayment strategy comparison", "Expense tracking dashboard", "Clean, distraction-free financial UI"],
+        features: [
+          "EMI calculator with adjustable tenure & interest",
+          "Repayment strategy comparison",
+          "Expense tracking dashboard",
+          "Clean, distraction-free financial UI"
+        ],
         challenges: "Getting the EMI math to update live without recalculating the whole page took a few passes — settled on isolating the calculation logic so the UI only re-renders the affected fields."
-      },
+      }
     ];
 
     function shotHTML(p) {
@@ -2107,22 +2492,26 @@
 
     /* ---------------- Tech stack grid ---------------- */
     const techStack = [
+      { label: "Python", bg: "#3776AB" },
       { label: "Java", bg: "#E76F00" },
-      { label: "Py", bg: "#3776AB" },
-      { label: "JS", bg: "#F0DB4F" },
-      { label: "HTML", bg: "#E34C26" },
-      { label: "CSS", bg: "#264DE4" },
-      { label: "Node", bg: "#5FA04E" },
-      { label: "Express", bg: "#404040" },
-      { label: "MySQL", bg: "#00758F" },
-      { label: "Mongo", bg: "#47A248" },
+      { label: "JavaScript", bg: "#F0DB4F" },
+      { label: "SQL", bg: "#00758F" },
+      { label: "PyTorch", bg: "#EE4C2C" },
+      { label: "Scikit-Learn", bg: "#F7931E" },
+      { label: "Flask", bg: "#24292E" },
+      { label: "Streamlit", bg: "#FF4B4B" },
+      { label: "Pandas", bg: "#150458" },
+      { label: "NumPy", bg: "#013243" },
+      { label: "HTML5", bg: "#E34C26" },
+      { label: "CSS3", bg: "#264DE4" },
+      { label: "EJS", bg: "#A91E50" },
+      { label: "MySQL", bg: "#00618A" },
+      { label: "MongoDB", bg: "#47A248" },
+      { label: "SQLite", bg: "#003B57" },
       { label: "Git", bg: "#F1502F" },
       { label: "GitHub", bg: "#24292E" },
       { label: "VS Code", bg: "#007ACC" },
-      { label: "IntelliJ", bg: "#000000" },
-      { label: "OpenCV", bg: "#5C3EE8" },
-      { label: "MediaPipe", bg: "#0097A7" },
-      { label: "Canva", bg: "#00C4CC" }
+      { label: "IntelliJ", bg: "#1F2328" }
     ];
     const techGrid = document.getElementById('techGrid');
     techStack.forEach(t => {
@@ -2131,18 +2520,6 @@
       tile.innerHTML = `<div class="tech-badge" style="background:${t.bg};color:${t.bg === '#F0DB4F' ? '#1a1a1a' : '#fff'}">${t.label.slice(0, 2).toUpperCase()}</div><span class="label">${t.label}</span>`;
       techGrid.appendChild(tile);
     });
-
-    /* ---------------- AeroPaint hand-tracking demo ---------------- */
-    const handDot = document.getElementById('handDot');
-    if (handDot && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      let t = 0;
-      setInterval(() => {
-        t += 0.04;
-        const x = Math.sin(t) * 80;
-        const y = Math.cos(t * 1.3) * 40;
-        handDot.style.transform = `translate(${x}px, ${y}px)`;
-      }, 30);
-    }
 
     /* ---------------- Fade-in on scroll ---------------- */
     const fadeEls = document.querySelectorAll('.fade-in');
