@@ -111,13 +111,15 @@ Answer questions about Hrithik's skills, projects, experience, achievements, and
     minBtn.textContent = minimized ? '▲' : '▼';
   }
 
-  applyMinimized(localStorage.getItem(MINIMIZED_KEY) !== '0');
+  // Default to expanded (visible) unless user explicitly minimized
+  applyMinimized(localStorage.getItem(MINIMIZED_KEY) === '1');
 
   minBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     const now = !stage.classList.contains('minimized');
     applyMinimized(now);
     localStorage.setItem(MINIMIZED_KEY, now ? '1' : '0');
+    if (greeting) greeting.classList.remove('show');
   });
 
   pill.addEventListener('click', (e) => {
@@ -126,36 +128,49 @@ Answer questions about Hrithik's skills, projects, experience, achievements, and
     localStorage.setItem(MINIMIZED_KEY, '0');
   });
 
+  /* ── Ultra-Smooth Holographic Awakening Entrance (Landing Page Only) ── */
+  const greeting = document.getElementById('syl-greeting');
+  let awakeningTriggered = false;
 
-  /* ── Smooth Cinematic Flight (Only on page load/reload at landing) ── */
-  let flightExecuted = false;
-  function triggerSylvieFlight() {
-    if (flightExecuted) return;
-    if (!bot || stage.classList.contains('minimized') || panel.classList.contains('open')) return;
-    // Only run on landing page (top of page), never when scrolled down or navigating
+  function triggerSylvieAwakening() {
+    if (awakeningTriggered) return;
+    if (stage.classList.contains('minimized') || panel.classList.contains('open')) return;
     if (window.scrollY > 160) return;
-    flightExecuted = true;
+    awakeningTriggered = true;
 
-    bot.classList.remove('flight-active');
-    void bot.offsetWidth;
-    bot.classList.add('flight-active');
+    stage.classList.add('syl-awakening');
+
+    // Pop greeting speech bubble smoothly after Sylvie settles into pedestal
     setTimeout(() => {
-      bot.classList.remove('flight-active');
-    }, 2850);
+      if (!stage.classList.contains('minimized') && !panel.classList.contains('open')) {
+        greeting?.classList.add('show');
+      }
+    }, 1300);
+
+    // Gently tuck away greeting after 7 seconds of ambient display
+    setTimeout(() => {
+      greeting?.classList.remove('show');
+    }, 7500);
   }
 
-  // Trigger strictly on page load / reload when at landing
-  window.addEventListener('load', () => {
-    setTimeout(triggerSylvieFlight, 300);
+  window.addEventListener('load', () => setTimeout(triggerSylvieAwakening, 120));
+  if (document.readyState === 'complete') setTimeout(triggerSylvieAwakening, 120);
+
+  // Dismiss greeting smoothly when user scrolls down
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 120 && greeting) greeting.classList.remove('show');
+  }, { passive: true });
+
+  greeting?.addEventListener('click', () => {
+    greeting.classList.remove('show');
+    openChat();
   });
-  if (document.readyState === 'complete') {
-    setTimeout(triggerSylvieFlight, 300);
-  }
 
   /* ── Open / close panel ── */
   function openChat() {
     panel.classList.add('open');
     stage.classList.add('panel-open');
+    if (greeting) greeting.classList.remove('show');
     if (hint) hint.classList.remove('show');
     input.focus();
   }

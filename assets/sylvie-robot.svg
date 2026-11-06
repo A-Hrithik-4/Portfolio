@@ -49,6 +49,57 @@
     </radialGradient>
   </defs>
 
+  <!-- Living Character Micro-Animations -->
+  <style>
+    @keyframes sylEyeBlink {
+      0%, 93%, 97%, 100% { transform: scaleY(1); }
+      95% { transform: scaleY(0.08); }
+    }
+    @keyframes sylMicBreathe {
+      0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 1px #5CE1E6); }
+      50% { opacity: 1; filter: drop-shadow(0 0 4px #5CE1E6); }
+    }
+    @keyframes sylCorePulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 4px #5CE1E6); }
+    }
+    @keyframes sylThrusterFlame {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.2, 1.35); opacity: 1; }
+    }
+    @keyframes sylHandFloatLeft {
+      0%, 100% { transform: rotate(-15deg) translateY(0); }
+      50% { transform: rotate(-12deg) translateY(-1.5px); }
+    }
+    @keyframes sylHandFloatRight {
+      0%, 100% { transform: rotate(15deg) translateY(0); }
+      50% { transform: rotate(12deg) translateY(-1.5px); }
+    }
+    .syl-eyes-group {
+      transform-origin: 50px 44px;
+      animation: sylEyeBlink 4.5s ease-in-out infinite;
+    }
+    .syl-mic-dot {
+      animation: sylMicBreathe 2.4s ease-in-out infinite;
+    }
+    .syl-chest-core-glow {
+      transform-origin: 50px 69px;
+      animation: sylCorePulse 3.2s ease-in-out infinite;
+    }
+    .syl-thruster-glow {
+      transform-origin: 50px 82px;
+      animation: sylThrusterFlame 2s ease-in-out infinite;
+    }
+    .syl-hand-l {
+      transform-origin: 27px 68px;
+      animation: sylHandFloatLeft 3.6s ease-in-out infinite;
+    }
+    .syl-hand-r {
+      transform-origin: 73px 68px;
+      animation: sylHandFloatRight 3.6s ease-in-out infinite;
+    }
+  </style>
+
   <!-- Ground Floating Shadow -->
   <ellipse cx="50" cy="94" rx="26" ry="4.5" fill="url(#sylShadow)"/>
 
@@ -80,8 +131,8 @@
     <!-- Dark Glass Visor -->
     <rect x="31" y="33" width="38" height="22" rx="11" fill="url(#sylVisor)" stroke="rgba(112, 145, 230, 0.4)" stroke-width="1"/>
 
-    <!-- Expressive Eyes (Glowing Cyan/Electric Periwinkle) -->
-    <g filter="url(#sylEyeGlow)">
+    <!-- Expressive Eyes (Glowing Cyan/Electric Periwinkle) with Blink -->
+    <g class="syl-eyes-group" filter="url(#sylEyeGlow)">
       <!-- Left Eye -->
       <ellipse cx="42" cy="44" rx="3.5" ry="4.5" fill="#5CE1E6"/>
       <circle cx="43.2" cy="42.5" r="1.2" fill="#FFFFFF"/>
@@ -102,22 +153,22 @@
       <path d="M 77 48 C 77 56, 71 61, 63 60" stroke="#FFFFFF" stroke-width="0.8" stroke-linecap="round" fill="none"/>
       <!-- Mic Capsule Tip -->
       <ellipse cx="61" cy="60" rx="3.2" ry="2.2" fill="#1E2540" stroke="#7091E6" stroke-width="0.8" transform="rotate(-12 61 60)"/>
-      <circle cx="60" cy="59.8" r="0.8" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
+      <circle class="syl-mic-dot" cx="60" cy="59.8" r="0.8" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
     </g>
 
     <!-- Body Torso -->
     <path d="M 35 60 C 35 58, 65 58, 65 60 L 68 76 C 68 81, 32 81, 32 76 Z" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="1.5"/>
 
-    <!-- Core Orb on Chest -->
+    <!-- Core Orb on Chest with Breathing Pulse -->
     <circle cx="50" cy="69" r="4" fill="url(#sylBlue)"/>
-    <circle cx="50" cy="69" r="2.2" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
+    <circle class="syl-chest-core-glow" cx="50" cy="69" r="2.2" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
 
-    <!-- Floating Hands -->
-    <ellipse cx="27" cy="68" rx="3.5" ry="5.5" fill="url(#sylChassis)" stroke="rgba(255,255,255,0.9)" stroke-width="1" transform="rotate(-15 27 68)"/>
-    <ellipse cx="73" cy="68" rx="3.5" ry="5.5" fill="url(#sylChassis)" stroke="rgba(255,255,255,0.9)" stroke-width="1" transform="rotate(15 73 68)"/>
+    <!-- Floating Hands with Gentle Weightless Hover -->
+    <ellipse class="syl-hand-l" cx="27" cy="68" rx="3.5" ry="5.5" fill="url(#sylChassis)" stroke="rgba(255,255,255,0.9)" stroke-width="1" transform="rotate(-15 27 68)"/>
+    <ellipse class="syl-hand-r" cx="73" cy="68" rx="3.5" ry="5.5" fill="url(#sylChassis)" stroke="rgba(255,255,255,0.9)" stroke-width="1" transform="rotate(15 73 68)"/>
 
-    <!-- Thruster / Base Ring -->
+    <!-- Thruster / Base Ring with Plasma Emission -->
     <ellipse cx="50" cy="80" rx="10" ry="2.5" fill="url(#sylBlue)" opacity="0.8"/>
-    <ellipse cx="50" cy="82" rx="6" ry="1.8" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
+    <ellipse class="syl-thruster-glow" cx="50" cy="82" rx="6" ry="1.8" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
   </g>
 </svg>
