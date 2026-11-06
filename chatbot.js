@@ -136,6 +136,32 @@ Answer questions about Hrithik's skills, projects, experience, achievements, and
     });
   }
 
+  /* ── Cinematic Flight Across Entire Page ── */
+  function triggerSylvieFlight() {
+    if (!bot || stage.classList.contains('minimized') || panel.classList.contains('open')) return;
+    bot.classList.remove('flight-active', 'syl-jump');
+    void bot.offsetWidth;
+    bot.classList.add('flight-active');
+    setTimeout(() => {
+      bot.classList.remove('flight-active');
+    }, 2850);
+  }
+
+  // Trigger flight on initial site visit / page load
+  window.addEventListener('load', () => {
+    setTimeout(triggerSylvieFlight, 450);
+  });
+  if (document.readyState === 'complete') {
+    setTimeout(triggerSylvieFlight, 450);
+  }
+
+  // Trigger flight whenever user clicks a navigation link or logo
+  document.querySelectorAll('.logo, .nav-links a, .hero-actions a').forEach((link) => {
+    link.addEventListener('click', () => {
+      setTimeout(triggerSylvieFlight, 250);
+    });
+  });
+
   /* ── Jump animation ── */
   function sylvieJump() {
     if (!bot) return;

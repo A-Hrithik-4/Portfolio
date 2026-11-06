@@ -1,84 +1,137 @@
-<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Chassis Gradient: Apple Ceramic / Titanium with soft periwinkle tint -->
-    <linearGradient id="sylChassis" x1="20" y1="20" x2="80" y2="90" gradientUnits="userSpaceOnUse">
+    <!-- Ceramic Shell Gradient -->
+    <linearGradient id="sylChassis" x1="25" y1="20" x2="95" y2="105" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="50%" stop-color="#EDE8F5"/>
-      <stop offset="100%" stop-color="#ADBBDA"/>
+      <stop offset="45%" stop-color="#F2F0F9"/>
+      <stop offset="85%" stop-color="#CBD5F0"/>
+      <stop offset="100%" stop-color="#9FB0DC"/>
     </linearGradient>
-    <!-- Primary Blue Gradient -->
-    <linearGradient id="sylBlue" x1="30" y1="20" x2="70" y2="80" gradientUnits="userSpaceOnUse">
+
+    <!-- Royal Sapphire Accent Gradient -->
+    <linearGradient id="sylSapphire" x1="30" y1="25" x2="90" y2="95" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#7091E6"/>
-      <stop offset="100%" stop-color="#3D52A0"/>
+      <stop offset="60%" stop-color="#3D52A0"/>
+      <stop offset="100%" stop-color="#253570"/>
     </linearGradient>
-    <!-- Visor Gradient: Dark Sapphire Glass -->
-    <linearGradient id="sylVisor" x1="35" y1="36" x2="65" y2="52" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#1E2540"/>
-      <stop offset="100%" stop-color="#0E1220"/>
+
+    <!-- Electric Periwinkle Rim -->
+    <linearGradient id="sylPeriwinkle" x1="40" y1="20" x2="80" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#A5BBFF"/>
+      <stop offset="100%" stop-color="#5575DA"/>
     </linearGradient>
-    <!-- Soft Glow Filter -->
-    <filter id="sylEyeGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="1.8" result="blur"/>
+
+    <!-- Deep Obsidian Glass Visor -->
+    <linearGradient id="sylVisor" x1="38" y1="36" x2="82" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#141829"/>
+      <stop offset="100%" stop-color="#070913"/>
+    </linearGradient>
+
+    <!-- Intense Neon Cyan Eye Glow -->
+    <filter id="sylEyeGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.2" result="blur1"/>
+      <feGaussianBlur stdDeviation="4" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Thruster Flame Glow -->
+    <filter id="sylThrusterGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    <!-- Ambient Shadow -->
-    <radialGradient id="sylShadow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(61, 82, 160, 0.35)"/>
-      <stop offset="100%" stop-color="rgba(61, 82, 160, 0)"/>
+
+    <!-- Floating Ground Shadow -->
+    <radialGradient id="sylGroundShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(45, 62, 128, 0.45)"/>
+      <stop offset="60%" stop-color="rgba(45, 62, 128, 0.15)"/>
+      <stop offset="100%" stop-color="rgba(45, 62, 128, 0)"/>
     </radialGradient>
   </defs>
 
-  <!-- Ground Floating Shadow -->
-  <ellipse cx="50" cy="94" rx="26" ry="4.5" fill="url(#sylShadow)"/>
+  <!-- Ground Soft Drop Shadow -->
+  <ellipse cx="60" cy="112" rx="32" ry="5.5" fill="url(#sylGroundShadow)"/>
 
-  <!-- Main Floating Robot Group -->
-  <g class="syl-robot-body">
-    <!-- Floating Ear Pods / Audio Nodes -->
-    <rect x="22" y="38" width="5" height="12" rx="2.5" fill="url(#sylBlue)"/>
-    <rect x="73" y="38" width="5" height="12" rx="2.5" fill="url(#sylBlue)"/>
+  <!-- Thruster Plasma Glow (Hover Propulsion) -->
+  <g filter="url(#sylThrusterGlow)">
+    <ellipse cx="60" cy="98" rx="14" ry="4.5" fill="#7091E6" opacity="0.8"/>
+    <ellipse cx="60" cy="100" rx="8" ry="3.2" fill="#00F0FF"/>
+    <circle cx="60" cy="101" r="2" fill="#FFFFFF"/>
+  </g>
 
-    <!-- Antenna -->
-    <line x1="50" y1="25" x2="50" y2="16" stroke="url(#sylBlue)" stroke-width="2.5" stroke-linecap="round"/>
-    <circle cx="50" cy="14" r="3.5" fill="#7091E6" filter="url(#sylEyeGlow)"/>
+  <!-- Main Floating Robot Chassis -->
+  <g class="syl-robot-root">
+    
+    <!-- Magnetic Audio Ear Nodes (Side Pods) -->
+    <rect x="22" y="44" width="7" height="16" rx="3.5" fill="url(#sylSapphire)" stroke="#A5BBFF" stroke-width="1.2"/>
+    <rect x="91" y="44" width="7" height="16" rx="3.5" fill="url(#sylSapphire)" stroke="#A5BBFF" stroke-width="1.2"/>
 
-    <!-- Head Chassis -->
-    <rect x="25" y="24" width="50" height="38" rx="19" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="1.5"/>
-    <!-- Specular Highlight on Head -->
-    <path d="M 33 27 Q 50 24 67 27" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round"/>
+    <!-- Antenna Mast & Glowing Beacon -->
+    <line x1="60" y1="28" x2="60" y2="15" stroke="url(#sylSapphire)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="60" cy="13" r="4.5" fill="#7091E6" stroke="#FFFFFF" stroke-width="1.5" filter="url(#sylEyeGlow)"/>
+    <circle cx="60" cy="13" r="2" fill="#00F0FF"/>
 
-    <!-- Dark Glass Visor -->
-    <rect x="31" y="33" width="38" height="22" rx="11" fill="url(#sylVisor)" stroke="rgba(112, 145, 230, 0.4)" stroke-width="1"/>
+    <!-- Head Helmet Shell -->
+    <rect x="27" y="26" width="66" height="48" rx="24" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="2"/>
 
-    <!-- Expressive Eyes (Glowing Cyan/Electric Periwinkle) -->
+    <!-- Top Helmet Specular Shine -->
+    <path d="M 38 31 Q 60 27 82 31" stroke="rgba(255, 255, 255, 0.95)" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Head Accent Crest (Sapphire Tech Trim) -->
+    <path d="M 48 26 L 72 26 C 70 29, 50 29, 48 26 Z" fill="url(#sylSapphire)"/>
+
+    <!-- Deep Obsidian Curved Visor Glass -->
+    <rect x="34" y="37" width="52" height="28" rx="14" fill="url(#sylVisor)" stroke="url(#sylPeriwinkle)" stroke-width="1.5"/>
+
+    <!-- Visor Glass Internal Reflection Arc -->
+    <path d="M 39 42 Q 60 38 81 42" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" stroke-linecap="round"/>
+
+    <!-- Expressive Glowing Cyan Eyes -->
     <g filter="url(#sylEyeGlow)">
       <!-- Left Eye -->
-      <ellipse cx="42" cy="44" rx="3.5" ry="4.5" fill="#5CE1E6"/>
-      <circle cx="43.2" cy="42.5" r="1.2" fill="#FFFFFF"/>
+      <ellipse cx="49" cy="51" rx="4.8" ry="6" fill="#00F0FF"/>
+      <ellipse cx="49" cy="51" rx="3" ry="4" fill="#FFFFFF"/>
+      <circle cx="50.8" cy="49" r="1.5" fill="#FFFFFF"/>
+
       <!-- Right Eye -->
-      <ellipse cx="58" cy="44" rx="3.5" ry="4.5" fill="#5CE1E6"/>
-      <circle cx="59.2" cy="42.5" r="1.2" fill="#FFFFFF"/>
+      <ellipse cx="71" cy="51" rx="4.8" ry="6" fill="#00F0FF"/>
+      <ellipse cx="71" cy="51" rx="3" ry="4" fill="#FFFFFF"/>
+      <circle cx="72.8" cy="49" r="1.5" fill="#FFFFFF"/>
     </g>
 
-    <!-- Cute Cheeks / Blush -->
-    <ellipse cx="36" cy="48" rx="2" ry="1" fill="rgba(112, 145, 230, 0.35)"/>
-    <ellipse cx="64" cy="48" rx="2" ry="1" fill="rgba(112, 145, 230, 0.35)"/>
+    <!-- Cheerful Cheek Glow (Blush Nodes) -->
+    <circle cx="41" cy="57" r="2.2" fill="#7091E6" opacity="0.65"/>
+    <circle cx="79" cy="57" r="2.2" fill="#7091E6" opacity="0.65"/>
 
-    <!-- Body Torso -->
-    <path d="M 35 60 C 35 58, 65 58, 65 60 L 68 76 C 68 81, 32 81, 32 76 Z" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <!-- Neck Connector Ring -->
+    <ellipse cx="60" cy="74" rx="16" ry="4" fill="url(#sylSapphire)"/>
 
-    <!-- Core Orb on Chest -->
-    <circle cx="50" cy="69" r="4" fill="url(#sylBlue)"/>
-    <circle cx="50" cy="69" r="2.2" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
+    <!-- Torso Chassis -->
+    <path d="M 40 73 C 40 71, 80 71, 80 73 L 84 94 C 84 100, 36 100, 36 94 Z" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="2"/>
 
-    <!-- Floating Hands -->
-    <ellipse cx="27" cy="68" rx="3.5" ry="5.5" fill="url(#sylChassis)" stroke="rgba(255,255,255,0.9)" stroke-width="1" transform="rotate(-15 27 68)"/>
-    <ellipse cx="73" cy="68" rx="3.5" ry="5.5" fill="url(#sylChassis)" stroke="rgba(255,255,255,0.9)" stroke-width="1" transform="rotate(15 73 68)"/>
+    <!-- Chest Decorative Tech Plate -->
+    <path d="M 46 76 L 74 76 L 70 85 L 50 85 Z" fill="rgba(61, 82, 160, 0.15)" stroke="rgba(112, 145, 230, 0.35)" stroke-width="1"/>
 
-    <!-- Thruster / Base Ring -->
-    <ellipse cx="50" cy="80" rx="10" ry="2.5" fill="url(#sylBlue)" opacity="0.8"/>
-    <ellipse cx="50" cy="82" rx="6" ry="1.8" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
+    <!-- Luminous Core Reactor (Center Chest) -->
+    <circle cx="60" cy="85" r="5.5" fill="url(#sylSapphire)" stroke="#FFFFFF" stroke-width="1.2"/>
+    <circle cx="60" cy="85" r="3.2" fill="#00F0FF" filter="url(#sylEyeGlow)"/>
+    <circle cx="60" cy="85" r="1.2" fill="#FFFFFF"/>
+
+    <!-- Left Floating Hand -->
+    <ellipse cx="29" cy="85" rx="4.8" ry="7" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="1.5" transform="rotate(-18 29 85)"/>
+    <ellipse cx="29" cy="85" rx="2" ry="3.5" fill="url(#sylSapphire)" transform="rotate(-18 29 85)"/>
+
+    <!-- Right Floating Hand -->
+    <ellipse cx="91" cy="85" rx="4.8" ry="7" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="1.5" transform="rotate(18 91 85)"/>
+    <ellipse cx="91" cy="85" rx="2" ry="3.5" fill="url(#sylSapphire)" transform="rotate(18 91 85)"/>
+
+    <!-- Thruster Base Ring -->
+    <ellipse cx="60" cy="95" rx="14" ry="3.5" fill="url(#sylSapphire)" stroke="#A5BBFF" stroke-width="1"/>
   </g>
 </svg>
