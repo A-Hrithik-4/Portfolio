@@ -269,9 +269,26 @@ techStack.forEach(t => {
   techGrid.appendChild(tile);
 });
 
-/* ---------------- Fade-in on scroll ---------------- */
+/* ---------------- Fade-in on scroll (Animate.css fadeInUp) ---------------- */
 const fadeEls = document.querySelectorAll('.fade-in');
+
+/* Assign stagger delays to siblings within the same parent */
+const staggerParents = new Set(Array.from(fadeEls).map(el => el.parentElement));
+staggerParents.forEach(parent => {
+  const children = Array.from(parent.querySelectorAll(':scope > .fade-in, .fade-in'));
+  children.forEach((el, i) => {
+    el.style.setProperty('--animate-delay', `${i * 0.12}s`);
+  });
+});
+
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.15 });
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      el.classList.add('visible', 'animate__animated', 'animate__fadeInUp');
+      observer.unobserve(el); /* fire once — no re-trigger on scroll back */
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
 fadeEls.forEach(el => observer.observe(el));
