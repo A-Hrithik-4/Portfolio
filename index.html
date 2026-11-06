@@ -440,7 +440,7 @@
 
   <!-- ══ SYLVIE — Portfolio AI Assistant ══
        Set your Gemini API key below (free at aistudio.google.com) -->
-  <script>window.SYLVIE_API_KEY = 'YOUR_GEMINI_API_KEY_HERE';</script>
+  <script>window.SYLVIE_API_KEY = 'AIzaSyCHMnVoeuQl9Yi7QK1Co4Nv5bpiOQGHdlg';</script>
 
   <!-- Sylvie holographic stage (bottom-right) -->
   <div class="syl-stage" id="syl-stage" aria-label="Sylvie AI assistant">
@@ -451,15 +451,24 @@
 
     <button type="button" id="syl-fab" class="syl-fab" aria-label="Open Sylvie AI assistant">
       <div class="syl-bot-wrap" id="syl-bot">
-        <model-viewer
-          src="assets/sylvie.glb"
-          autoplay
-          disable-pan
-          interaction-prompt="none"
-          camera-orbit="0deg 75deg 3.6m"
-          field-of-view="38deg"
-          style="width:60px;height:60px;background:transparent;pointer-events:none;overflow:visible;">
-        </model-viewer>
+        <div class="syl-bot-media">
+          <img src="assets/sylvie-robot.svg" class="syl-robot-svg" alt="Sylvie AI Robot" width="68" height="68">
+          <model-viewer
+            id="sylvieModelViewer"
+            src="assets/sylvie.glb"
+            alt="Sylvie 3D Robot"
+            camera-orbit="auto auto auto"
+            camera-target="auto auto auto"
+            interaction-prompt="none"
+            disable-pan
+            disable-zoom
+            auto-rotate
+            rotation-per-second="20deg"
+            shadow-intensity="0.8"
+            exposure="1.1"
+            class="syl-robot-3d">
+          </model-viewer>
+        </div>
       </div>
       <span class="syl-brand">
         <span class="syl-brand-name">Sylvie</span>
@@ -476,14 +485,7 @@
 
     <div class="syl-header">
       <div class="syl-header-avatar">
-        <model-viewer
-          src="assets/sylvie.glb"
-          autoplay
-          disable-pan
-          camera-orbit="0deg 75deg 3.2m"
-          field-of-view="38deg"
-          style="width:44px;height:52px;background:transparent;overflow:visible;">
-        </model-viewer>
+        <img src="assets/sylvie-robot.svg" class="syl-header-avatar-img" alt="Sylvie Avatar">
       </div>
       <div class="syl-header-text">
         <h3>Sylvie <span class="syl-live">AI</span></h3>

@@ -126,6 +126,16 @@ Answer questions about Hrithik's skills, projects, experience, achievements, and
     localStorage.setItem(MINIMIZED_KEY, '0');
   });
 
+  /* ── 3D Model viewer progressive enhancement ── */
+  const modelEl = document.getElementById('sylvieModelViewer');
+  if (modelEl) {
+    modelEl.addEventListener('load', () => {
+      modelEl.classList.add('loaded');
+      const svg = document.querySelector('.syl-robot-svg');
+      if (svg) svg.style.opacity = '0';
+    });
+  }
+
   /* ── Jump animation ── */
   function sylvieJump() {
     if (!bot) return;
