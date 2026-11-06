@@ -1,246 +1,84 @@
-<svg viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Soft Clay/Ceramic White Chassis -->
-    <linearGradient id="clayWhite" x1="60" y1="20" x2="160" y2="220" gradientUnits="userSpaceOnUse">
+    <!-- Chassis Gradient: Apple Ceramic / Titanium with soft periwinkle tint -->
+    <linearGradient id="sylChassis" x1="20" y1="20" x2="80" y2="90" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="40%" stop-color="#F6F5FC"/>
-      <stop offset="80%" stop-color="#DCE3F7"/>
-      <stop offset="100%" stop-color="#B2C2EB"/>
+      <stop offset="50%" stop-color="#EDE8F5"/>
+      <stop offset="100%" stop-color="#ADBBDA"/>
     </linearGradient>
-
-    <!-- Head Helmet Gradient -->
-    <linearGradient id="headClay" x1="70" y1="30" x2="150" y2="135" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="55%" stop-color="#F2F1FA"/>
-      <stop offset="90%" stop-color="#CBD6F2"/>
-      <stop offset="100%" stop-color="#A9BDE8"/>
-    </linearGradient>
-
-    <!-- Headset Metallic Band Gradient -->
-    <linearGradient id="headsetBand" x1="40" y1="10" x2="180" y2="70" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#8697C4"/>
-      <stop offset="35%" stop-color="#DDE6FB"/>
-      <stop offset="65%" stop-color="#7091E6"/>
+    <!-- Primary Blue Gradient -->
+    <linearGradient id="sylBlue" x1="30" y1="20" x2="70" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7091E6"/>
       <stop offset="100%" stop-color="#3D52A0"/>
     </linearGradient>
-
-    <!-- Headphone Cushion Ribs (Dark Obsidian / Sapphire) -->
-    <linearGradient id="earPadGrad" x1="20" y1="60" x2="55" y2="105" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3A4668"/>
-      <stop offset="50%" stop-color="#1B2236"/>
-      <stop offset="100%" stop-color="#0E121E"/>
+    <!-- Visor Gradient: Dark Sapphire Glass -->
+    <linearGradient id="sylVisor" x1="35" y1="36" x2="65" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1E2540"/>
+      <stop offset="100%" stop-color="#0E1220"/>
     </linearGradient>
-
-    <!-- Screen Bezel (Molded Soft Metallic Slate / Periwinkle) -->
-    <linearGradient id="bezelGrad" x1="70" y1="50" x2="150" y2="120" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#E2E7F5"/>
-      <stop offset="45%" stop-color="#BCCAE8"/>
-      <stop offset="100%" stop-color="#8E9ECA"/>
-    </linearGradient>
-
-    <!-- Inner Monitor Screen Glass -->
-    <linearGradient id="screenGlass" x1="80" y1="60" x2="140" y2="115" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#24304D"/>
-      <stop offset="50%" stop-color="#182239"/>
-      <stop offset="100%" stop-color="#0E1526"/>
-    </linearGradient>
-
-    <!-- Intense Neon Cyan Eye Glow -->
-    <filter id="cyanBloom" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2.5" result="blur1"/>
-      <feGaussianBlur stdDeviation="5.5" result="blur2"/>
+    <!-- Soft Glow Filter -->
+    <filter id="sylEyeGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.8" result="blur"/>
       <feMerge>
-        <feMergeNode in="blur2"/>
-        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-
-    <!-- Soft Ambient Ground Drop Shadow -->
-    <radialGradient id="groundShadow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(45, 62, 128, 0.38)"/>
-      <stop offset="65%" stop-color="rgba(45, 62, 128, 0.12)"/>
-      <stop offset="100%" stop-color="rgba(45, 62, 128, 0)"/>
+    <!-- Ambient Shadow -->
+    <radialGradient id="sylShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(61, 82, 160, 0.35)"/>
+      <stop offset="100%" stop-color="rgba(61, 82, 160, 0)"/>
     </radialGradient>
   </defs>
 
-  <!-- Ground Drop Shadow -->
-  <ellipse cx="110" cy="225" rx="55" ry="9" fill="url(#groundShadow)"/>
+  <!-- Ground Floating Shadow -->
+  <ellipse cx="50" cy="94" rx="26" ry="4.5" fill="url(#sylShadow)"/>
 
-  <!-- ===================================================== -->
-  <!-- 1. HEADSET BAND (Behind the head)                     -->
-  <!-- ===================================================== -->
-  <g class="syl-headset-band">
-    <!-- Outer Arch -->
-    <path d="M 36 85 C 36 28, 184 28, 184 85" stroke="url(#headsetBand)" stroke-width="12" stroke-linecap="round" fill="none"/>
-    <!-- Specular Highlight Curve on Band -->
-    <path d="M 52 70 C 52 35, 168 35, 168 70" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-  </g>
+  <!-- Main Floating Robot Group -->
+  <g class="syl-robot-body">
+    <!-- Floating Ear Pods / Audio Nodes -->
+    <rect x="22" y="38" width="5" height="12" rx="2.5" fill="url(#sylBlue)"/>
+    <rect x="73" y="38" width="5" height="12" rx="2.5" fill="url(#sylBlue)"/>
 
-  <!-- ===================================================== -->
-  <!-- 2. STUBBY LEGS & FEET                                 -->
-  <!-- ===================================================== -->
-  <g class="syl-legs">
-    <!-- Left Leg & Foot (Viewer's Left) -->
-    <g>
-      <!-- Leg Shaft -->
-      <path d="M 76 175 L 74 200 C 74 205, 96 205, 96 200 L 98 175 Z" fill="url(#clayWhite)"/>
-      <!-- Joint Ring -->
-      <path d="M 73 194 Q 85 198 97 194" stroke="#B0C0E8" stroke-width="2" stroke-linecap="round" fill="none"/>
-      <!-- Soft Pill Foot -->
-      <ellipse cx="85" cy="208" rx="19" ry="11" fill="url(#clayWhite)" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
-      <!-- Specular Highlight on Left Foot -->
-      <ellipse cx="82" cy="204" rx="12" ry="5" fill="#FFFFFF" opacity="0.75"/>
+    <!-- Antenna -->
+    <line x1="50" y1="25" x2="50" y2="16" stroke="url(#sylBlue)" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="50" cy="14" r="3.5" fill="#7091E6" filter="url(#sylEyeGlow)"/>
+
+    <!-- Head Chassis -->
+    <rect x="25" y="24" width="50" height="38" rx="19" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <!-- Specular Highlight on Head -->
+    <path d="M 33 27 Q 50 24 67 27" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Dark Glass Visor -->
+    <rect x="31" y="33" width="38" height="22" rx="11" fill="url(#sylVisor)" stroke="rgba(112, 145, 230, 0.4)" stroke-width="1"/>
+
+    <!-- Expressive Eyes (Glowing Cyan/Electric Periwinkle) -->
+    <g filter="url(#sylEyeGlow)">
+      <!-- Left Eye -->
+      <ellipse cx="42" cy="44" rx="3.5" ry="4.5" fill="#5CE1E6"/>
+      <circle cx="43.2" cy="42.5" r="1.2" fill="#FFFFFF"/>
+      <!-- Right Eye -->
+      <ellipse cx="58" cy="44" rx="3.5" ry="4.5" fill="#5CE1E6"/>
+      <circle cx="59.2" cy="42.5" r="1.2" fill="#FFFFFF"/>
     </g>
 
-    <!-- Right Leg & Foot (Viewer's Right) -->
-    <g>
-      <!-- Leg Shaft -->
-      <path d="M 124 175 L 122 200 C 122 205, 144 205, 144 200 L 146 175 Z" fill="url(#clayWhite)"/>
-      <!-- Joint Ring -->
-      <path d="M 123 194 Q 135 198 147 194" stroke="#B0C0E8" stroke-width="2" stroke-linecap="round" fill="none"/>
-      <!-- Soft Pill Foot -->
-      <ellipse cx="135" cy="208" rx="19" ry="11" fill="url(#clayWhite)" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
-      <!-- Specular Highlight on Right Foot -->
-      <ellipse cx="132" cy="204" rx="12" ry="5" fill="#FFFFFF" opacity="0.75"/>
-    </g>
-  </g>
+    <!-- Cute Cheeks / Blush -->
+    <ellipse cx="36" cy="48" rx="2" ry="1" fill="rgba(112, 145, 230, 0.35)"/>
+    <ellipse cx="64" cy="48" rx="2" ry="1" fill="rgba(112, 145, 230, 0.35)"/>
 
-  <!-- ===================================================== -->
-  <!-- 3. CHUBBY PEAR BODY & SHORT ARMS                      -->
-  <!-- ===================================================== -->
-  <g class="syl-body-group">
-    <!-- Left Arm & Mitten Hand (Viewer's Left) -->
-    <g>
-      <!-- Shoulder Joint -->
-      <ellipse cx="73" cy="138" rx="8" ry="7" fill="#8E9ECA"/>
-      <!-- Arm Capsule -->
-      <path d="M 68 140 C 62 148, 54 165, 59 178 C 64 178, 74 168, 77 155 Z" fill="url(#clayWhite)" stroke="rgba(255,255,255,0.85)" stroke-width="1.2"/>
-      <!-- Wrist Cuff -->
-      <path d="M 58 174 Q 66 177 74 172" stroke="#B0C0E8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      <!-- 3-Finger Cute Mitten Hand -->
-      <circle cx="61" cy="183" r="5" fill="url(#clayWhite)"/>
-      <ellipse cx="57" cy="188" rx="2.5" ry="5" fill="url(#clayWhite)" transform="rotate(15 57 188)"/>
-      <ellipse cx="64" cy="189" rx="2.5" ry="5.5" fill="url(#clayWhite)" transform="rotate(-5 64 189)"/>
-      <ellipse cx="70" cy="186" rx="2.2" ry="4.5" fill="url(#clayWhite)" transform="rotate(-20 70 186)"/>
-    </g>
+    <!-- Body Torso -->
+    <path d="M 35 60 C 35 58, 65 58, 65 60 L 68 76 C 68 81, 32 81, 32 76 Z" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="1.5"/>
 
-    <!-- Right Arm & Mitten Hand (Viewer's Right) -->
-    <g>
-      <!-- Shoulder Joint -->
-      <ellipse cx="147" cy="138" rx="8" ry="7" fill="#8E9ECA"/>
-      <!-- Arm Capsule -->
-      <path d="M 152 140 C 158 148, 166 165, 161 178 C 156 178, 146 168, 143 155 Z" fill="url(#clayWhite)" stroke="rgba(255,255,255,0.85)" stroke-width="1.2"/>
-      <!-- Wrist Cuff -->
-      <path d="M 146 172 Q 154 177 162 174" stroke="#B0C0E8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      <!-- 3-Finger Cute Mitten Hand -->
-      <circle cx="159" cy="183" r="5" fill="url(#clayWhite)"/>
-      <ellipse cx="150" cy="186" rx="2.2" ry="4.5" fill="url(#clayWhite)" transform="rotate(20 150 186)"/>
-      <ellipse cx="156" cy="189" rx="2.5" ry="5.5" fill="url(#clayWhite)" transform="rotate(5 156 189)"/>
-      <ellipse cx="163" cy="188" rx="2.5" ry="5" fill="url(#clayWhite)" transform="rotate(-15 163 188)"/>
-    </g>
+    <!-- Core Orb on Chest -->
+    <circle cx="50" cy="69" r="4" fill="url(#sylBlue)"/>
+    <circle cx="50" cy="69" r="2.2" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
 
-    <!-- Chubby Pear-Shaped Torso -->
-    <path d="M 85 125 C 85 120, 135 120, 135 125 C 150 145, 155 180, 138 185 C 122 188, 98 188, 82 185 C 65 180, 70 145, 85 125 Z" fill="url(#clayWhite)" stroke="#FFFFFF" stroke-width="2"/>
+    <!-- Floating Hands -->
+    <ellipse cx="27" cy="68" rx="3.5" ry="5.5" fill="url(#sylChassis)" stroke="rgba(255,255,255,0.9)" stroke-width="1" transform="rotate(-15 27 68)"/>
+    <ellipse cx="73" cy="68" rx="3.5" ry="5.5" fill="url(#sylChassis)" stroke="rgba(255,255,255,0.9)" stroke-width="1" transform="rotate(15 73 68)"/>
 
-    <!-- Subtle Belly Specular Highlight -->
-    <ellipse cx="110" cy="155" rx="25" ry="18" fill="#FFFFFF" opacity="0.6"/>
-  </g>
-
-  <!-- ===================================================== -->
-  <!-- 4. BIG CHIBI HEAD WITH MONITOR SCREEN                 -->
-  <!-- ===================================================== -->
-  <g class="syl-head-group">
-    <!-- Big Rounded Chibi Head Shell -->
-    <rect x="42" y="32" width="136" height="106" rx="53" fill="url(#headClay)" stroke="#FFFFFF" stroke-width="3"/>
-
-    <!-- Top Helmet Specular Gloss Curve -->
-    <path d="M 66 45 Q 110 38 154 45" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
-    <path d="M 80 50 Q 110 45 140 50" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/>
-
-    <!-- Molded Beveled Screen Bezel (Brushed Slate/Silver) -->
-    <rect x="58" y="47" width="104" height="76" rx="30" fill="url(#bezelGrad)" stroke="#FFFFFF" stroke-width="1.8"/>
-
-    <!-- Visor Bezel Inner Specular Line -->
-    <path d="M 72 53 Q 110 49 148 53" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round"/>
-
-    <!-- Dark Glass Monitor Screen -->
-    <rect x="63" y="52" width="94" height="66" rx="25" fill="url(#screenGlass)"/>
-
-    <!-- Monitor Curved Specular Reflection -->
-    <path d="M 70 60 Q 110 54 150 60" stroke="rgba(255,255,255,0.3)" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M 68 74 Q 85 62 105 62" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-linecap="round"/>
-
-    <!-- ===================================================== -->
-    <!-- 5. GLOWING CYAN EYES & CUTE SMILE (PIXAR/ASTRO FACE) -->
-    <!-- ===================================================== -->
-    <g filter="url(#cyanBloom)">
-      <!-- Left Eye (Glowing Rounded Vertical Pill/Rectangle) -->
-      <rect x="80" y="67" width="13" height="21" rx="6.5" fill="#00F0FF"/>
-      <rect x="82.5" y="69.5" width="8" height="16" rx="4" fill="#FFFFFF"/>
-      <circle cx="85" cy="73" r="2.2" fill="#FFFFFF"/>
-
-      <!-- Right Eye (Glowing Rounded Vertical Pill/Rectangle) -->
-      <rect x="127" y="67" width="13" height="21" rx="6.5" fill="#00F0FF"/>
-      <rect x="129.5" y="69.5" width="8" height="16" rx="4" fill="#FFFFFF"/>
-      <circle cx="132" cy="73" r="2.2" fill="#FFFFFF"/>
-
-      <!-- Cute Friendly Curved Smile (◡) -->
-      <path d="M 104 88 Q 110 94 116 88" stroke="#00F0FF" stroke-width="3.8" stroke-linecap="round" fill="none"/>
-      <path d="M 105 88 Q 110 93 115 88" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none"/>
-    </g>
-
-    <!-- Cheerful Soft Blush Accents -->
-    <circle cx="72" cy="94" r="4" fill="#7091E6" opacity="0.45"/>
-    <circle cx="148" cy="94" r="4" fill="#7091E6" opacity="0.45"/>
-  </g>
-
-  <!-- ===================================================== -->
-  <!-- 6. OVER-EAR HEADPHONE CUPS & BOOM MICROPHONE          -->
-  <!-- ===================================================== -->
-  <g class="syl-headphones">
-    <!-- Left Ear Cup Assembly (Viewer's Left) -->
-    <g>
-      <!-- Outer Metal Ring Support -->
-      <ellipse cx="36" cy="84" rx="14" ry="24" fill="#8697C4"/>
-      <ellipse cx="38" cy="84" rx="10" ry="20" fill="url(#clayWhite)"/>
-      <ellipse cx="39" cy="84" rx="6" ry="12" fill="#7091E6"/>
-
-      <!-- Thick Ribbed Cushion Pad -->
-      <g>
-        <path d="M 40 62 C 48 62, 53 72, 53 84 C 53 96, 48 106, 40 106 C 36 106, 36 62, 40 62 Z" fill="url(#earPadGrad)"/>
-        <!-- Cushion Ring Ribs -->
-        <path d="M 43 65 C 47 70, 48 78, 48 84 C 48 90, 47 98, 43 103" stroke="#5A6B94" stroke-width="2.5" fill="none"/>
-        <path d="M 47 70 C 51 75, 52 80, 52 84 C 52 88, 51 93, 47 98" stroke="rgba(255,255,255,0.4)" stroke-width="1.8" fill="none"/>
-      </g>
-    </g>
-
-    <!-- Right Ear Cup Assembly (Viewer's Right) -->
-    <g>
-      <!-- Outer Metal Ring Support -->
-      <ellipse cx="184" cy="84" rx="14" ry="24" fill="#8697C4"/>
-      <ellipse cx="182" cy="84" rx="10" ry="20" fill="url(#clayWhite)"/>
-      <ellipse cx="181" cy="84" rx="6" ry="12" fill="#7091E6"/>
-
-      <!-- Thick Ribbed Cushion Pad -->
-      <g>
-        <path d="M 180 62 C 172 62, 167 72, 167 84 C 167 96, 172 106, 180 106 C 184 106, 184 62, 180 62 Z" fill="url(#earPadGrad)"/>
-        <!-- Cushion Ring Ribs -->
-        <path d="M 177 65 C 173 70, 172 78, 172 84 C 172 90, 173 98, 177 103" stroke="#5A6B94" stroke-width="2.5" fill="none"/>
-        <path d="M 173 70 C 169 75, 168 80, 168 84 C 168 88, 169 93, 173 98" stroke="rgba(255,255,255,0.4)" stroke-width="1.8" fill="none"/>
-      </g>
-    </g>
-
-    <!-- Boom Microphone Stem & Capsule (Right side towards mouth) -->
-    <g class="syl-boom-mic">
-      <!-- Curved Silver Arm -->
-      <path d="M 182 96 C 182 115, 168 126, 155 124" stroke="#B0C0E8" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-      <path d="M 182 96 C 182 115, 168 126, 155 124" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none"/>
-      
-      <!-- Microphone Tip Pod (Dark Obsidian Capsule) -->
-      <ellipse cx="150" cy="123" rx="8" ry="6" fill="#1B2236" stroke="#8697C4" stroke-width="1.5" transform="rotate(-15 150 123)"/>
-      <!-- Mic Indicator Glow Dot -->
-      <circle cx="147" cy="122" r="1.8" fill="#00F0FF" filter="url(#cyanBloom)"/>
-    </g>
+    <!-- Thruster / Base Ring -->
+    <ellipse cx="50" cy="80" rx="10" ry="2.5" fill="url(#sylBlue)" opacity="0.8"/>
+    <ellipse cx="50" cy="82" rx="6" ry="1.8" fill="#5CE1E6" filter="url(#sylEyeGlow)"/>
   </g>
 </svg>
