@@ -126,20 +126,17 @@ Answer questions about Hrithik's skills, projects, experience, achievements, and
     localStorage.setItem(MINIMIZED_KEY, '0');
   });
 
-  /* ── 3D Model viewer progressive enhancement ── */
-  const modelEl = document.getElementById('sylvieModelViewer');
-  if (modelEl) {
-    modelEl.addEventListener('load', () => {
-      modelEl.classList.add('loaded');
-      const svg = document.querySelector('.syl-robot-svg');
-      if (svg) svg.style.opacity = '0';
-    });
-  }
 
-  /* ── Cinematic Flight Across Entire Page ── */
+  /* ── Smooth Cinematic Flight (Only on page load/reload at landing) ── */
+  let flightExecuted = false;
   function triggerSylvieFlight() {
+    if (flightExecuted) return;
     if (!bot || stage.classList.contains('minimized') || panel.classList.contains('open')) return;
-    bot.classList.remove('flight-active', 'syl-jump');
+    // Only run on landing page (top of page), never when scrolled down or navigating
+    if (window.scrollY > 160) return;
+    flightExecuted = true;
+
+    bot.classList.remove('flight-active');
     void bot.offsetWidth;
     bot.classList.add('flight-active');
     setTimeout(() => {
@@ -147,39 +144,19 @@ Answer questions about Hrithik's skills, projects, experience, achievements, and
     }, 2850);
   }
 
-  // Trigger flight on initial site visit / page load
+  // Trigger strictly on page load / reload when at landing
   window.addEventListener('load', () => {
-    setTimeout(triggerSylvieFlight, 450);
+    setTimeout(triggerSylvieFlight, 300);
   });
   if (document.readyState === 'complete') {
-    setTimeout(triggerSylvieFlight, 450);
+    setTimeout(triggerSylvieFlight, 300);
   }
-
-  // Trigger flight whenever user clicks a navigation link or logo
-  document.querySelectorAll('.logo, .nav-links a, .hero-actions a').forEach((link) => {
-    link.addEventListener('click', () => {
-      setTimeout(triggerSylvieFlight, 250);
-    });
-  });
-
-  /* ── Jump animation ── */
-  function sylvieJump() {
-    if (!bot) return;
-    bot.classList.remove('syl-jump');
-    void bot.offsetWidth;
-    bot.classList.add('syl-jump');
-    setTimeout(() => bot.classList.remove('syl-jump'), 600);
-  }
-
-  setInterval(sylvieJump, 5000);
-  setTimeout(sylvieJump, 1500);
 
   /* ── Open / close panel ── */
   function openChat() {
     panel.classList.add('open');
     stage.classList.add('panel-open');
     if (hint) hint.classList.remove('show');
-    sylvieJump();
     input.focus();
   }
 

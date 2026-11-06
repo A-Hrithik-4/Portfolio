@@ -12,8 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="chatbot.css">
-  <!-- Google model-viewer for Sylvie 3D character -->
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
 </head>
 
 <body>
@@ -452,22 +451,7 @@
     <button type="button" id="syl-fab" class="syl-fab" aria-label="Open Sylvie AI assistant">
       <div class="syl-bot-wrap" id="syl-bot">
         <div class="syl-bot-media">
-          <img src="assets/sylvie-robot.svg" class="syl-robot-svg" alt="Sylvie AI Robot" width="68" height="68">
-          <model-viewer
-            id="sylvieModelViewer"
-            src="assets/sylvie.glb"
-            alt="Sylvie 3D Robot"
-            camera-orbit="auto auto auto"
-            camera-target="auto auto auto"
-            interaction-prompt="none"
-            disable-pan
-            disable-zoom
-            auto-rotate
-            rotation-per-second="20deg"
-            shadow-intensity="0.8"
-            exposure="1.1"
-            class="syl-robot-3d">
-          </model-viewer>
+          <img src="assets/sylvie-robot.svg" class="syl-robot-svg" alt="Sylvie AI Robot">
         </div>
       </div>
       <span class="syl-brand">

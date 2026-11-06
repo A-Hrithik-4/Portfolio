@@ -88,6 +88,8 @@
       <!-- Right Eye -->
       <ellipse cx="58" cy="44" rx="3.5" ry="4.5" fill="#5CE1E6"/>
       <circle cx="59.2" cy="42.5" r="1.2" fill="#FFFFFF"/>
+      <!-- Cute Glowing Smile -->
+      <path d="M 46.5 49 Q 50 52.5 53.5 49" stroke="#5CE1E6" stroke-width="1.8" stroke-linecap="round" fill="none"/>
     </g>
 
     <!-- Cute Cheeks / Blush -->
