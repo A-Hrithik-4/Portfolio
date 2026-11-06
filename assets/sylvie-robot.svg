@@ -1,36 +1,43 @@
-<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Ceramic Shell Gradient -->
-    <linearGradient id="sylChassis" x1="25" y1="20" x2="95" y2="105" gradientUnits="userSpaceOnUse">
+    <!-- Ceramic White Armor Gradient -->
+    <linearGradient id="chassisGrad" x1="40" y1="20" x2="160" y2="200" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="45%" stop-color="#F2F0F9"/>
-      <stop offset="85%" stop-color="#CBD5F0"/>
-      <stop offset="100%" stop-color="#9FB0DC"/>
+      <stop offset="35%" stop-color="#F6F5FC"/>
+      <stop offset="75%" stop-color="#D9E2F7"/>
+      <stop offset="100%" stop-color="#AEC0EB"/>
     </linearGradient>
 
-    <!-- Royal Sapphire Accent Gradient -->
-    <linearGradient id="sylSapphire" x1="30" y1="25" x2="90" y2="95" gradientUnits="userSpaceOnUse">
+    <!-- Head Highlight Gradient -->
+    <linearGradient id="headHighlight" x1="60" y1="25" x2="140" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#EBF0FC"/>
+      <stop offset="100%" stop-color="#C5D4F5"/>
+    </linearGradient>
+
+    <!-- Royal Sapphire Tech Accent -->
+    <linearGradient id="sapphireGrad" x1="50" y1="20" x2="150" y2="180" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#7091E6"/>
-      <stop offset="60%" stop-color="#3D52A0"/>
-      <stop offset="100%" stop-color="#253570"/>
+      <stop offset="65%" stop-color="#3D52A0"/>
+      <stop offset="100%" stop-color="#24346E"/>
     </linearGradient>
 
-    <!-- Electric Periwinkle Rim -->
-    <linearGradient id="sylPeriwinkle" x1="40" y1="20" x2="80" y2="90" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#A5BBFF"/>
-      <stop offset="100%" stop-color="#5575DA"/>
+    <!-- Deep Metallic Gray / Carbon Joint Material -->
+    <linearGradient id="jointGrad" x1="60" y1="40" x2="140" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3A4668"/>
+      <stop offset="100%" stop-color="#182035"/>
     </linearGradient>
 
-    <!-- Deep Obsidian Glass Visor -->
-    <linearGradient id="sylVisor" x1="38" y1="36" x2="82" y2="60" gradientUnits="userSpaceOnUse">
+    <!-- Visor Glass Inner Screen -->
+    <linearGradient id="screenGrad" x1="65" y1="42" x2="135" y2="85" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#141829"/>
-      <stop offset="100%" stop-color="#070913"/>
+      <stop offset="100%" stop-color="#080A12"/>
     </linearGradient>
 
-    <!-- Intense Neon Cyan Eye Glow -->
-    <filter id="sylEyeGlow" x="-60%" y="-60%" width="220%" height="220%">
+    <!-- Intense Eye & Joint Cyan Glow Filter -->
+    <filter id="neonCyanGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="2.2" result="blur1"/>
-      <feGaussianBlur stdDeviation="4" result="blur2"/>
+      <feGaussianBlur stdDeviation="4.5" result="blur2"/>
       <feMerge>
         <feMergeNode in="blur2"/>
         <feMergeNode in="blur1"/>
@@ -38,100 +45,230 @@
       </feMerge>
     </filter>
 
-    <!-- Thruster Flame Glow -->
-    <filter id="sylThrusterGlow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="3.5" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <!-- Floating Ground Shadow -->
-    <radialGradient id="sylGroundShadow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(45, 62, 128, 0.45)"/>
+    <!-- Soft Ambient Ground Shadow -->
+    <radialGradient id="robotShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(45, 62, 128, 0.42)"/>
       <stop offset="60%" stop-color="rgba(45, 62, 128, 0.15)"/>
       <stop offset="100%" stop-color="rgba(45, 62, 128, 0)"/>
     </radialGradient>
   </defs>
 
-  <!-- Ground Soft Drop Shadow -->
-  <ellipse cx="60" cy="112" rx="32" ry="5.5" fill="url(#sylGroundShadow)"/>
+  <!-- Ambient Ground Shadow -->
+  <ellipse cx="100" cy="208" rx="65" ry="8" fill="url(#robotShadow)"/>
 
-  <!-- Thruster Plasma Glow (Hover Propulsion) -->
-  <g filter="url(#sylThrusterGlow)">
-    <ellipse cx="60" cy="98" rx="14" ry="4.5" fill="#7091E6" opacity="0.8"/>
-    <ellipse cx="60" cy="100" rx="8" ry="3.2" fill="#00F0FF"/>
-    <circle cx="60" cy="101" r="2" fill="#FFFFFF"/>
+  <!-- ========================================== -->
+  <!-- 1. LEGS & BELL-BOTTOM BOOTS                -->
+  <!-- ========================================== -->
+  <g class="syl-legs">
+    <!-- Left Leg (Viewer's Left) -->
+    <!-- Hip Joint -->
+    <ellipse cx="80" cy="142" rx="6" ry="6" fill="url(#jointGrad)"/>
+    <ellipse cx="80" cy="142" rx="3.5" ry="3.5" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+    
+    <!-- Thigh -->
+    <rect x="74" y="142" width="12" height="16" rx="5" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.2"/>
+
+    <!-- Knee Joint with Cyan Ring -->
+    <ellipse cx="80" cy="158" rx="6.5" ry="5.5" fill="url(#jointGrad)"/>
+    <ellipse cx="80" cy="158" rx="4" ry="3" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+
+    <!-- Flared Bell-Bottom Lower Leg / Boot -->
+    <path d="M 73 160 C 73 158, 87 158, 87 160 L 92 195 C 92 201, 60 201, 60 195 Z" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.8"/>
+    <!-- Specular Highlight Curve on Boot -->
+    <path d="M 68 166 Q 78 165 85 168" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Ankle Circular Detail -->
+    <circle cx="85" cy="192" r="4" fill="url(#jointGrad)"/>
+    <circle cx="85" cy="192" r="2" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+
+    <!-- Left Foot Base / Shoe -->
+    <rect x="58" y="194" width="34" height="10" rx="5" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <path d="M 62 199 L 72 199" stroke="url(#sapphireGrad)" stroke-width="1.5" stroke-linecap="round"/>
+
+
+    <!-- Right Leg (Viewer's Right) -->
+    <!-- Hip Joint -->
+    <ellipse cx="120" cy="142" rx="6" ry="6" fill="url(#jointGrad)"/>
+    <ellipse cx="120" cy="142" rx="3.5" ry="3.5" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+    
+    <!-- Thigh -->
+    <rect x="114" y="142" width="12" height="16" rx="5" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.2"/>
+
+    <!-- Knee Joint with Cyan Ring -->
+    <ellipse cx="120" cy="158" rx="6.5" ry="5.5" fill="url(#jointGrad)"/>
+    <ellipse cx="120" cy="158" rx="4" ry="3" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+
+    <!-- Flared Bell-Bottom Lower Leg / Boot -->
+    <path d="M 113 160 C 113 158, 127 158, 127 160 L 140 195 C 140 201, 108 201, 108 195 Z" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.8"/>
+    <!-- Specular Highlight Curve on Boot -->
+    <path d="M 115 168 Q 122 165 132 166" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Ankle Circular Detail -->
+    <circle cx="115" cy="192" r="4" fill="url(#jointGrad)"/>
+    <circle cx="115" cy="192" r="2" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+
+    <!-- Right Foot Base / Shoe -->
+    <rect x="108" y="194" width="34" height="10" rx="5" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <path d="M 128 199 L 138 199" stroke="url(#sapphireGrad)" stroke-width="1.5" stroke-linecap="round"/>
   </g>
 
-  <!-- Main Floating Robot Chassis -->
-  <g class="syl-robot-root">
+  <!-- ========================================== -->
+  <!-- 2. TORSO & WAIST (BODY)                    -->
+  <!-- ========================================== -->
+  <g class="syl-body">
+    <!-- Pelvis / Waist Under-Chassis -->
+    <path d="M 82 135 L 118 135 C 122 142, 78 142, 82 135 Z" fill="url(#jointGrad)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+    <ellipse cx="100" cy="138" rx="8" ry="2.5" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+
+    <!-- Torso Breastplate -->
+    <path d="M 74 96 C 74 94, 126 94, 126 96 L 122 132 C 118 137, 82 137, 78 132 Z" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="2"/>
+
+    <!-- Specular Shine on Chest Shield -->
+    <path d="M 84 100 Q 100 97 116 100" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Curved Chest Armor Panel Centerpiece -->
+    <path d="M 84 102 C 84 102, 116 102, 116 102 L 112 120 C 108 124, 92 124, 88 120 Z" fill="rgba(61, 82, 160, 0.12)" stroke="rgba(112, 145, 230, 0.35)" stroke-width="1"/>
     
-    <!-- Magnetic Audio Ear Nodes (Side Pods) -->
-    <rect x="22" y="44" width="7" height="16" rx="3.5" fill="url(#sylSapphire)" stroke="#A5BBFF" stroke-width="1.2"/>
-    <rect x="91" y="44" width="7" height="16" rx="3.5" fill="url(#sylSapphire)" stroke="#A5BBFF" stroke-width="1.2"/>
+    <!-- Glowing Chest Reactor Core -->
+    <ellipse cx="100" cy="113" rx="5.5" ry="5.5" fill="url(#sapphireGrad)" stroke="#FFFFFF" stroke-width="1"/>
+    <circle cx="100" cy="113" r="3.2" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+    <circle cx="100" cy="113" r="1.2" fill="#FFFFFF"/>
+  </g>
 
-    <!-- Antenna Mast & Glowing Beacon -->
-    <line x1="60" y1="28" x2="60" y2="15" stroke="url(#sylSapphire)" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="60" cy="13" r="4.5" fill="#7091E6" stroke="#FFFFFF" stroke-width="1.5" filter="url(#sylEyeGlow)"/>
-    <circle cx="60" cy="13" r="2" fill="#00F0FF"/>
+  <!-- ========================================== -->
+  <!-- 3. ARMS & WELCOMING OPEN HANDS             -->
+  <!-- ========================================== -->
+  <g class="syl-arms">
+    <!-- Left Arm (Viewer's Left - Reaching Out in Welcome) -->
+    <!-- Shoulder Ball Joint -->
+    <circle cx="68" cy="100" r="7.5" fill="url(#jointGrad)" stroke="rgba(255,255,255,0.7)" stroke-width="1"/>
+    <circle cx="68" cy="100" r="4.5" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
 
-    <!-- Head Helmet Shell -->
-    <rect x="27" y="26" width="66" height="48" rx="24" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="2"/>
+    <!-- Upper Arm Segment -->
+    <path d="M 64 104 L 46 116 C 44 118, 48 124, 52 122 L 70 109 Z" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
 
-    <!-- Top Helmet Specular Shine -->
-    <path d="M 38 31 Q 60 27 82 31" stroke="rgba(255, 255, 255, 0.95)" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Elbow Joint Ring -->
+    <circle cx="48" cy="120" r="5.5" fill="url(#jointGrad)"/>
+    <circle cx="48" cy="120" r="3" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
 
-    <!-- Head Accent Crest (Sapphire Tech Trim) -->
-    <path d="M 48 26 L 72 26 C 70 29, 50 29, 48 26 Z" fill="url(#sylSapphire)"/>
+    <!-- Forearm Capsule -->
+    <path d="M 46 122 L 26 132 C 23 134, 25 140, 30 140 L 49 128 Z" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
 
-    <!-- Deep Obsidian Curved Visor Glass -->
-    <rect x="34" y="37" width="52" height="28" rx="14" fill="url(#sylVisor)" stroke="url(#sylPeriwinkle)" stroke-width="1.5"/>
+    <!-- Hand & Articulated Fingers (Curled Upward Welcoming Gesture) -->
+    <ellipse cx="23" cy="137" rx="5" ry="4" fill="url(#jointGrad)"/>
+    <circle cx="23" cy="137" r="2.2" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+    <!-- Fingers -->
+    <ellipse cx="16" cy="133" rx="3.5" ry="2" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="0.8" transform="rotate(-25 16 133)"/>
+    <ellipse cx="14" cy="138" rx="4" ry="2.2" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="0.8" transform="rotate(-5 14 138)"/>
+    <ellipse cx="16" cy="144" rx="3.8" ry="2.2" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="0.8" transform="rotate(20 16 144)"/>
 
-    <!-- Visor Glass Internal Reflection Arc -->
-    <path d="M 39 42 Q 60 38 81 42" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" stroke-linecap="round"/>
 
-    <!-- Expressive Glowing Cyan Eyes -->
-    <g filter="url(#sylEyeGlow)">
-      <!-- Left Eye -->
-      <ellipse cx="49" cy="51" rx="4.8" ry="6" fill="#00F0FF"/>
-      <ellipse cx="49" cy="51" rx="3" ry="4" fill="#FFFFFF"/>
-      <circle cx="50.8" cy="49" r="1.5" fill="#FFFFFF"/>
+    <!-- Right Arm (Viewer's Right - Reaching Out in Welcome) -->
+    <!-- Shoulder Ball Joint -->
+    <circle cx="132" cy="100" r="7.5" fill="url(#jointGrad)" stroke="rgba(255,255,255,0.7)" stroke-width="1"/>
+    <circle cx="132" cy="100" r="4.5" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
 
-      <!-- Right Eye -->
-      <ellipse cx="71" cy="51" rx="4.8" ry="6" fill="#00F0FF"/>
-      <ellipse cx="71" cy="51" rx="3" ry="4" fill="#FFFFFF"/>
-      <circle cx="72.8" cy="49" r="1.5" fill="#FFFFFF"/>
+    <!-- Upper Arm Segment -->
+    <path d="M 136 104 L 154 116 C 156 118, 152 124, 148 122 L 130 109 Z" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
+
+    <!-- Elbow Joint Ring -->
+    <circle cx="152" cy="120" r="5.5" fill="url(#jointGrad)"/>
+    <circle cx="152" cy="120" r="3" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+
+    <!-- Forearm Capsule -->
+    <path d="M 154 122 L 174 132 C 177 134, 175 140, 170 140 L 151 128 Z" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
+
+    <!-- Hand & Articulated Fingers (Curled Upward Welcoming Gesture) -->
+    <ellipse cx="177" cy="137" rx="5" ry="4" fill="url(#jointGrad)"/>
+    <circle cx="177" cy="137" r="2.2" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+    <!-- Fingers -->
+    <ellipse cx="184" cy="133" rx="3.5" ry="2" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="0.8" transform="rotate(25 184 133)"/>
+    <ellipse cx="186" cy="138" rx="4" ry="2.2" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="0.8" transform="rotate(5 186 138)"/>
+    <ellipse cx="184" cy="144" rx="3.8" ry="2.2" fill="url(#chassisGrad)" stroke="#FFFFFF" stroke-width="0.8" transform="rotate(-20 184 144)"/>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- 4. NECK MECHANISM                          -->
+  <!-- ========================================== -->
+  <g class="syl-neck">
+    <rect x="91" y="87" width="18" height="11" rx="4" fill="url(#jointGrad)"/>
+    <!-- Segmented Ribs with Cyan Rings -->
+    <line x1="93" y1="91" x2="107" y2="91" stroke="#00F0FF" stroke-width="1.5" filter="url(#neonCyanGlow)"/>
+    <line x1="93" y1="95" x2="107" y2="95" stroke="#00F0FF" stroke-width="1.5" filter="url(#neonCyanGlow)"/>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- 5. ICONIC BIG BUBBLE HEAD & SCREEN VISOR   -->
+  <!-- ========================================== -->
+  <g class="syl-head">
+    <!-- Top Flap Ears / Hinged Sensor Antennas (Exactly matching reference!) -->
+    <!-- Left Flap Antenna -->
+    <g transform="rotate(-12 60 22)">
+      <rect x="44" y="10" width="16" height="8" rx="2" fill="url(#jointGrad)" stroke="url(#sapphireGrad)" stroke-width="1"/>
+      <rect x="46" y="12" width="12" height="4" rx="1" fill="#00F0FF" opacity="0.85" filter="url(#neonCyanGlow)"/>
+      <rect x="49" y="18" width="6" height="5" rx="1.5" fill="url(#jointGrad)"/>
     </g>
 
-    <!-- Cheerful Cheek Glow (Blush Nodes) -->
-    <circle cx="41" cy="57" r="2.2" fill="#7091E6" opacity="0.65"/>
-    <circle cx="79" cy="57" r="2.2" fill="#7091E6" opacity="0.65"/>
+    <!-- Right Flap Antenna -->
+    <g transform="rotate(12 140 22)">
+      <rect x="140" y="10" width="16" height="8" rx="2" fill="url(#jointGrad)" stroke="url(#sapphireGrad)" stroke-width="1"/>
+      <rect x="142" y="12" width="12" height="4" rx="1" fill="#00F0FF" opacity="0.85" filter="url(#neonCyanGlow)"/>
+      <rect x="145" y="18" width="6" height="5" rx="1.5" fill="url(#jointGrad)"/>
+    </g>
 
-    <!-- Neck Connector Ring -->
-    <ellipse cx="60" cy="74" rx="16" ry="4" fill="url(#sylSapphire)"/>
+    <!-- Side Turbine Audio Ear Nodes (Side Spheres from reference image) -->
+    <!-- Left Ear Speaker -->
+    <g>
+      <ellipse cx="44" cy="56" rx="8" ry="16" fill="url(#jointGrad)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+      <ellipse cx="43" cy="56" rx="5" ry="11" fill="url(#sapphireGrad)"/>
+      <ellipse cx="42" cy="56" rx="3" ry="6" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+    </g>
 
-    <!-- Torso Chassis -->
-    <path d="M 40 73 C 40 71, 80 71, 80 73 L 84 94 C 84 100, 36 100, 36 94 Z" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="2"/>
+    <!-- Right Ear Speaker -->
+    <g>
+      <ellipse cx="156" cy="56" rx="8" ry="16" fill="url(#jointGrad)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+      <ellipse cx="157" cy="56" rx="5" ry="11" fill="url(#sapphireGrad)"/>
+      <ellipse cx="158" cy="56" rx="3" ry="6" fill="#00F0FF" filter="url(#neonCyanGlow)"/>
+    </g>
 
-    <!-- Chest Decorative Tech Plate -->
-    <path d="M 46 76 L 74 76 L 70 85 L 50 85 Z" fill="rgba(61, 82, 160, 0.15)" stroke="rgba(112, 145, 230, 0.35)" stroke-width="1"/>
+    <!-- Big Spherical Helmet Shell (Cute Chibi Proportions) -->
+    <rect x="40" y="16" width="120" height="78" rx="39" fill="url(#headHighlight)" stroke="#FFFFFF" stroke-width="2.5"/>
 
-    <!-- Luminous Core Reactor (Center Chest) -->
-    <circle cx="60" cy="85" r="5.5" fill="url(#sylSapphire)" stroke="#FFFFFF" stroke-width="1.2"/>
-    <circle cx="60" cy="85" r="3.2" fill="#00F0FF" filter="url(#sylEyeGlow)"/>
-    <circle cx="60" cy="85" r="1.2" fill="#FFFFFF"/>
+    <!-- Glossy Specular Top Arc on Helmet -->
+    <path d="M 58 26 Q 100 20 142 26" stroke="rgba(255, 255, 255, 1)" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M 70 30 Q 100 25 130 30" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2" stroke-linecap="round"/>
 
-    <!-- Left Floating Hand -->
-    <ellipse cx="29" cy="85" rx="4.8" ry="7" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="1.5" transform="rotate(-18 29 85)"/>
-    <ellipse cx="29" cy="85" rx="2" ry="3.5" fill="url(#sylSapphire)" transform="rotate(-18 29 85)"/>
+    <!-- Thick Molded Visor Bezel Frame -->
+    <rect x="52" y="27" width="96" height="58" rx="22" fill="url(#jointGrad)" stroke="#FFFFFF" stroke-width="1.8"/>
 
-    <!-- Right Floating Hand -->
-    <ellipse cx="91" cy="85" rx="4.8" ry="7" fill="url(#sylChassis)" stroke="#FFFFFF" stroke-width="1.5" transform="rotate(18 91 85)"/>
-    <ellipse cx="91" cy="85" rx="2" ry="3.5" fill="url(#sylSapphire)" transform="rotate(18 91 85)"/>
+    <!-- Visor Glass Monitor Screen (Dark Obsidian TV Monitor) -->
+    <rect x="55" y="30" width="90" height="52" rx="19" fill="url(#screenGrad)"/>
 
-    <!-- Thruster Base Ring -->
-    <ellipse cx="60" cy="95" rx="14" ry="3.5" fill="url(#sylSapphire)" stroke="#A5BBFF" stroke-width="1"/>
+    <!-- Curved Glass Specular Glare across Screen -->
+    <path d="M 62 36 Q 100 32 138 36" stroke="rgba(255, 255, 255, 0.28)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 60 48 Q 72 38 90 38" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" stroke-linecap="round"/>
+
+    <!-- ========================================== -->
+    <!-- GLOWING CYAN EYES & SMILE (THE FRIENDLY FACE) -->
+    <!-- ========================================== -->
+    <g filter="url(#neonCyanGlow)">
+      <!-- Left Eye (Cute Rounded Leaf / Oval Angled Inward) -->
+      <ellipse cx="78" cy="54" rx="7.5" ry="9" fill="#00F0FF" transform="rotate(-8 78 54)"/>
+      <ellipse cx="78" cy="54" rx="4.5" ry="6" fill="#FFFFFF" transform="rotate(-8 78 54)"/>
+      <circle cx="81" cy="51" r="2.2" fill="#FFFFFF"/>
+
+      <!-- Right Eye (Cute Rounded Leaf / Oval Angled Inward) -->
+      <ellipse cx="122" cy="54" rx="7.5" ry="9" fill="#00F0FF" transform="rotate(8 122 54)"/>
+      <ellipse cx="122" cy="54" rx="4.5" ry="6" fill="#FFFFFF" transform="rotate(8 122 54)"/>
+      <circle cx="125" cy="51" r="2.2" fill="#FFFFFF"/>
+
+      <!-- Cute Curved Glowing Cyan Smile -->
+      <path d="M 94 67 Q 100 72 106 67" stroke="#00F0FF" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M 95 67 Q 100 71 105 67" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- Cheerful Soft Cheek Glows -->
+    <circle cx="66" cy="64" r="3.5" fill="#7091E6" opacity="0.45"/>
+    <circle cx="134" cy="64" r="3.5" fill="#7091E6" opacity="0.45"/>
   </g>
 </svg>
