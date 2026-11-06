@@ -11,6 +11,9 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="chatbot.css">
+  <!-- Google model-viewer for Sylvie 3D character -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 
 <body>
@@ -435,7 +438,82 @@
   </div>
 
 
+  <!-- ══ SYLVIE — Portfolio AI Assistant ══
+       Set your Gemini API key below (free at aistudio.google.com) -->
+  <script>window.SYLVIE_API_KEY = 'YOUR_GEMINI_API_KEY_HERE';</script>
+
+  <!-- Sylvie holographic stage (bottom-right) -->
+  <div class="syl-stage" id="syl-stage" aria-label="Sylvie AI assistant">
+    <div class="syl-glow"      aria-hidden="true"></div>
+    <div class="syl-ring"      aria-hidden="true"></div>
+    <div class="syl-ring syl-ring-2" aria-hidden="true"></div>
+    <div class="syl-platform"  aria-hidden="true"></div>
+
+    <button type="button" id="syl-fab" class="syl-fab" aria-label="Open Sylvie AI assistant">
+      <div class="syl-bot-wrap" id="syl-bot">
+        <model-viewer
+          src="assets/sylvie.glb"
+          autoplay
+          disable-pan
+          interaction-prompt="none"
+          camera-orbit="0deg 75deg 3.6m"
+          field-of-view="38deg"
+          style="width:60px;height:60px;background:transparent;pointer-events:none;overflow:visible;">
+        </model-viewer>
+      </div>
+      <span class="syl-brand">
+        <span class="syl-brand-name">Sylvie</span>
+        <span class="syl-brand-tag">AI Assistant</span>
+      </span>
+    </button>
+
+    <div class="syl-cta" id="syl-hint">Ask Sylvie about my work ✦</div>
+  </div>
+
+  <!-- Sylvie chat panel -->
+  <div id="syl-panel" class="syl-panel" role="dialog" aria-label="Sylvie AI chat" aria-modal="true">
+    <div class="syl-scan" aria-hidden="true"></div>
+
+    <div class="syl-header">
+      <div class="syl-header-avatar">
+        <model-viewer
+          src="assets/sylvie.glb"
+          autoplay
+          disable-pan
+          camera-orbit="0deg 75deg 3.2m"
+          field-of-view="38deg"
+          style="width:44px;height:52px;background:transparent;overflow:visible;">
+        </model-viewer>
+      </div>
+      <div class="syl-header-text">
+        <h3>Sylvie <span class="syl-live">AI</span></h3>
+        <p>Ask me anything about Hrithik's work</p>
+      </div>
+      <button type="button" class="syl-close" id="syl-close" aria-label="Close">✕</button>
+    </div>
+
+    <div class="syl-chips">
+      <button type="button" class="syl-chip" data-msg="What projects has Hrithik built?">Projects</button>
+      <button type="button" class="syl-chip" data-msg="What is Hrithik's tech stack?">Tech stack</button>
+      <button type="button" class="syl-chip" data-msg="Tell me about Hrithik's experience">Experience</button>
+      <button type="button" class="syl-chip" data-msg="How can I contact Hrithik?">Contact</button>
+    </div>
+
+    <div id="syl-messages" class="syl-messages">
+      <div class="syl-msg bot">Hey! I'm Sylvie — Hrithik's AI assistant. Ask me about his projects, skills, experience, or how to reach him. ✦</div>
+    </div>
+
+    <form id="syl-form" class="syl-form">
+      <input id="syl-input" type="text" placeholder="Ask Sylvie…" maxlength="500" autocomplete="off" required>
+      <button type="submit">Send</button>
+    </form>
+    <div class="syl-apikey-notice">
+      Powered by <a href="https://aistudio.google.com" target="_blank" rel="noopener">Gemini 2.5 Flash</a>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 
 </html>
