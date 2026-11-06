@@ -67,6 +67,12 @@ Answer questions about Hrithik's skills, projects, experience, achievements, and
   async function askGemini(userText) {
     history.push({ role: 'user', parts: [{ text: userText }] });
 
+    if (!GEMINI_API_KEY || GEMINI_API_KEY.startsWith('%%')) {
+      const fallback = "Sylvie AI is currently connecting its secure uplink. Please check back in a moment or reach out to Hrithik directly at hrithik18a@gmail.com! ✦";
+      history.push({ role: 'model', parts: [{ text: fallback }] });
+      return fallback;
+    }
+
     const payload = {
       system_instruction: { parts: [{ text: PORTFOLIO_CONTEXT }] },
       contents: history,

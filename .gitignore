@@ -1,0 +1,7 @@
+# macOS system files
+.DS_Store
+
+# Local secrets & config (Never commit API keys)
+config.local.js
+.env
+.env.*
