@@ -462,8 +462,8 @@ section {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 48px;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 40px;
   align-items: center;
   width: 100%;
 }
@@ -655,6 +655,8 @@ section {
 .carousel {
   position: relative;
   width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -700,20 +702,20 @@ section {
 .car-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9.6;
-  border-radius: 22px;
+  aspect-ratio: 1024 / 560;
+  border-radius: 18px;
   overflow: hidden;
   perspective: 1000px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(240, 238, 252, 0.86) 100%);
   backdrop-filter: blur(36px) saturate(190%);
   -webkit-backdrop-filter: blur(36px) saturate(190%);
-  border: 1.5px solid rgba(255, 255, 255, 0.98);
-  border-bottom: 2.5px solid var(--c-periwinkle); /* Electric blue beam landing edge */
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  border-bottom: 2px solid var(--c-periwinkle); /* Electric blue beam landing edge */
   box-shadow:
     0 24px 60px -12px rgba(61, 82, 160, 0.16),
     0 0 35px rgba(112, 145, 230, 0.28),
     var(--glass-highlight),
-    inset 0 -3px 8px rgba(112, 145, 230, 0.35);
+    inset 0 -2px 6px rgba(112, 145, 230, 0.30);
   display: flex;
   flex-direction: column;
   z-index: 2;
@@ -895,65 +897,45 @@ section {
   z-index: 1;
 }
 
-.car-topbar {
+/* Card Browser Topbar for Project Grid Cards */
+.pcard-topbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 11px 18px;
-  border-bottom: 1px solid rgba(173, 187, 218, 0.50);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(237, 232, 245, 0.88) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(244, 241, 252, 0.70);
+  border-bottom: 1px solid rgba(173, 187, 218, 0.35);
   flex-shrink: 0;
-  z-index: 4;
 }
 
-.car-topbar-controls {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.car-topbar-controls span {
-  width: 9px;
-  height: 9px;
+.pcard-topbar span {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   display: inline-block;
 }
 
-.car-topbar-controls span:nth-child(1) { background: #FF5F56; opacity: 0.92; box-shadow: 0 0 4px rgba(255, 95, 86, 0.4); }
-.car-topbar-controls span:nth-child(2) { background: #FFBD2E; opacity: 0.92; box-shadow: 0 0 4px rgba(255, 189, 46, 0.4); }
-.car-topbar-controls span:nth-child(3) { background: #27C93F; opacity: 0.92; box-shadow: 0 0 4px rgba(39, 201, 63, 0.4); }
-
-.car-topbar-pill {
-  width: 140px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(173, 187, 218, 0.45);
-  border-radius: 999px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1);
-}
-
-.car-topbar-spacer {
-  width: 42px;
-}
+.pcard-topbar span:nth-child(1) { background: #FF5F56; opacity: 0.90; }
+.pcard-topbar span:nth-child(2) { background: #FFBD2E; opacity: 0.90; }
+.pcard-topbar span:nth-child(3) { background: #27C93F; opacity: 0.90; }
 
 .car-body {
-  flex: 1;
   position: relative;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 241, 252, 0.92) 100%);
+  width: 100%;
+  height: 100%;
+  background: transparent;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 2px 6px rgba(61, 82, 160, 0.04), inset 0 -12px 20px -8px rgba(112, 145, 230, 0.15);
+  padding: 0;
 }
 
 .car-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
@@ -976,7 +958,7 @@ section {
     margin-top: -22px;
   }
   .car-frame {
-    border-radius: 18px;
+    border-radius: 14px;
   }
 }
 
@@ -985,7 +967,7 @@ section {
     margin-top: -16px;
   }
   .car-frame {
-    border-radius: 14px;
+    border-radius: 12px;
   }
 }
 

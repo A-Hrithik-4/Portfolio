@@ -140,7 +140,7 @@ const projects = [
 
 function shotHTML(p) {
   return `<div class="pcard-browser-wrap">
-<div class="car-topbar"><span></span><span></span><span></span></div>
+<div class="pcard-topbar"><span></span><span></span><span></span></div>
 <img src="${p.image}" alt="${p.name} screenshot" loading="lazy">
   </div>`;
 }
@@ -214,11 +214,6 @@ carouselProjects.forEach((p, i) => {
   slide.setAttribute('role', 'button');
   slide.setAttribute('aria-label', `View ${p.name}`);
   slide.innerHTML = `
-<div class="car-topbar">
-  <div class="car-topbar-controls"><span></span><span></span><span></span></div>
-  <div class="car-topbar-pill"></div>
-  <div class="car-topbar-spacer"></div>
-</div>
 <div class="car-body">
   <img src="${p.image}" class="car-img" alt="${p.name} Web Preview">
 </div>
