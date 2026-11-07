@@ -638,26 +638,172 @@ section {
   font-weight: 500;
 }
 
-/* ---------- Hero visual: Apple Device Carousel ---------- */
+/* ---------- Hero Visual: Futuristic Holographic Projector Stage ---------- */
 .carousel {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1200px;
   animation: scaleInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
-.car-frame {
+/* Ambient Volumetric Hologram Aura Behind Stage */
+.carousel::before {
+  content: '';
   position: absolute;
-  inset: 0;
+  top: 5%;
+  left: 0;
+  right: 0;
+  bottom: 12%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 240, 255, 0.28) 0%,
+    rgba(112, 145, 230, 0.20) 35%,
+    rgba(61, 82, 160, 0.08) 60%,
+    transparent 75%
+  );
+  filter: blur(45px);
+  z-index: -1;
+  pointer-events: none;
+  animation: holoAuraPulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes holoAuraPulse {
+  0%   { opacity: 0.65; transform: scale(0.96); }
+  100% { opacity: 1;    transform: scale(1.05); }
+}
+
+.holo-stage-inner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Floating Projected Screen (Emitted mid-air above circular base) */
+.car-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9.6;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(237, 232, 245, 0.82) 100%);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid rgba(255, 255, 255, 0.95);
+  border-bottom: 2px solid rgba(0, 240, 255, 0.85); /* Bright beam landing edge */
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 24px 60px -12px rgba(61, 82, 160, 0.18), var(--glass-highlight);
+  box-shadow:
+    0 24px 60px -12px rgba(61, 82, 160, 0.18),
+    0 0 35px rgba(0, 240, 255, 0.22),
+    var(--glass-highlight),
+    inset 0 -3px 8px rgba(0, 240, 255, 0.55);
   display: flex;
   flex-direction: column;
+  z-index: 2;
+  animation: holoScreenLevitate 4.5s ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+@keyframes holoScreenLevitate {
+  0%, 100% {
+    transform: translateY(0px) rotateX(1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateX(2deg);
+  }
+}
+
+.carousel:hover .car-frame {
+  transform: translateY(-12px) rotateX(2deg) scale(1.015);
+  border-color: rgba(0, 240, 255, 0.75);
+  box-shadow:
+    0 32px 80px -10px rgba(10, 15, 35, 0.25),
+    0 0 55px rgba(0, 240, 255, 0.40),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.85),
+    inset 0 -4px 12px rgba(0, 240, 255, 0.70);
+}
+
+/* Subtle Holographic Scanline Shimmer */
+.car-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 240, 255, 0.04) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+  background-size: 100% 8px;
+}
+
+/* Circular Cybernetic Emitter Base & Upward Volumetric Projection Beam */
+.holo-emitter-stage {
+  position: relative;
+  width: 96%;
+  margin-top: -38px; /* Tucks directly under the floating screen */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.holo-emitter-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.holo-beam-group {
+  animation: holoBeamFlicker 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes holoBeamFlicker {
+  0%   { opacity: 0.78; }
+  50%  { opacity: 0.95; }
+  100% { opacity: 0.82; }
+}
+
+.holo-core-light {
+  transform-origin: 350px 160px;
+  animation: holoCorePulse 2.4s ease-in-out infinite;
+}
+
+@keyframes holoCorePulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%      { transform: scale(1.15); opacity: 1; }
+}
+
+.holo-base-track {
+  animation: holoTrackRotate 36s linear infinite;
+}
+
+@keyframes holoTrackRotate {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: 350; }
+}
+
+.holo-sparks circle {
+  animation: holoSparkFloat 3s ease-in-out infinite alternate;
+}
+
+.holo-sparks circle:nth-child(2n) {
+  animation-duration: 2.3s;
+  animation-delay: 0.4s;
+}
+
+.holo-sparks circle:nth-child(3n) {
+  animation-duration: 3.8s;
+  animation-delay: 0.8s;
+}
+
+@keyframes holoSparkFloat {
+  0%   { transform: translateY(0px); opacity: 0.5; }
+  100% { transform: translateY(-8px); opacity: 1; }
 }
 
 .car-slide {
@@ -747,7 +893,28 @@ section {
 
 @media(max-width:920px) {
   .carousel {
-    margin-top: 16px;
+    margin-top: 24px;
+  }
+  .holo-emitter-stage {
+    margin-top: -30px;
+  }
+}
+
+@media(max-width:600px) {
+  .holo-emitter-stage {
+    margin-top: -22px;
+  }
+  .car-frame {
+    border-radius: 18px;
+  }
+}
+
+@media(max-width:480px) {
+  .holo-emitter-stage {
+    margin-top: -16px;
+  }
+  .car-frame {
+    border-radius: 14px;
   }
 }
 
