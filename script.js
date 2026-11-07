@@ -319,38 +319,28 @@ const observer = new IntersectionObserver((entries) => {
 
 fadeEls.forEach(el => observer.observe(el));
 
-/* ---------------- Apple Blue Trail Custom Cursor ---------------- */
+/* ---------------- Apple Blue Motion-Blur Custom Cursor ---------------- */
 (function initCustomCursor() {
   if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
 
-  const canvas = document.getElementById('cursor-trail');
   const cursorWrap = document.getElementById('customCursor');
-  if (!canvas || !cursorWrap) return;
-
-  const ctx = canvas.getContext('2d');
-  let dpr = window.devicePixelRatio || 1;
-
-  function resizeCanvas() {
-    dpr = window.devicePixelRatio || 1;
-    canvas.width = window.innerWidth * dpr;
-    canvas.height = window.innerHeight * dpr;
-    canvas.style.width = window.innerWidth + 'px';
-    canvas.style.height = window.innerHeight + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
+  if (!cursorWrap) return;
 
   const dot = cursorWrap.querySelector('.cursor-dot');
   const ring = cursorWrap.querySelector('.cursor-ring');
+  const trailDots = [
+    { el: cursorWrap.querySelector('.t1'), x: -100, y: -100, ease: 0.46 },
+    { el: cursorWrap.querySelector('.t2'), x: -100, y: -100, ease: 0.38 },
+    { el: cursorWrap.querySelector('.t3'), x: -100, y: -100, ease: 0.30 },
+    { el: cursorWrap.querySelector('.t4'), x: -100, y: -100, ease: 0.22 },
+    { el: cursorWrap.querySelector('.t5'), x: -100, y: -100, ease: 0.16 },
+  ];
 
   let mouseX = -100;
   let mouseY = -100;
   let ringX = -100;
   let ringY = -100;
   let isVisible = false;
-  const trail = [];
-  const maxTrailPoints = 20;
 
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
@@ -361,18 +351,7 @@ fadeEls.forEach(el => observer.observe(el));
       cursorWrap.classList.add('visible');
       ringX = mouseX;
       ringY = mouseY;
-    }
-
-    trail.push({
-      x: mouseX,
-      y: mouseY,
-      age: 0,
-      maxAge: 18,
-      size: 4.5
-    });
-
-    if (trail.length > maxTrailPoints) {
-      trail.shift();
+      trailDots.forEach(t => { t.x = mouseX; t.y = mouseY; });
     }
   });
 
@@ -402,78 +381,28 @@ fadeEls.forEach(el => observer.observe(el));
     }
   });
 
-  // Render Loop
+  // Render Loop: Physics-interpolated motion blur slipstream
   function renderCursor() {
-    // Lerp follower ring towards mouse coordinates
-    ringX += (mouseX - ringX) * 0.22;
-    ringY += (mouseY - ringY) * 0.22;
-
-    if (dot) {
+    if (isVisible) {
+      // Direct positioning for lead dot (instant 1:1 precision)
       dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-    }
-    if (ring) {
+
+      // Smooth lerp for outer glass follower ring
+      ringX += (mouseX - ringX) * 0.22;
+      ringY += (mouseY - ringY) * 0.22;
       ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-    }
 
-    // Render smooth ethereal blue wake
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-    for (let i = trail.length - 1; i >= 0; i--) {
-      const p = trail[i];
-      p.age++;
-
-      if (p.age > p.maxAge) {
-        trail.splice(i, 1);
-        continue;
+      // Chain-lerp for trailing blue ghost dots
+      let prevX = mouseX;
+      let prevY = mouseY;
+      for (let i = 0; i < trailDots.length; i++) {
+        const t = trailDots[i];
+        t.x += (prevX - t.x) * t.ease;
+        t.y += (prevY - t.y) * t.ease;
+        t.el.style.transform = `translate(${t.x}px, ${t.y}px) translate(-50%, -50%)`;
+        prevX = t.x;
+        prevY = t.y;
       }
-
-      const progress = 1 - (p.age / p.maxAge);
-      const radius = p.size * progress;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-
-      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, radius * 2.2);
-      grad.addColorStop(0, `rgba(112, 145, 230, ${progress * 0.75})`);
-      grad.addColorStop(0.5, `rgba(61, 82, 160, ${progress * 0.40})`);
-      grad.addColorStop(1, 'rgba(61, 82, 160, 0)');
-
-      ctx.fillStyle = grad;
-      ctx.fill();
-    }
-
-    // Connect trail points with a glowing bezier spline
-    if (trail.length > 2) {
-      ctx.beginPath();
-      ctx.moveTo(trail[0].x, trail[0].y);
-      for (let i = 1; i < trail.length - 1; i++) {
-        const xc = (trail[i].x + trail[i + 1].x) / 2;
-        const yc = (trail[i].y + trail[i + 1].y) / 2;
-        ctx.quadraticCurveTo(trail[i].x, trail[i].y, xc, yc);
-      }
-      ctx.quadraticCurveTo(
-        trail[trail.length - 1].x,
-        trail[trail.length - 1].y,
-        mouseX,
-        mouseY
-      );
-
-      const lineGrad = ctx.createLinearGradient(
-        trail[0].x, trail[0].y,
-        mouseX, mouseY
-      );
-      lineGrad.addColorStop(0, 'rgba(61, 82, 160, 0)');
-      lineGrad.addColorStop(0.5, 'rgba(112, 145, 230, 0.35)');
-      lineGrad.addColorStop(1, 'rgba(112, 145, 230, 0.85)');
-
-      ctx.strokeStyle = lineGrad;
-      ctx.lineWidth = 3;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.shadowColor = 'rgba(112, 145, 230, 0.50)';
-      ctx.shadowBlur = 8;
-      ctx.stroke();
-      ctx.shadowBlur = 0;
     }
 
     requestAnimationFrame(renderCursor);
