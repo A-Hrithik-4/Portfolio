@@ -420,47 +420,14 @@ const techGrid = document.getElementById('techGrid');
 techStack.forEach((t) => {
   const tile = document.createElement('div');
   tile.className = 'tech-tile';
-  tile.setAttribute('data-cat', t.cat);
-  tile.style.setProperty('--tech-glow', t.glow);
-  tile.style.setProperty('--tech-brand-color', t.color);
+  tile.style.setProperty('--brand-glow', t.glow);
   tile.innerHTML = `
-    <div class="tech-tile-top">
-      <span class="tech-tag">${t.tag}</span>
-      <span class="tech-dot" style="background:${t.color};box-shadow:0 0 8px ${t.glow}"></span>
+    <div class="tech-icon-wrap">
+      ${t.svg}
     </div>
-    <div class="tech-icon-frame">
-      <div class="tech-ambient-glow" style="background:${t.glow}"></div>
-      <div class="tech-svg-wrap">${t.svg}</div>
-    </div>
-    <div class="tech-tile-bottom">
-      <span class="tech-label">${t.label}</span>
-      <div class="tech-meter-dots">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
+    <span class="tech-name">${t.label}</span>
   `;
   techGrid.appendChild(tile);
-});
-
-/* Interactive Tech Filter Tabs */
-const techFilterBtns = document.querySelectorAll('.tech-filter-btn');
-techFilterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    techFilterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filterCat = btn.getAttribute('data-cat');
-    const allTiles = document.querySelectorAll('.tech-tile');
-    allTiles.forEach(tile => {
-      const tileCat = tile.getAttribute('data-cat');
-      if (filterCat === 'all' || tileCat === filterCat) {
-        tile.classList.remove('is-dimmed');
-        tile.classList.add('is-focused');
-        setTimeout(() => tile.classList.remove('is-focused'), 400);
-      } else {
-        tile.classList.add('is-dimmed');
-      }
-    });
-  });
 });
 
 /* ---------------- Fade-in on scroll (Animate.css fadeInUp) ---------------- */
