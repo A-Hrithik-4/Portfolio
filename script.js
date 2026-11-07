@@ -226,7 +226,18 @@ carouselProjects.forEach((p, i) => {
 
 let carIdx = 0;
 function goToSlide(i) {
-  document.querySelectorAll('.car-slide').forEach((s, j) => s.classList.toggle('active', j === i));
+  const slides = document.querySelectorAll('.car-slide');
+  slides.forEach((s, j) => {
+    if (j === carIdx && j !== i) {
+      s.classList.remove('active');
+      s.classList.add('spin-out');
+    } else if (j === i) {
+      s.classList.remove('spin-out');
+      s.classList.add('active');
+    } else {
+      s.classList.remove('active', 'spin-out');
+    }
+  });
   document.querySelectorAll('.car-dot').forEach((d, j) => d.classList.toggle('active', j === i));
   carIdx = i;
 }

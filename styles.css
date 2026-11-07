@@ -695,6 +695,8 @@ section {
   border-bottom: 2px solid rgba(0, 240, 255, 0.65); /* Soft beam landing edge */
   border-radius: 22px;
   overflow: hidden;
+  perspective: 1200px;
+  transform-style: preserve-3d;
   box-shadow:
     0 24px 60px -12px rgba(8, 12, 28, 0.45),
     0 0 35px rgba(0, 240, 255, 0.20),
@@ -806,7 +808,7 @@ section {
   100% { transform: translateY(-8px); opacity: 1; }
 }
 
-/* Smooth Hologram Slide Crossfade */
+/* 3D Holographic Turntable Spin Transition */
 .car-slide {
   position: absolute;
   inset: 0;
@@ -814,12 +816,14 @@ section {
   flex-direction: column;
   opacity: 0;
   visibility: hidden;
-  transform: scale(0.97) translateY(4px);
+  transform: rotateY(-75deg) scale(0.92);
+  transform-origin: center center;
   filter: blur(6px);
+  backface-visibility: hidden;
   transition:
-    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
     visibility 0.85s;
   pointer-events: none;
 }
@@ -827,9 +831,19 @@ section {
 .car-slide.active {
   opacity: 1;
   visibility: visible;
-  transform: scale(1) translateY(0);
+  transform: rotateY(0deg) scale(1);
   filter: blur(0px);
   pointer-events: auto;
+  z-index: 2;
+}
+
+.car-slide.spin-out {
+  opacity: 0;
+  visibility: hidden;
+  transform: rotateY(75deg) scale(0.92);
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .car-topbar {
