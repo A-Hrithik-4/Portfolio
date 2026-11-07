@@ -790,17 +790,10 @@ section {
     inset 0 -4px 10px rgba(0, 240, 255, 0.45);
   opacity: 0;
   visibility: hidden;
-  transform: translateX(105%) translateZ(-120px) rotateY(-28deg) scale(0.88);
+  transform: translateX(120px) translateZ(110px) rotateY(26deg) scale(1.06);
   transform-origin: center center;
   filter: blur(5px);
   backface-visibility: hidden;
-  transition:
-    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s ease,
-    border-color 0.4s ease,
-    visibility 0.85s;
   pointer-events: none;
 }
 
@@ -820,15 +813,73 @@ section {
   background-size: 100% 8px;
 }
 
-/* Active 3D Card in Center Focus */
+/* Active 3D Card: Moving Forwards into Center with Fade-In */
 .car-slide.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
-  filter: blur(0px);
+  animation: holoForwardCircleIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   pointer-events: auto;
   cursor: pointer;
   z-index: 2;
+}
+
+/* Outgoing 3D Card: Moving Forwards along Circular Arc with Fade-Out */
+.car-slide.slide-out {
+  animation: holoForwardCircleOut 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes holoForwardCircleIn {
+  0% {
+    transform: translateX(120px) translateZ(110px) rotateY(26deg) scale(1.06);
+    opacity: 0;
+    filter: blur(5px);
+    visibility: hidden;
+  }
+  35% {
+    transform: translateX(75px) translateZ(80px) rotateY(18deg) scale(1.04);
+    opacity: 0.50;
+    filter: blur(3px);
+    visibility: visible;
+  }
+  70% {
+    transform: translateX(30px) translateZ(35px) rotateY(8deg) scale(1.02);
+    opacity: 0.88;
+    filter: blur(1px);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+    visibility: visible;
+  }
+}
+
+@keyframes holoForwardCircleOut {
+  0% {
+    transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+    visibility: visible;
+  }
+  35% {
+    transform: translateX(-35px) translateZ(40px) rotateY(-8deg) scale(1.02);
+    opacity: 0.85;
+    filter: blur(1px);
+    visibility: visible;
+  }
+  70% {
+    transform: translateX(-80px) translateZ(85px) rotateY(-18deg) scale(1.04);
+    opacity: 0.45;
+    filter: blur(3px);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(-125px) translateZ(120px) rotateY(-26deg) scale(1.06);
+    opacity: 0;
+    filter: blur(5px);
+    visibility: hidden;
+  }
 }
 
 @keyframes projectCardPulse {
@@ -843,16 +894,6 @@ section {
 
 .pcard.highlight-pulse {
   animation: projectCardPulse 1.2s ease-in-out 2;
-}
-
-/* Outgoing 3D Card Sliding Out to the Left */
-.car-slide.slide-out {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(-105%) translateZ(-120px) rotateY(28deg) scale(0.88);
-  filter: blur(5px);
-  pointer-events: none;
-  z-index: 1;
 }
 
 .car-topbar {
