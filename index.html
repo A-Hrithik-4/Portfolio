@@ -98,41 +98,83 @@
                   <stop offset="100%" stop-color="rgba(0, 240, 255, 0)"/>
                 </radialGradient>
                 <linearGradient id="coneBeamGrad" x1="50%" y1="100%" x2="50%" y2="0%">
-                  <stop offset="0%" stop-color="rgba(0, 240, 255, 0.50)"/>
-                  <stop offset="25%" stop-color="rgba(0, 220, 255, 0.22)"/>
-                  <stop offset="70%" stop-color="rgba(112, 145, 230, 0.06)"/>
-                  <stop offset="100%" stop-color="rgba(0, 240, 255, 0)"/>
+                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+                  <stop offset="15%" stop-color="#00F0FF" stop-opacity="0.90"/>
+                  <stop offset="40%" stop-color="#00D4FF" stop-opacity="0.65"/>
+                  <stop offset="75%" stop-color="#7091E6" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#00F0FF" stop-opacity="0.05"/>
+                </linearGradient>
+                <linearGradient id="laserBeamGrad" x1="50%" y1="100%" x2="50%" y2="0%">
+                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+                  <stop offset="20%" stop-color="#00F0FF" stop-opacity="0.95"/>
+                  <stop offset="60%" stop-color="#00C2FF" stop-opacity="0.60"/>
+                  <stop offset="100%" stop-color="#00F0FF" stop-opacity="0.10"/>
                 </linearGradient>
                 <linearGradient id="diodeRayGrad" x1="0%" y1="100%" x2="0%" y2="0%">
                   <stop offset="0%" stop-color="#00F0FF"/>
-                  <stop offset="45%" stop-color="rgba(0, 240, 255, 0.75)"/>
+                  <stop offset="45%" stop-color="rgba(0, 240, 255, 0.90)"/>
                   <stop offset="100%" stop-color="rgba(0, 240, 255, 0)"/>
                 </linearGradient>
-                <filter id="emitterGlow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="3.5" result="blur"/>
+                <filter id="emitterGlow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
                   <feMerge>
                     <feMergeNode in="blur"/>
                     <feMergeNode in="SourceGraphic"/>
                   </feMerge>
                 </filter>
-                <filter id="coreBlast" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="6" result="b1"/>
+                <filter id="intenseRayGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="6" result="blur1"/>
+                  <feGaussianBlur stdDeviation="2" result="blur2"/>
+                  <feMerge>
+                    <feMergeNode in="blur1"/>
+                    <feMergeNode in="blur2"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <filter id="coreBlast" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="8" result="b1"/>
+                  <feGaussianBlur stdDeviation="3" result="b2"/>
                   <feMerge>
                     <feMergeNode in="b1"/>
+                    <feMergeNode in="b2"/>
                     <feMergeNode in="SourceGraphic"/>
                   </feMerge>
                 </filter>
               </defs>
 
-              <!-- Upward Volumetric Projection Beam Cone -->
+              <!-- Upward Volumetric Projection High-Intensity Beam Rays -->
               <g class="holo-beam-group">
-                <polygon points="295,160 405,160 675,0 25,0" fill="url(#coneBeamGrad)"/>
-                <polygon points="325,160 375,160 565,0 135,0" fill="url(#coneBeamGrad)" opacity="0.85"/>
-                <line x1="350" y1="160" x2="350" y2="0" stroke="rgba(0, 240, 255, 0.65)" stroke-width="1.8" filter="url(#emitterGlow)"/>
-                <line x1="330" y1="160" x2="240" y2="0" stroke="rgba(0, 240, 255, 0.35)" stroke-width="1.2"/>
-                <line x1="370" y1="160" x2="460" y2="0" stroke="rgba(0, 240, 255, 0.35)" stroke-width="1.2"/>
-                <line x1="310" y1="160" x2="140" y2="0" stroke="rgba(112, 145, 230, 0.25)" stroke-width="1"/>
-                <line x1="390" y1="160" x2="560" y2="0" stroke="rgba(112, 145, 230, 0.25)" stroke-width="1"/>
+                <!-- Broad Outer Volumetric Light Cone -->
+                <polygon points="280,160 420,160 690,0 10,0" fill="url(#coneBeamGrad)" opacity="0.90"/>
+                <!-- High Luminance Inner Projection Beam -->
+                <polygon points="315,160 385,160 610,0 90,0" fill="url(#laserBeamGrad)" opacity="0.85"/>
+                <!-- Central Core Light Shaft -->
+                <polygon points="338,160 362,160 490,0 210,0" fill="url(#laserBeamGrad)" opacity="0.95"/>
+                <!-- Bright White Core Blast -->
+                <polygon points="345,160 355,160 420,0 280,0" fill="#FFFFFF" opacity="0.75" filter="url(#intenseRayGlow)"/>
+
+                <!-- High-Intensity Laser Projection Rays -->
+                <!-- Central Pillar Ray -->
+                <line x1="350" y1="160" x2="350" y2="0" stroke="#00F0FF" stroke-width="8" opacity="0.55" filter="url(#coreBlast)"/>
+                <line x1="350" y1="160" x2="350" y2="0" stroke="#FFFFFF" stroke-width="3" filter="url(#intenseRayGlow)"/>
+                
+                <!-- Inner Angled Laser Shafts -->
+                <line x1="342" y1="160" x2="285" y2="0" stroke="#00F0FF" stroke-width="3.5" filter="url(#intenseRayGlow)"/>
+                <line x1="342" y1="160" x2="285" y2="0" stroke="#FFFFFF" stroke-width="1.4"/>
+                <line x1="358" y1="160" x2="415" y2="0" stroke="#00F0FF" stroke-width="3.5" filter="url(#intenseRayGlow)"/>
+                <line x1="358" y1="160" x2="415" y2="0" stroke="#FFFFFF" stroke-width="1.4"/>
+
+                <!-- Middle Angled Laser Shafts -->
+                <line x1="332" y1="160" x2="210" y2="0" stroke="#00F0FF" stroke-width="3" opacity="0.95" filter="url(#intenseRayGlow)"/>
+                <line x1="368" y1="160" x2="490" y2="0" stroke="#00F0FF" stroke-width="3" opacity="0.95" filter="url(#intenseRayGlow)"/>
+
+                <!-- Outer Angled Projection Rays -->
+                <line x1="320" y1="160" x2="135" y2="0" stroke="#5CE1E6" stroke-width="2.5" opacity="0.85" filter="url(#emitterGlow)"/>
+                <line x1="380" y1="160" x2="565" y2="0" stroke="#5CE1E6" stroke-width="2.5" opacity="0.85" filter="url(#emitterGlow)"/>
+                
+                <!-- Peripheral Atmosphere Beams -->
+                <line x1="305" y1="160" x2="60" y2="0" stroke="#7091E6" stroke-width="1.8" opacity="0.70"/>
+                <line x1="395" y1="160" x2="640" y2="0" stroke="#7091E6" stroke-width="1.8" opacity="0.70"/>
               </g>
 
               <!-- Floating Hologram Sparks / Particles -->
