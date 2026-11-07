@@ -211,12 +211,25 @@ const dotsWrap = document.getElementById('carDots');
 carouselProjects.forEach((p, i) => {
   const slide = document.createElement('div');
   slide.className = 'car-slide' + (i === 0 ? ' active' : '');
+  slide.style.cursor = 'pointer';
+  slide.setAttribute('role', 'button');
+  slide.setAttribute('aria-label', `View ${p.name}`);
   slide.innerHTML = `
 <div class="car-topbar"><span></span><span></span><span></span></div>
 <div class="car-body">
   <img src="${p.image}" class="car-img" alt="${p.name} Web Preview">
 </div>
   `;
+  slide.addEventListener('click', () => {
+    const projectCards = document.querySelectorAll('.pcard');
+    const targetCard = [...projectCards].find(c => c.querySelector('h3')?.textContent === p.name);
+    if (targetCard) {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      targetCard.classList.add('highlight-pulse');
+      setTimeout(() => targetCard.classList.remove('highlight-pulse'), 2500);
+    }
+    openModal(p);
+  });
   frame.appendChild(slide);
   const dot = document.createElement('div');
   dot.className = 'car-dot' + (i === 0 ? ' active' : '');
@@ -244,10 +257,6 @@ function goToSlide(i) {
 let carInterval = setInterval(() => {
   goToSlide((carIdx + 1) % carouselProjects.length);
 }, 4000);
-document.getElementById('carousel').addEventListener('mouseenter', () => clearInterval(carInterval));
-document.getElementById('carousel').addEventListener('mouseleave', () => {
-  carInterval = setInterval(() => goToSlide((carIdx + 1) % carouselProjects.length), 4000);
-});
 
 /* ---------------- Tech stack grid ---------------- */
 const techStack = [

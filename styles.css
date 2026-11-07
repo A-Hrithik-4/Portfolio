@@ -827,7 +827,22 @@ section {
   transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
   filter: blur(0px);
   pointer-events: auto;
+  cursor: pointer;
   z-index: 2;
+}
+
+@keyframes projectCardPulse {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(61, 82, 160, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(0, 240, 255, 0.45), 0 12px 35px rgba(61, 82, 160, 0.20);
+    border-color: rgba(0, 240, 255, 0.70);
+  }
+}
+
+.pcard.highlight-pulse {
+  animation: projectCardPulse 1.2s ease-in-out 2;
 }
 
 /* Outgoing 3D Card Sliding Out to the Left */
