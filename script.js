@@ -194,11 +194,15 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => na
 const navAnchors = document.querySelectorAll('.nav-links a');
 const spySections = [...navAnchors].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 function updateActiveNav() {
-  const scrollY = window.scrollY + 120;
+  const scrollY = window.scrollY + 140;
   let current = spySections[0]?.id || '';
-  spySections.forEach(sec => {
-    if (sec.offsetTop <= scrollY) current = sec.id;
-  });
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+    current = 'contact';
+  } else {
+    spySections.forEach(sec => {
+      if (sec.offsetTop <= scrollY) current = sec.id;
+    });
+  }
   navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
 }
 window.addEventListener('scroll', updateActiveNav, { passive: true });
@@ -290,15 +294,15 @@ techStack.forEach(t => {
   techGrid.appendChild(tile);
 });
 
-/* ---------------- Fade-in on scroll (Animate.css fadeInUp) ---------------- */
+/* ---------------- Fade-in on scroll (Silky Apple Staggered Reveal) ---------------- */
 const fadeEls = document.querySelectorAll('.fade-in');
 
-/* Assign stagger delays to siblings within the same parent */
+/* Assign gentle stagger delays to siblings within the same parent */
 const staggerParents = new Set(Array.from(fadeEls).map(el => el.parentElement));
 staggerParents.forEach(parent => {
   const children = Array.from(parent.querySelectorAll(':scope > .fade-in, .fade-in'));
   children.forEach((el, i) => {
-    el.style.setProperty('--animate-delay', `${i * 0.12}s`);
+    el.style.setProperty('--animate-delay', `${Math.min(i * 0.05, 0.25)}s`);
   });
 });
 
@@ -310,7 +314,7 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(el); /* fire once — no re-trigger on scroll back */
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
 
 fadeEls.forEach(el => observer.observe(el));
 
