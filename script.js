@@ -184,17 +184,44 @@ document.getElementById('modalClose').addEventListener('click', () => overlay.cl
 overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('open'); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') overlay.classList.remove('open'); });
 
-/* ---------------- Mobile nav ---------------- */
+/* ---------------- Mobile nav & Smooth Anchor Scrolling ---------------- */
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => navLinks.classList.toggle('mobile-open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('mobile-open')));
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (!targetId || targetId === '#') return;
+    const targetEl = document.querySelector(targetId);
+    if (!targetEl) return;
+
+    e.preventDefault();
+    navLinks.classList.remove('mobile-open');
+
+    if (targetId === '#home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.pushState(null, '', '#home');
+      updateActiveNav();
+      return;
+    }
+
+    // Scroll so the target section's top aligns with the viewport, completely hiding previous sections
+    const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({
+      top: targetPos,
+      behavior: 'smooth'
+    });
+    history.pushState(null, '', targetId);
+    setTimeout(updateActiveNav, 200);
+  });
+});
 
 /* ---------------- Nav scroll spy ---------------- */
 const navAnchors = document.querySelectorAll('.nav-links a');
 const spySections = [...navAnchors].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 function updateActiveNav() {
-  const scrollY = window.scrollY + 140;
+  const scrollY = window.scrollY + 120;
   let current = spySections[0]?.id || '';
   if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
     current = 'contact';
