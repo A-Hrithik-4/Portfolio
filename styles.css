@@ -706,10 +706,6 @@ section {
   }
 }
 
-.carousel:hover .car-frame {
-  animation-play-state: paused;
-}
-
 /* Circular Cybernetic Emitter Base & Upward Volumetric Projection Beam */
 .holo-emitter-stage {
   position: relative;
@@ -842,16 +838,6 @@ section {
   filter: blur(5px);
   pointer-events: none;
   z-index: 1;
-}
-
-/* Hover Glow on Active Card (Zero position jump = perfectly stable) */
-.car-slide.active:hover {
-  border-color: rgba(0, 240, 255, 0.65);
-  box-shadow:
-    0 28px 70px -10px rgba(8, 12, 28, 0.55),
-    0 0 45px rgba(0, 240, 255, 0.30),
-    inset 0 1px 2px rgba(255, 255, 255, 0.45),
-    inset 0 -5px 14px rgba(0, 240, 255, 0.60);
 }
 
 .car-topbar {
