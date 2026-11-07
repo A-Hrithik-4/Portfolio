@@ -207,7 +207,6 @@ updateActiveNav();
 /* ---------------- Hero carousel ---------------- */
 const carouselProjects = projects.filter(p => p.status === 'live').slice(0, 4);
 const frame = document.getElementById('carFrame');
-const dotsWrap = document.getElementById('carDots');
 carouselProjects.forEach((p, i) => {
   const slide = document.createElement('div');
   slide.className = 'car-slide' + (i === 0 ? ' active' : '');
@@ -231,10 +230,6 @@ carouselProjects.forEach((p, i) => {
     openModal(p);
   });
   frame.appendChild(slide);
-  const dot = document.createElement('div');
-  dot.className = 'car-dot' + (i === 0 ? ' active' : '');
-  dot.addEventListener('click', () => goToSlide(i));
-  dotsWrap.appendChild(dot);
 });
 
 let carIdx = 0;
@@ -251,7 +246,6 @@ function goToSlide(i) {
       s.classList.remove('active', 'slide-out');
     }
   });
-  document.querySelectorAll('.car-dot').forEach((d, j) => d.classList.toggle('active', j === i));
   carIdx = i;
 }
 let carInterval = setInterval(() => {

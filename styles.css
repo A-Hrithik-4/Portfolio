@@ -302,7 +302,7 @@ nav {
 }
 
 .nav-links a {
-  transition: all .25s ease;
+  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
   padding: 6px 14px;
   border-radius: 9999px;
@@ -317,6 +317,11 @@ nav {
   color: var(--text-heading);
   background: rgba(255, 255, 255, 0.82);
   box-shadow: 0 2px 8px rgba(61, 82, 160, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+
+.nav-links a:active {
+  transform: scale(0.97);
 }
 
 .nav-links a.active {
@@ -347,7 +352,7 @@ nav {
   border-radius: 50%;
   color: var(--text-body);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1), 0 2px 8px rgba(61, 82, 160, 0.08);
-  transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .icon-btn:hover,
@@ -357,6 +362,10 @@ nav {
   background: #FFFFFF;
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 6px 18px rgba(112, 145, 230, 0.28), inset 0 1px 1.5px rgba(255, 255, 255, 1);
+}
+
+.icon-btn:active {
+  transform: scale(0.94);
 }
 
 .nav-toggle {
@@ -535,10 +544,14 @@ section {
   border-radius: 9999px;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+.btn:active {
+  transform: scale(0.97) translateY(0);
 }
 
 .btn-primary {
@@ -597,7 +610,7 @@ section {
   border-radius: 16px;
   padding: 16px 20px;
   box-shadow: 0 10px 26px -6px rgba(61, 82, 160, 0.12), var(--glass-highlight);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background 0.35s ease;
   position: relative;
   overflow: hidden;
 }
@@ -790,11 +803,17 @@ section {
     inset 0 -4px 10px rgba(0, 240, 255, 0.45);
   opacity: 0;
   visibility: hidden;
-  transform: translate3d(120px, 0, 80px) rotateY(20deg) scale(1.04);
-  transform-origin: 50% 50%;
+  transform: translateX(105%) translateZ(-120px) rotateY(-28deg) scale(0.88);
+  transform-origin: center center;
+  filter: blur(5px);
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: transform, opacity;
+  transition:
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    visibility 0.85s;
   pointer-events: none;
 }
 
@@ -814,45 +833,15 @@ section {
   background-size: 100% 8px;
 }
 
-/* Active 3D Card: Moving Forwards into Center with Fade-In */
+/* Active 3D Card in Center Focus */
 .car-slide.active {
-  animation: holoForwardCircleIn 1.1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
+  filter: blur(0px);
   pointer-events: auto;
   cursor: pointer;
   z-index: 2;
-}
-
-/* Outgoing 3D Card: Moving Forwards along Circular Arc with Fade-Out */
-.car-slide.slide-out {
-  animation: holoForwardCircleOut 1.1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes holoForwardCircleIn {
-  0% {
-    transform: translate3d(120px, 0, 80px) rotateY(20deg) scale(1.04);
-    opacity: 0;
-    visibility: visible;
-  }
-  100% {
-    transform: translate3d(0, 0, 0) rotateY(0deg) scale(1);
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-@keyframes holoForwardCircleOut {
-  0% {
-    transform: translate3d(0, 0, 0) rotateY(0deg) scale(1);
-    opacity: 1;
-    visibility: visible;
-  }
-  100% {
-    transform: translate3d(-120px, 0, 80px) rotateY(-20deg) scale(1.04);
-    opacity: 0;
-    visibility: hidden;
-  }
 }
 
 @keyframes projectCardPulse {
@@ -867,6 +856,16 @@ section {
 
 .pcard.highlight-pulse {
   animation: projectCardPulse 1.2s ease-in-out 2;
+}
+
+/* Outgoing 3D Card Sliding Out to the Left */
+.car-slide.slide-out {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-105%) translateZ(-120px) rotateY(28deg) scale(0.88);
+  filter: blur(5px);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .car-topbar {
@@ -916,7 +915,8 @@ section {
   transform: scale(1);
 }
 
-.car-dots {
+.car-dots,
+.car-dot {
   display: none !important;
 }
 
@@ -987,7 +987,7 @@ section {
   display: flex;
   flex-direction: column;
   box-shadow: var(--glass-shadow), var(--glass-highlight);
-  transition: all .35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background 0.35s ease;
   position: relative;
 }
 
@@ -1027,11 +1027,11 @@ section {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pcard:hover .pcard-shot img {
-  transform: translateY(-6px);
+  transform: scale(1.03) translateY(-4px);
 }
 
 .pcard-body {
@@ -1184,7 +1184,7 @@ section {
   align-items: center;
   gap: 10px;
   box-shadow: 0 6px 18px -4px rgba(61, 82, 160, 0.10), var(--glass-highlight);
-  transition: all .28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -1293,7 +1293,7 @@ section {
   padding: 30px;
   margin-bottom: 20px;
   box-shadow: var(--glass-shadow), var(--glass-highlight);
-  transition: all .28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -1446,7 +1446,7 @@ section {
   margin-bottom: 16px;
   flex-wrap: wrap;
   box-shadow: var(--glass-shadow), var(--glass-highlight);
-  transition: all .28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -1512,7 +1512,7 @@ section {
   border-radius: var(--radius);
   padding: 26px;
   box-shadow: var(--glass-shadow), var(--glass-highlight);
-  transition: all .28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -1919,17 +1919,23 @@ footer .f-sub {
   position: fixed;
   inset: 0;
   background: rgba(27, 36, 70, 0.45);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
   z-index: 200;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
 }
 
 .modal-overlay.open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .modal {
@@ -1945,6 +1951,14 @@ footer .f-sub {
   padding: 40px;
   position: relative;
   box-shadow: 0 36px 95px -10px rgba(61, 82, 160, 0.22), 0 0 50px rgba(112, 145, 230, 0.15), var(--glass-highlight);
+  transform: scale(0.92) translateY(16px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.modal-overlay.open .modal {
+  transform: scale(1) translateY(0);
+  opacity: 1;
 }
 
 .modal-close {
