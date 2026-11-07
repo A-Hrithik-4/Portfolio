@@ -214,7 +214,11 @@ carouselProjects.forEach((p, i) => {
   slide.setAttribute('role', 'button');
   slide.setAttribute('aria-label', `View ${p.name}`);
   slide.innerHTML = `
-<div class="car-topbar"><span></span><span></span><span></span></div>
+<div class="car-topbar">
+  <div class="car-topbar-controls"><span></span><span></span><span></span></div>
+  <div class="car-topbar-pill"></div>
+  <div class="car-topbar-spacer"></div>
+</div>
 <div class="car-body">
   <img src="${p.image}" class="car-img" alt="${p.name} Web Preview">
 </div>
@@ -314,3 +318,166 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
 fadeEls.forEach(el => observer.observe(el));
+
+/* ---------------- Apple Blue Trail Custom Cursor ---------------- */
+(function initCustomCursor() {
+  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+  const canvas = document.getElementById('cursor-trail');
+  const cursorWrap = document.getElementById('customCursor');
+  if (!canvas || !cursorWrap) return;
+
+  const ctx = canvas.getContext('2d');
+  let dpr = window.devicePixelRatio || 1;
+
+  function resizeCanvas() {
+    dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  const dot = cursorWrap.querySelector('.cursor-dot');
+  const ring = cursorWrap.querySelector('.cursor-ring');
+
+  let mouseX = -100;
+  let mouseY = -100;
+  let ringX = -100;
+  let ringY = -100;
+  let isVisible = false;
+  const trail = [];
+  const maxTrailPoints = 20;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (!isVisible) {
+      isVisible = true;
+      cursorWrap.classList.add('visible');
+      ringX = mouseX;
+      ringY = mouseY;
+    }
+
+    trail.push({
+      x: mouseX,
+      y: mouseY,
+      age: 0,
+      maxAge: 18,
+      size: 4.5
+    });
+
+    if (trail.length > maxTrailPoints) {
+      trail.shift();
+    }
+  });
+
+  window.addEventListener('mousedown', () => cursorWrap.classList.add('cursor-click'));
+  window.addEventListener('mouseup', () => cursorWrap.classList.remove('cursor-click'));
+
+  document.addEventListener('mouseleave', () => {
+    isVisible = false;
+    cursorWrap.classList.remove('visible');
+  });
+
+  document.addEventListener('mouseenter', () => {
+    isVisible = true;
+    cursorWrap.classList.add('visible');
+  });
+
+  // Track hoverable targets for magnetic cursor expansion
+  const interactiveSelector = 'a, button, input, textarea, select, [role="button"], .pcard, .tech-tile, .strength-item, .car-slide, .nav-links a, .icon-btn, .exp-card, .edu-card, .cert-card';
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(interactiveSelector)) {
+      cursorWrap.classList.add('cursor-hover');
+    }
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(interactiveSelector)) {
+      cursorWrap.classList.remove('cursor-hover');
+    }
+  });
+
+  // Render Loop
+  function renderCursor() {
+    // Lerp follower ring towards mouse coordinates
+    ringX += (mouseX - ringX) * 0.22;
+    ringY += (mouseY - ringY) * 0.22;
+
+    if (dot) {
+      dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+    }
+    if (ring) {
+      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+    }
+
+    // Render smooth ethereal blue wake
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    for (let i = trail.length - 1; i >= 0; i--) {
+      const p = trail[i];
+      p.age++;
+
+      if (p.age > p.maxAge) {
+        trail.splice(i, 1);
+        continue;
+      }
+
+      const progress = 1 - (p.age / p.maxAge);
+      const radius = p.size * progress;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, radius * 2.2);
+      grad.addColorStop(0, `rgba(112, 145, 230, ${progress * 0.75})`);
+      grad.addColorStop(0.5, `rgba(61, 82, 160, ${progress * 0.40})`);
+      grad.addColorStop(1, 'rgba(61, 82, 160, 0)');
+
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+
+    // Connect trail points with a glowing bezier spline
+    if (trail.length > 2) {
+      ctx.beginPath();
+      ctx.moveTo(trail[0].x, trail[0].y);
+      for (let i = 1; i < trail.length - 1; i++) {
+        const xc = (trail[i].x + trail[i + 1].x) / 2;
+        const yc = (trail[i].y + trail[i + 1].y) / 2;
+        ctx.quadraticCurveTo(trail[i].x, trail[i].y, xc, yc);
+      }
+      ctx.quadraticCurveTo(
+        trail[trail.length - 1].x,
+        trail[trail.length - 1].y,
+        mouseX,
+        mouseY
+      );
+
+      const lineGrad = ctx.createLinearGradient(
+        trail[0].x, trail[0].y,
+        mouseX, mouseY
+      );
+      lineGrad.addColorStop(0, 'rgba(61, 82, 160, 0)');
+      lineGrad.addColorStop(0.5, 'rgba(112, 145, 230, 0.35)');
+      lineGrad.addColorStop(1, 'rgba(112, 145, 230, 0.85)');
+
+      ctx.strokeStyle = lineGrad;
+      ctx.lineWidth = 3;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.shadowColor = 'rgba(112, 145, 230, 0.50)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+
+    requestAnimationFrame(renderCursor);
+  }
+
+  requestAnimationFrame(renderCursor);
+})();
