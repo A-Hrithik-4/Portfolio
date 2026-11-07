@@ -703,6 +703,7 @@ section {
   aspect-ratio: 16 / 9.6;
   border-radius: 22px;
   overflow: hidden;
+  perspective: 1000px;
   background: linear-gradient(145deg, rgba(16, 24, 46, 0.94) 0%, rgba(8, 12, 24, 0.98) 100%);
   backdrop-filter: blur(28px) saturate(190%);
   -webkit-backdrop-filter: blur(28px) saturate(190%);
@@ -793,7 +794,7 @@ section {
   100% { transform: translateY(-8px); opacity: 1; }
 }
 
-/* Clean, Modern Cinematic Cross-Fade */
+/* Futuristic Holographic 3D Depth Slide with Laser Scan */
 .car-slide {
   position: absolute;
   inset: 0;
@@ -801,7 +802,14 @@ section {
   flex-direction: column;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.65s;
+  transform: translateX(45%) translateZ(-50px) rotateY(-8deg) scale(0.95);
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition:
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.75s;
   pointer-events: none;
   z-index: 1;
 }
@@ -822,13 +830,46 @@ section {
   background-size: 100% 8px;
 }
 
-/* Active Slide: Crystal Clear in Center Focus */
+/* Active Slide: Locks into Center with Holographic Laser Materialization */
 .car-slide.active {
   opacity: 1;
   visibility: visible;
+  transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
   pointer-events: auto;
   cursor: pointer;
   z-index: 2;
+}
+
+/* Holographic Laser Beam Sweep on Card Materialization */
+.car-slide.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 240, 255, 0.18) 35%,
+    rgba(0, 240, 255, 0.85) 65%,
+    #FFFFFF 85%,
+    transparent 100%
+  );
+  filter: drop-shadow(0 0 10px #00F0FF);
+  z-index: 6;
+  pointer-events: none;
+  animation: holoLaserScan 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes holoLaserScan {
+  0% {
+    left: -70px;
+    opacity: 0.95;
+  }
+  100% {
+    left: 115%;
+    opacity: 0;
+  }
 }
 
 @keyframes projectCardPulse {
@@ -845,10 +886,11 @@ section {
   animation: projectCardPulse 1.2s ease-in-out 2;
 }
 
-/* Outgoing Slide */
+/* Outgoing Slide: Glides Left with Gentle Depth */
 .car-slide.slide-out {
   opacity: 0;
   visibility: hidden;
+  transform: translateX(-45%) translateZ(-50px) rotateY(8deg) scale(0.95);
   pointer-events: none;
   z-index: 1;
 }
