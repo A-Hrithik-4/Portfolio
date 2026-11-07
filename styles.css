@@ -707,7 +707,7 @@ section {
 }
 
 .carousel:hover .car-frame {
-  transform: translateY(-12px) rotateX(2deg);
+  animation-play-state: paused;
 }
 
 /* Circular Cybernetic Emitter Base & Upward Volumetric Projection Beam */
@@ -844,12 +844,11 @@ section {
   z-index: 1;
 }
 
-/* Hover Lift on Active Card */
+/* Hover Glow on Active Card (Zero position jump = perfectly stable) */
 .car-slide.active:hover {
-  transform: translateY(-8px) scale(1.015);
   border-color: rgba(0, 240, 255, 0.65);
   box-shadow:
-    0 32px 80px -10px rgba(8, 12, 28, 0.55),
+    0 28px 70px -10px rgba(8, 12, 28, 0.55),
     0 0 45px rgba(0, 240, 255, 0.30),
     inset 0 1px 2px rgba(255, 255, 255, 0.45),
     inset 0 -5px 14px rgba(0, 240, 255, 0.60);
