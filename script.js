@@ -230,12 +230,12 @@ function goToSlide(i) {
   slides.forEach((s, j) => {
     if (j === carIdx && j !== i) {
       s.classList.remove('active');
-      s.classList.add('spin-out');
+      s.classList.add('slide-out');
     } else if (j === i) {
-      s.classList.remove('spin-out');
+      s.classList.remove('slide-out');
       s.classList.add('active');
     } else {
-      s.classList.remove('active', 'spin-out');
+      s.classList.remove('active', 'slide-out');
     }
   });
   document.querySelectorAll('.car-dot').forEach((d, j) => d.classList.toggle('active', j === i));

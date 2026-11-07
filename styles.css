@@ -683,30 +683,18 @@ section {
   align-items: center;
 }
 
-/* Floating Projected Screen (Emitted mid-air above circular base) */
+/* Floating Projected Stage Container (Emitted mid-air above circular base) */
 .car-frame {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9.6;
-  background: linear-gradient(145deg, rgba(16, 24, 46, 0.92) 0%, rgba(8, 12, 24, 0.96) 100%);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border: 1.5px solid rgba(112, 145, 230, 0.35);
-  border-bottom: 2px solid rgba(0, 240, 255, 0.65); /* Soft beam landing edge */
-  border-radius: 22px;
-  overflow: hidden;
   perspective: 1200px;
   transform-style: preserve-3d;
-  box-shadow:
-    0 24px 60px -12px rgba(8, 12, 28, 0.45),
-    0 0 35px rgba(0, 240, 255, 0.20),
-    inset 0 1px 2px rgba(255, 255, 255, 0.35),
-    inset 0 -4px 10px rgba(0, 240, 255, 0.45);
   display: flex;
   flex-direction: column;
   z-index: 2;
   animation: holoScreenLevitate 4.5s ease-in-out infinite;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes holoScreenLevitate {
@@ -719,29 +707,7 @@ section {
 }
 
 .carousel:hover .car-frame {
-  transform: translateY(-12px) rotateX(2deg) scale(1.015);
-  border-color: rgba(0, 240, 255, 0.65);
-  box-shadow:
-    0 32px 80px -10px rgba(8, 12, 28, 0.55),
-    0 0 45px rgba(0, 240, 255, 0.30),
-    inset 0 1px 2px rgba(255, 255, 255, 0.45),
-    inset 0 -5px 14px rgba(0, 240, 255, 0.60);
-}
-
-/* Subtle Holographic Scanline Shimmer */
-.car-frame::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(0, 240, 255, 0.04) 50%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 5;
-  background-size: 100% 8px;
+  transform: translateY(-12px) rotateX(2deg);
 }
 
 /* Circular Cybernetic Emitter Base & Upward Volumetric Projection Beam */
@@ -808,42 +774,85 @@ section {
   100% { transform: translateY(-8px); opacity: 1; }
 }
 
-/* 3D Holographic Turntable Spin Transition */
+/* Complete 3D Holographic Card Slide */
 .car-slide {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(16, 24, 46, 0.94) 0%, rgba(8, 12, 24, 0.98) 100%);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1.5px solid rgba(112, 145, 230, 0.35);
+  border-bottom: 2px solid rgba(0, 240, 255, 0.65); /* Soft beam landing edge */
+  box-shadow:
+    0 24px 60px -12px rgba(8, 12, 28, 0.45),
+    0 0 35px rgba(0, 240, 255, 0.20),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35),
+    inset 0 -4px 10px rgba(0, 240, 255, 0.45);
   opacity: 0;
   visibility: hidden;
-  transform: rotateY(-75deg) scale(0.92);
+  transform: translateX(105%) translateZ(-120px) rotateY(-28deg) scale(0.88);
   transform-origin: center center;
-  filter: blur(6px);
+  filter: blur(5px);
   backface-visibility: hidden;
   transition:
-    opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
     visibility 0.85s;
   pointer-events: none;
 }
 
+/* Subtle Holographic Scanline Shimmer */
+.car-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 240, 255, 0.04) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+  background-size: 100% 8px;
+}
+
+/* Active 3D Card in Center Focus */
 .car-slide.active {
   opacity: 1;
   visibility: visible;
-  transform: rotateY(0deg) scale(1);
+  transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
   filter: blur(0px);
   pointer-events: auto;
   z-index: 2;
 }
 
-.car-slide.spin-out {
+/* Outgoing 3D Card Sliding Out to the Left */
+.car-slide.slide-out {
   opacity: 0;
   visibility: hidden;
-  transform: rotateY(75deg) scale(0.92);
-  filter: blur(6px);
+  transform: translateX(-105%) translateZ(-120px) rotateY(28deg) scale(0.88);
+  filter: blur(5px);
   pointer-events: none;
   z-index: 1;
+}
+
+/* Hover Lift on Active Card */
+.car-slide.active:hover {
+  transform: translateY(-8px) scale(1.015);
+  border-color: rgba(0, 240, 255, 0.65);
+  box-shadow:
+    0 32px 80px -10px rgba(8, 12, 28, 0.55),
+    0 0 45px rgba(0, 240, 255, 0.30),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45),
+    inset 0 -5px 14px rgba(0, 240, 255, 0.60);
 }
 
 .car-topbar {
